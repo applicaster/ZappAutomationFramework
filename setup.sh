@@ -7,7 +7,7 @@ fi
 
 # install appium server cli
 if [[ $1 == "local" ]]; then
-    sudo npm install -g appium@1.16.0 --unsafe-perm=true --allow-root
+    sudo npm install -g appium@1.16.0 #--unsafe-perm=true --allow-root
     npm install wd
 fi
 
