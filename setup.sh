@@ -2,7 +2,7 @@
 
 # install carthage
 if [[ $1 == "local" ]]; then
-    sudo brew install carthage
+    brew install carthage
 fi
 
 # install appium server cli
