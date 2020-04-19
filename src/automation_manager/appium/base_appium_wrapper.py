@@ -1,6 +1,7 @@
 
 from appium import webdriver
 from src.utils.logger import Logger
+from src.utils.print import PRINT
 from src.configuration.configuration import Configuration
 from time import sleep
 from sys import exit
@@ -120,6 +121,20 @@ class BaseAppiumWrapper(AutomationDriver):
                                               FINDING_ELEMENT_BY_ACCESSIBILITY_ID)
                 self.wait(1)
         return None
+
+    def send_keys(self, keys, time_out=0.5):
+        PRINT('Send remote control keys: %s' % str(keys), text_color='cyan')
+        if isinstance(keys, str):
+            self.__send_key__(self.__convert_key_code__(keys))
+            self.wait(time_out)
+
+        elif isinstance(keys, type([])):
+            for key in keys:
+                if isinstance(key, int):
+                    self.wait(key)
+                else:
+                    self.__send_key__(self.__convert_key_code__(key))
+                    self.wait(time_out)
 
     """
     Private Implementation

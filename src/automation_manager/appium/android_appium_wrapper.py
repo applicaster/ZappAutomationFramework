@@ -1,7 +1,17 @@
 
-from src.automation_manager.appium.base_appium_wrapper import BaseAppiumWrapper
 from src.utils.logger import Logger
+from src.global_defines import RemoteControlKeys
+from src.automation_manager.appium.base_appium_wrapper import BaseAppiumWrapper
 from src.automation_manager.appium.base_appium_wrapper import FINDING_ELEMENT_BY_TEXT
+
+
+class AndroidRemoteControlKeyCodes:
+    UP = 19
+    DOWN = 20
+    RIGHT = 22
+    LEFT = 21
+    ENTER = 23
+    BACK = 4
 
 
 class AndroidAppiumWrapper(BaseAppiumWrapper):
@@ -34,6 +44,32 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
         Gets the log for a given log type
         """
         return self.driver_.get_log('logcat')
+
+    '''
+        Private Implementation
+        '''
+
+    def __send_key__(self, key_code):
+        self.driver_.press_keycode(key_code)
+
+    def __convert_key_code__(self, key_code):
+        if key_code == RemoteControlKeys.UP:
+            return AndroidRemoteControlKeyCodes.UP
+
+        if key_code == RemoteControlKeys.DOWN:
+            return AndroidRemoteControlKeyCodes.DOWN
+
+        if key_code == RemoteControlKeys.LEFT:
+            return AndroidRemoteControlKeyCodes.LEFT
+
+        if key_code == RemoteControlKeys.RIGHT:
+            return AndroidRemoteControlKeyCodes.RIGHT
+
+        if key_code == RemoteControlKeys.ENTER:
+            return AndroidRemoteControlKeyCodes.ENTER
+
+        if key_code == RemoteControlKeys.BACK:
+            return AndroidRemoteControlKeyCodes.BACK
 
     """
     Private Implementation

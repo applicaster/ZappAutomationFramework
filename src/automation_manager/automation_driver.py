@@ -8,3 +8,4 @@ class AutomationDriver(object):
     def activate_app(self, bundle_id=None, app_package=None): raise NotImplementedError
     def terminate_app(self): raise NotImplementedError
     def get_device_log(self): raise NotImplementedError
+    def send_keys(self, keys, time_out=0.5): raise NotImplementedError
