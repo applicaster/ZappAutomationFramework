@@ -135,6 +135,10 @@ class BaseAppiumWrapper(AutomationDriver):
         raise Exception(FAILED_ACTIVATING_APPLICATION)
 
     def __activate_ios_app__(self, bundle_id):
+        if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
+            # autoLaunch=false is not working for tvOS platform, as for that tvOS is being launched when connecting
+            # to appium with autoLaunch=true, see bug: https://github.com/appium/appium/issues/14198
+            return
         for i in range(APPIUM_CONNECT_RETIRES_NUM):
             try:
                 return self.driver_.activate_app(bundle_id)
