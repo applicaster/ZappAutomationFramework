@@ -33,7 +33,6 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
 
             except Exception as exception:
                 Logger.get_instance().warning(self, "find_element_by_text", FINDING_ELEMENT_BY_TEXT % str(text))
-                Logger.get_instance().warning(self, "find_element_by_text", exception)
 
             self.wait(1)
 
