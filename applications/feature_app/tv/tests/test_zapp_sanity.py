@@ -82,7 +82,6 @@ class GridScreenTest(BaseTest):
         )
 
 
-@pytest.mark.android_tv
 @pytest.mark.tv_apps_sanity
 @pytest.mark.usefixtures('automation_driver')
 class HorizontalListScreenTest(BaseTest):
