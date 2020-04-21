@@ -1,4 +1,5 @@
 
+from applications.feature_app.feature_app_player import FeatureAppScreen
 from src.generic_building_blocks.building_blocks_interface import BuildingBlocksInterface
 from src.generic_building_blocks.tv.tv_screen import TvScreen
 from applications.feature_app.tv.building_blocks.home_screen import HomeScreen
@@ -46,3 +47,5 @@ class BuildingBlocks(BuildingBlocksInterface):
         )
         for screen in screens:
             self.screens[screen[0]] = TvScreen(self.test, screen[0], navigation_steps=screen[1])
+
+        self.screens['player_screen'] = FeatureAppScreen(self.test)
