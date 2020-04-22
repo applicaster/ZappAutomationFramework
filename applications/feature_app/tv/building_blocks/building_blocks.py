@@ -25,7 +25,7 @@ class BuildingBlocks(BuildingBlocksInterface):
         PRINT('Finish waiting for home screen to load')
         Logger.get_instance().log_assert(element is not None, 'Application failed launching to home screen correctly')
 
-        self.test.driver.wait(7)
+        self.test.driver.wait(10)
         return True
 
     def __setup_building_blocks__(self):

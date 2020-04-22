@@ -1,8 +1,9 @@
-setuptools
-pytest
+setuptools==41.0.0
+pytest==5.4.1
 Appium-Python-Client==0.40
 termcolor==1.1.0
 configparser==3.7.4
 requests==2.21.0
 pytest-html==1.20.0
 requests==2.21.0
+pluggy==0.13.1

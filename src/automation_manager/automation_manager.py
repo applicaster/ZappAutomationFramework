@@ -38,7 +38,8 @@ class AutomationManager(object):
         elif platform == PlatformType.WEB:
             self.__setup_driver_based_selenium__()
 
-        self.automation_driver_.connect()
+        if Configuration.get_instance().get('appium', 'autoLaunch') is False:
+            self.automation_driver_.connect()
 
     def __setup_driver_based_selenium__(self):
         url = Configuration.get_instance().get('selenium', 'url')

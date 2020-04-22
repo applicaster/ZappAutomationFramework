@@ -50,7 +50,7 @@ class BackNavigationFromScreenPickerTest(BaseTest):
     def shortDescription(self):
         return 'C17451 - Verify navigating inside Screen Picker tabs'
 
-@pytest.mark.boaz
+
 @pytest.mark.tv_apps_sanity
 @pytest.mark.android_tv
 @pytest.mark.usefixtures('automation_driver')

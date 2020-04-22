@@ -25,11 +25,17 @@ class Configuration(object):
 
     def get(self, section, option):
         try:
-            return self.config.get(section, option)
-        except Exception:
+            value = self.config.get(section, option)
+            if value.lower() in ('true', '1', 'yes'):
+                return True
+
+            elif value.lower() in ('false', '0', 'no'):
+                return False
+            else:
+                return value
+        except Exception as exp:
             pass
 
-        return None
 
     def platform_type(self):
         platform = str(self.get('general', 'platform')).lower()
@@ -64,16 +70,7 @@ class Configuration(object):
     def get_section(self, section):
         values = {}
         for key in self.config.options(section):
-            value = self.get(section, key)
-            if value.lower() in ('true', '1', 'yes'):
-                values[key] = True
-
-            elif value.lower() in ('false', '0', 'no'):
-                values[key] = False
-
-            else:
-                values[key] = self.get(section, key)
-
+            values[key] = self.get(section, key)
         return values
 
     """

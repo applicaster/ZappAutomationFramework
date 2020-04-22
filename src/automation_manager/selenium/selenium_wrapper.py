@@ -100,7 +100,7 @@ class SeleniumWebDriver(AutomationDriver):
         self.driver_.quit()
 
     def connect(self, retries=1):
-        pass
+        Logger.get_instance().info(self, 'connect', 'Connecting performed when activating tha app')
 
     def disconnect(self):
         self.driver_.quit()
