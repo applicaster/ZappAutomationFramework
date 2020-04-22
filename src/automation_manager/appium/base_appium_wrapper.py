@@ -61,8 +61,6 @@ class BaseAppiumWrapper(AutomationDriver):
         else:
             return self.driver_.terminate_app(bundle_id)
 
-        # return self.driver_.terminate_app(bundle_id)
-
     def connect(self):
         """
         This method connects to the appium server.
