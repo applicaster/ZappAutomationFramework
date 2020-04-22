@@ -52,7 +52,6 @@ class BackNavigationFromScreenPickerTest(BaseTest):
 
 
 @pytest.mark.tv_apps_sanity
-@pytest.mark.android_tv
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationFromPlayerTest(BaseTest):
     def test_back_navigation_from_player(self):

@@ -39,13 +39,15 @@ class BaseAppiumWrapper(AutomationDriver):
         # :app_package: android only, the activity to start.
         # :return: App WebDriver session
         """
-        platform = Configuration.get_instance().platform_type()
+        if Configuration.get_instance().get('appium', 'autoLaunch'):
+            return self.connect()
+        else:
+            platform = Configuration.get_instance().platform_type()
+            if platform in (PlatformType.ANDROID, PlatformType.ANDROID_TV):
+                return self.__activate_android_app__(bundle_id, app_package)
 
-        if platform in (PlatformType.ANDROID, PlatformType.ANDROID_TV):
-            return self.__activate_android_app__(bundle_id, app_package)
-
-        if platform in (PlatformType.IOS, PlatformType.TV_OS):
-            return self.__activate_ios_app__(bundle_id)
+            if platform in (PlatformType.IOS, PlatformType.TV_OS):
+                return self.__activate_ios_app__(bundle_id)
 
     def terminate_app(self, bundle_id=Configuration.get_instance().get_bundle_id()):
         """
@@ -54,7 +56,10 @@ class BaseAppiumWrapper(AutomationDriver):
         None test will take the one found in the configuration.
         :return: If the application is not running then the returned result will be false, otherwise true.
         """
-        return self.driver_.terminate_app(bundle_id)
+        if Configuration.get_instance().get('appium', 'autoLaunch'):
+            return self.disconnect()
+        else:
+            return self.driver_.terminate_app(bundle_id)
 
     def connect(self):
         """
@@ -67,8 +72,6 @@ class BaseAppiumWrapper(AutomationDriver):
                 if self.driver_ is not None:
                     break
             except Exception as exception:
-                print(FAILED_CONNECTING_TO_APPIUM_SERVER)
-                print(str(exception))
                 self.driver_ = None
                 self.wait(1)
 
@@ -107,7 +110,18 @@ class BaseAppiumWrapper(AutomationDriver):
         return self.driver_.get_screenshot_as_base64()
 
     def take_screenshot(self, file_path):
-        self.driver_.get_screenshot_as_file(file_path)
+        for i in range(3):
+            try:
+                self.driver_.get_screenshot_as_file(file_path)
+            except Exception as exp:
+                print('Falied')
+                print(str(exp))
+                Logger.get_instance().warning(
+                    self,
+                    'take_screenshot',
+                    'Failed taking screenshot, file name: %s, error: %s' % (file_path, str(exp))
+                )
+                self.wait(0.5)
 
     def find_element_by_text(self, text, retries=1): raise NotImplementedError
     def get_device_log(self): raise NotImplementedError
@@ -150,10 +164,6 @@ class BaseAppiumWrapper(AutomationDriver):
         raise Exception(FAILED_ACTIVATING_APPLICATION)
 
     def __activate_ios_app__(self, bundle_id):
-        if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
-            # autoLaunch=false is not working for tvOS platform, as for that tvOS is being launched when connecting
-            # to appium with autoLaunch=true, see bug: https://github.com/appium/appium/issues/14198
-            return
         for i in range(APPIUM_CONNECT_RETIRES_NUM):
             try:
                 return self.driver_.activate_app(bundle_id)

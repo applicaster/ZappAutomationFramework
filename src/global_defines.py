@@ -66,3 +66,8 @@ class UIBuilderScreensTypes(object):
     @staticmethod
     def get_types_array():
         return [UIBuilderScreensTypes.GENERAL_CONTENT]
+
+
+class ScreenUiState(object):
+    STATIC = 'static'
+    DYNAMIC = 'dynamic'
