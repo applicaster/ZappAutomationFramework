@@ -37,7 +37,6 @@ def verify_component(driver, step_num, step_title, items):
         PRINT('     Step %s.%s: Item %s found on screen' % (str(step_num), str(counter), item))
 
 
-@pytest.mark.tv_apps_sanity
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class GridScreenTest(BaseTest):
@@ -82,7 +81,7 @@ class GridScreenTest(BaseTest):
         )
 
 
-@pytest.mark.tv_apps_sanity
+@pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class HorizontalListScreenTest(BaseTest):
     def test_horizontal_list_screen(self):
@@ -150,7 +149,7 @@ class HorizontalListScreenTest(BaseTest):
         )
 
 
-@pytest.mark.tv_apps_sanity
+@pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class HeroScreenTest(BaseTest):
     def test_hero_screen(self):
@@ -204,7 +203,8 @@ class HeroScreenTest(BaseTest):
         )
 
 
-@pytest.mark.tv_apps_sanity
+@pytest.mark.android_tv
+@pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class ScreenPickerScreenTest(BaseTest):
     def test_screen_picker(self):

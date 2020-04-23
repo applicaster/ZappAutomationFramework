@@ -8,7 +8,7 @@ from src.utils.print import PRINT
 from src.base_test import BaseTest
 
 
-@pytest.mark.tv_apps_sanity
+@pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationsBetweenScreenTest(BaseTest):
     def navigate_to_next_screen(self):
@@ -31,7 +31,7 @@ class BackNavigationsBetweenScreenTest(BaseTest):
         return 'C17449 - Verify navigating between 3 screen'
 
 
-@pytest.mark.tv_apps_sanity
+@pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationFromScreenPickerTest(BaseTest):
     def test_back_navigation_from_screen_picker(self):
@@ -51,7 +51,8 @@ class BackNavigationFromScreenPickerTest(BaseTest):
         return 'C17451 - Verify navigating inside Screen Picker tabs'
 
 
-@pytest.mark.tv_apps_sanity
+@pytest.mark.android_tv
+@pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationFromPlayerTest(BaseTest):
     def test_back_navigation_from_player(self):
@@ -72,7 +73,7 @@ class BackNavigationFromPlayerTest(BaseTest):
         return 'C17452 - Verify navigating back from player screen'
 
 
-@pytest.mark.tv_apps_sanity
+@pytest.mark.samsung_tv
 @pytest.mark.android_tv
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationFromConnectedScreenTest(BaseTest):
