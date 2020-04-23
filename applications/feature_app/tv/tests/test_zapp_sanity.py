@@ -38,6 +38,7 @@ def verify_component(driver, step_num, step_title, items):
 
 
 @pytest.mark.tv_apps_sanity
+@pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class GridScreenTest(BaseTest):
     def test_grid_screen(self):
