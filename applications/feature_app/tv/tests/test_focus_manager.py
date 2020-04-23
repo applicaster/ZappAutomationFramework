@@ -19,7 +19,7 @@ def move_focus_and_verify(driver, step_num, step_description, keys_steps, access
 
 class FocusManagerTests(BaseTest):
     @pytest.mark.usefixtures('automation_driver')
-    @pytest.mark.focus_manager
+    @pytest.mark.samsung_tv
     def test_move_focus_manager_in_grid_screen(self):
         PRINT('Step 1: Verify that application launched into home screen')
         self.building_blocks.screens['Home'].verify_in_screen()
@@ -61,7 +61,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-    @pytest.mark.focus_manager
+    @pytest.mark.samsung_tv
     @pytest.mark.usefixtures('automation_driver')
     def test_move_focus_manager_in_horizontal_list_screen(self):
         PRINT('Step 1: Verify that application launched into home screen')
@@ -119,7 +119,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-    @pytest.mark.focus_manager
+    @pytest.mark.samsung_tv
     @pytest.mark.usefixtures('automation_driver')
     def test_move_focus_manager_in_hero_screen(self):
         PRINT('Step 1: verify that application launched into home screen')
@@ -157,7 +157,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-    @pytest.mark.focus_manager
+    @pytest.mark.samsung_tv
     @pytest.mark.usefixtures('automation_driver')
     def test_move_focus_manager_in_screen_picker(self):
         PRINT('Step 1: verify that application launched into home screen')
@@ -201,7 +201,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-    @pytest.mark.focus_manager
+    @pytest.mark.samsung_tv
     @pytest.mark.usefixtures('automation_driver')
     def test_move_focus_manager_in_top_menu_bar(self):
         accessibility_id = 'focusable-91c0f4c7-a762-43c5-8984-847cc6bcbcbf-a3983053d1ebad89d3d442357a466789-0'
