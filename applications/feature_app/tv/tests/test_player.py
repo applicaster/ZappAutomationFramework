@@ -6,6 +6,7 @@ from src.base_test import BaseTest, PRINT
 from src.global_defines import RemoteControlKeys
 
 
+@pytest.mark.android_tv
 class PlayerTest(BaseTest):
     @pytest.mark.android_tv
     @pytest.mark.usefixtures('automation_driver')
