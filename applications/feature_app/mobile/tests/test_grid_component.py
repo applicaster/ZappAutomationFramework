@@ -15,9 +15,10 @@ class GridComponentTests(BaseTest):
         PRINT('Step 1: Navigate to "GridScreen" screen')
         grid_screen.navigate()
 
-        self.driver.find_element_by_text('Dismiss All', retries=5).click()
+        grid_screen.dismiss_react_native_yellow_console_box()
 
     def shortDescription(self) -> str:
-        return 'C22942 - Verify basic functionality of the grid component\n' \
-               'C22938 - Verify swiping between cells in the grid component\n' \
-               'C22943 - Verify functionality of connected feature on grid'
+        return 'test_play_vod_item_in_feed_of_feed_connected_screen:\n' \
+               '    - C22942 - Verify basic functionality of the grid component\n' \
+               '    - C22938 - Verify swiping between cells in the grid component\n' \
+               '    - C22943 - Verify functionality of connected feature on grid'

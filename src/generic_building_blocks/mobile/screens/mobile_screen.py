@@ -57,6 +57,9 @@ class MobileScreen(GenericScreen):
 
         self.test.driver.swipe_by_coordinates(start_x, start_y, end_x, end_y)
 
+    def dismiss_react_native_yellow_console_box(self):
+        self.test.driver.find_element_by_text('Dismiss All', retries=5).click()
+
     def search_horizontally_for_item_by_text(self, text, distance, direction, area):
         """
         :param text: The text in element we are looking for
