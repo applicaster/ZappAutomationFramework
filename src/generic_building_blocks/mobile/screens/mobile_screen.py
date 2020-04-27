@@ -58,7 +58,6 @@ class MobileScreen(GenericScreen):
         self.test.driver.swipe_by_coordinates(start_x, start_y, end_x, end_y)
 
     def search_horizontally_for_item_by_text(self, text, distance, direction, area):
-
         """
         :param text: The text in element we are looking for
         :param distance: The range you want to perform the swipe, if value is None swipe will be 1/3 of the screen
@@ -80,22 +79,24 @@ class MobileScreen(GenericScreen):
         """
         The following function scroll and search for element on screens by text
         :param text: The text in element we are looking for
+        :param scroll_to_top: define if you want to scroll to top of the screen before start the search
         :return: the element if found None if not
         """
         return self.__search_by_type__('text', text, scroll_top=scroll_to_top)
 
-    def search_for_item_by_id(self, id, scroll_to_top=False):
+    def search_for_item_by_id(self, accessibility_id, scroll_to_top=False):
         """
         The following function scroll and search for element on screens by id
-        :param id: The element identifier we are looking for
+        :param accessibility_id: The element identifier we are looking for
+        :param scroll_to_top: define if you want to scroll to top of the screen before start the search
         :return: the element if found None if not
         """
-        return self.__search_by_type__('id', id, scroll_top=scroll_to_top)
+        return self.__search_by_type__('id', accessibility_id, scroll_top=scroll_to_top)
 
     """
     Private Implementation 
     """
-    def __search_by_type__(self, type, value, scroll_top=False):
+    def __search_by_type__(self, access_type, value, scroll_top=False):
         if scroll_top is True:
             before = self.test.driver.get_screenshot_as_base64()
             while True:
@@ -113,11 +114,11 @@ class MobileScreen(GenericScreen):
         before = self.test.driver.get_screenshot_as_base64()
         while True:
 
-            if type == 'text':
-                element = self.test.driver.find_element_by_text(value)
+            if access_type == 'text':
+                element = self.test.driver.find_element_by_text(value, retries=5)
 
-            elif type == 'id':
-                element = self.test.driver.find_element_by_accessibility_id(value)
+            elif access_type == 'id':
+                element = self.test.driver.find_element_by_accessibility_id(value, retries=5)
 
             if element:
                 break

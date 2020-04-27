@@ -67,7 +67,7 @@ class BackNavigationFromPlayerTest(BaseTest):
         self.driver.send_keys(RemoteControlKeys.BACK)
 
         PRINT('Step 4: Verify that the application is now in "Horizontal List Screen" after navigating back')
-        self.building_blocks.screens['Horizontal List Screen'].verify_in_screen(retries=10)
+        self.building_blocks.screens['Horizontal List Screen'].verify_in_screen(retries=20)
 
     def shortDescription(self):
         return 'C17452 - Verify navigating back from player screen'

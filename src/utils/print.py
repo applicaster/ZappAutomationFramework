@@ -27,7 +27,7 @@ def PRINT(text, text_color='blue', text_highlights=None, attributes=None):
 
     else:
         if attributes is not None:
-            print(colored(text, text_color, attributes=attributes))
+            print(colored(text, text_color, attrs=attributes))
         else:
             print(colored(text, text_color))
 

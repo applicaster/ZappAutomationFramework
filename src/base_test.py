@@ -23,8 +23,13 @@ class BaseTest(unittest.TestCase):
         super(BaseTest, self).setUp()
         PRINT(TEST_START_RUNNING % self._testMethodName, 'green')
 
+        PRINT('"%s" Suite Description:' % self.__class__.__name__, text_color='green', attributes=['underline'])
+        PRINT('%s\n' % self.shortDescription())
+
         # Boot step 0: Setup logger
         Logger.get_instance().initialization(self)
+
+        PRINT('"%s" Steps:' % self._testMethodName, text_color='green', attributes=['underline'])
 
         # Boot step 1: Open application
         PRINT('Step 0.1: Open application')
@@ -40,6 +45,9 @@ class BaseTest(unittest.TestCase):
         super(BaseTest, self).tearDown()
         self.__tear_down_actions__()
         PRINT(TEST_FINISHED_RUNNING % self._testMethodName, 'green')
+
+    def shortDescription(self) -> str:
+        return 'Not Found\n'
 
     """
     Private Implementation

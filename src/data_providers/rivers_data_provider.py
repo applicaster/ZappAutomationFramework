@@ -50,6 +50,20 @@ class RiversDataProvider(object):
                         break
         return items
 
+    def get_side_menu_items(self, by_title=True):
+        items = []
+        for screen in self.rivers_dict_:
+            if screen['home'] is True:
+                for navigation in screen['navigations']:
+                    if navigation['navigation_type'] == 'quick_brick_side_menu':
+                        if by_title:
+                            for item in navigation['nav_items']:
+                                items.append(item['title'])
+                        else:
+                            items = navigation['nav_items']
+                        break
+        return items
+
     def get_ui_builder_screens(self, specific_type=None):
         screens = []
         for screen in self.rivers_dict_:
