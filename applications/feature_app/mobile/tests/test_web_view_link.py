@@ -7,7 +7,6 @@ from src.utils.logger import Logger
 
 
 class WebViewTests(BaseTest):
-    @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_external_web_view_link(self):
         list_screen = self.building_blocks.screens['ListScreen']
@@ -43,6 +42,7 @@ class WebViewTests(BaseTest):
         list_screen.verify_in_screen(retries=7)
 
     def shortDescription(self) -> str:
-        return 'test_verify_external_web_view_link: TestRail C22993 - Verify general functionality of the Webview\n' \
-               'test_verify_external_web_view_link: TestRail C22991 - Verify that URL is clickable in a cell\n' \
-               'test_verify_external_web_view_link: TestRail C22994 - Verify Navbar functionality within the Webview screen'
+        return 'test_verify_external_web_view_link:\n' \
+               '    TestRail C22993 - Verify general functionality of the Webview\n' \
+               '    TestRail C22991 - Verify that URL is clickable in a cell\n' \
+               '    TestRail C22994 - Verify Navbar functionality within the Webview screen'
