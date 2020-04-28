@@ -21,6 +21,7 @@ MESSAGE_CLOSE_CONNECTION_WITH_APPIUM_SERVER = "Closing connection with Appium se
 MESSAGE_IMPLEMENT_METHOD_IN_DERIVED_CLASS = "Function '%s' must be implemented in derived class"
 FINDING_ELEMENT_BY_ACCESSIBILITY_ID = 'Appium failed finding element by accessibility id "%s"'
 FINDING_ELEMENT_BY_TEXT = "Appium failed finding element by text '%s'"
+FAILED_FINDING_ELEMENT_BY_XPATH = 'Appium failed finding element by xpath "%s"'
 ERROR_FAILED_ON_CLOSING_CONNECTION_WITH_APPIUM_SERVER = "Closing connection with Appium server failed"
 
 
@@ -135,6 +136,26 @@ class BaseAppiumWrapper(AutomationDriver):
                                               FINDING_ELEMENT_BY_ACCESSIBILITY_ID)
                 self.wait(1)
         return None
+
+    def find_element_by_xpath(self, text, retries=1):
+        for i in range(retries):
+            try:
+                return self.driver_.find_element_by_xpath(
+                    '//*[@text="%s" or @label="%s" or @name="%s"]' % (text, text, text)
+                )
+            except Exception as exception:
+                Logger.get_instance().warning(self, 'find_element_by_xpath', FAILED_FINDING_ELEMENT_BY_XPATH)
+                self.wait(1)
+
+    def swipe_by_coordinates(self, start_x, start_y, end_x, end_y, duration=DEFAULT_SWIPE_DURATION):
+        try:
+            self.driver_.swipe(start_x, start_y, end_x, end_y, duration)
+        except Exception as exception:
+            Logger.get_instance().warning(
+                self,
+                'swipe_by_coordinates',
+                'Appium failed performing swipe with an error: %s' % str(exception)
+            )
 
     def send_keys(self, keys, time_out=0.5):
         PRINT('Send remote control keys: %s' % str(keys), text_color='cyan')

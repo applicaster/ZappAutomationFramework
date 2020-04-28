@@ -11,6 +11,7 @@ FAILED_TO_VERIFY_SCREEN = 'Failed to verify screens with id: "%s"'
 DERIVED_CLASS_MISSING_IMPLEMENTATION = 'Your derived class which inheriting from class %s must override the method %s'
 START_NAVIGATING_TO_SCREEN = 'Application start navigating to screens named %s and id %s'
 FINISHED_NAVIGATING_TO_SCREEN = "Application finished navigating to screens named %s and id %s"
+DEFAULT_SCREEN_LOAD_TIMEOUT = 3
 
 
 class GenericScreen(object):
@@ -77,6 +78,12 @@ class GenericScreen(object):
         Logger.get_instance().error(self, 'get_displayed_screen_building_block', 'Failed on finding current displayed building block')
         return None
 
+    def set_screen_loading_timeout(self, timeout):
+        self.load_timeout_ = timeout
+
+    def get_screen_loading_timeout(self):
+        return self.load_timeout_
+
     """
     Private Implementation
     """
@@ -87,3 +94,4 @@ class GenericScreen(object):
     def __init__(self, test):
         self.test = test
         self.__setup_generic_screen__()
+        self.load_timeout_ = DEFAULT_SCREEN_LOAD_TIMEOUT

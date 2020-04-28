@@ -41,7 +41,7 @@ class ApplicasterPlayer(AppPlayerInterface):
         return 'applicaster_player'
 
 
-class FeatureAppScreen(PlayerScreen):
+class FeatureAppPlayer(PlayerScreen):
     """
     Public Implementation
     """
