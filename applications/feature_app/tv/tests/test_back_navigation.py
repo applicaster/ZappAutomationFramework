@@ -114,9 +114,10 @@ class BackNavigationFromConnectedScreenTest(BaseTest):
         self.driver.wait(2)
 
         PRINT('Step 5: Verify navigation back navigated the user to Home screen')
-        self.building_blocks.screens['Home'].verify_in_screen(retries=7)
-        element = self.driver.find_element_by_text('applicaster_cell_types', retries=7)
-        Logger.get_instance().log_assert(element, 'Test failed to find "%s" inside Home screen' % item)
+        self.building_blocks.screens['Home'].verify_in_screen(retries=10)
+        text_on_home_screen = 'applicaster_cell_types'
+        element = self.driver.find_element_by_text(text_on_home_screen, retries=10)
+        Logger.get_instance().log_assert(element, 'Test failed to find "%s" in Home screen' % text_on_home_screen)
 
     def shortDescription(self):
         return 'C17453 - Verify navigation back from a connected screen to home screen'
