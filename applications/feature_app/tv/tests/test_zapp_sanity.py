@@ -32,7 +32,7 @@ def verify_component(driver, step_num, step_title, items):
     counter = 0
     for item in items:
         counter += 1
-        element = driver.find_element_by_text(item)
+        element = driver.find_element_by_text(item, retries=7)
         Logger.get_instance().log_assert(element, 'Test failed to find "%s" on screen' % item)
         PRINT('     Step %s.%s: Item %s found on screen' % (str(step_num), str(counter), item))
 
