@@ -12,7 +12,6 @@ SCREEN_NAME = 'HorizontalList'
 
 
 class HorizontalListComponentTests(BaseTest):
-    @pytest.mark.boaz
     @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_horizontal_list(self):
