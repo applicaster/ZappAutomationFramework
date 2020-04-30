@@ -1,5 +1,6 @@
 
 from src.utils.logger import Logger
+from src.utils.print import PRINT
 
 """
 Global Defines
@@ -29,6 +30,7 @@ class Verifier(object):
             else:
                 element = self.driver.find_element_by_accessibility_id(item, retries=retries)
                 Logger.get_instance().log_assert(element is not None, ERROR_VERIFY_ACCESSIBILITY_ID_FOUND_ON_SCREEN % str(item))
+            PRINT('Item "%s" found by %s correctly on the screen' % (item, veri_type))
 
     def __init__(self, driver):
         self.driver = driver

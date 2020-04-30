@@ -15,6 +15,7 @@ class WebViewTests(BaseTest):
         PRINT('Step 1: Navigate to "ListScreen" screen')
         list_screen.navigate()
 
+        # TODO: workaround, we need to cancel here the showing of RN yellow debug
         self.driver.find_element_by_text('Dismiss All', retries=5).click()
 
         name = 'html_web_view'

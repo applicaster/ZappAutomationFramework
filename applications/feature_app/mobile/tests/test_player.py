@@ -8,6 +8,7 @@ from src.base_test import BaseTest, PRINT
 Global Defines
 """
 START_PLAYING_VOD_TIMEOUT = 10
+SCREEN_NAME = 'ListScreen'
 
 
 class PlayerTest(BaseTest):
@@ -37,16 +38,18 @@ class PlayerTest(BaseTest):
 
     @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
-    def test_verify_json_feed_vod_streaming(self):
-        self.find_play_and_verify('ListScreen', 'm3u8_vod')
+    def test_verify_json_feed_vod_streaming_in_list_component(self):
+        self.find_play_and_verify(SCREEN_NAME, 'm3u8_vod')
 
     @pytest.mark.usefixtures('automation_driver')
-    def test_verify_cms_vod_streaming(self):
-        self.find_play_and_verify('ListScreen', 'vod_0')
+    def test_verify_cms_vod_streaming_in_list_component(self):
+        self.find_play_and_verify(SCREEN_NAME, 'vod_0')
 
     def shortDescription(self) -> str:
-        return 'test_verify_json_feed_vod_streaming:\n' \
-               '    TestRail C22957 - Verify playing a VOD from feed\n' \
+        return 'test_verify_json_feed_vod_streaming_in_list_component:\n' \
+               '    TestRail C22957 - Verify playing a VOD from feed' \
+               '    TestRail C22931 - Verify swiping between cells in the list component' \
+               '    TestRail C22940 - Verify basic functionality of the list component' \
                '\n' \
-               'test_verify_cms_vod_streaming:\n' \
+               'test_verify_cms_vod_streaming_in_list_component:\n' \
                '    TestRail C22958 - Verify playing a VOD from CMS'
