@@ -23,6 +23,9 @@ class Verifier(object):
     Private Implementation 
     """
     def __verify_elements_on_screen__(self, items_array, veri_type='text', retries=1):
+        if isinstance(items_array, str):
+            items_array = [items_array]
+
         for item in items_array:
             if veri_type == 'text':
                 element = self.driver.find_element_by_text(item, retries=retries)
@@ -30,7 +33,7 @@ class Verifier(object):
             else:
                 element = self.driver.find_element_by_accessibility_id(item, retries=retries)
                 Logger.get_instance().log_assert(element is not None, ERROR_VERIFY_ACCESSIBILITY_ID_FOUND_ON_SCREEN % str(item))
-            PRINT('Item "%s" found by %s correctly on the screen' % (item, veri_type))
+            PRINT('     Item "%s" found by %s correctly on the screen' % (item, veri_type))
 
     def __init__(self, driver):
         self.driver = driver

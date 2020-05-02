@@ -5,6 +5,7 @@ from src.utils.logger import Logger
 Global Defines
 """
 ERROR_SPECIAL_BUTTON_NOT_FOUND_ON_SCREEN = 'nav_bar_left_icon not found on the screen'
+LEFT_ICON_ANIMATION_TIMEOUT = 1.5
 
 
 class NavigationBar(object):
@@ -14,9 +15,11 @@ class NavigationBar(object):
     """
     def press_menu_button(self):
         self.__press_nav_bar_left_button__()
+        self.test.driver.wait(LEFT_ICON_ANIMATION_TIMEOUT)
 
     def press_back_button(self):
         self.__press_nav_bar_left_button__()
+        self.test.driver.wait(LEFT_ICON_ANIMATION_TIMEOUT)
 
     """
     Private Implementation 
