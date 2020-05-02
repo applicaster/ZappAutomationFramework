@@ -47,7 +47,7 @@ class TabsComponentTests(BaseTest):
             retries=7
         )
 
-    def shortDescription(self) -> str:
+    def shortDescription(self, test_name) -> str:
         return 'test_verify_fractional_tabs:\n' \
                '    TestRail \n' \
                '    TestRail \n' \

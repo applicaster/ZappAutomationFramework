@@ -48,7 +48,7 @@ class GridComponentTests(BaseTest):
         self.building_blocks.screens['player_screen'].verify_stream_is_playing()
         PRINT('     Step 4.1: Streaming is playing correctly')
 
-    def shortDescription(self) -> str:
+    def shortDescription(self, test_name) -> str:
         return 'test_play_vod_item_in_feed_of_feeds_connected_screen:\n' \
                '    TestRail C22942 - Verify basic functionality of the grid component\n' \
                '    TestRail C22938 - Verify swiping between cells in the grid component\n' \

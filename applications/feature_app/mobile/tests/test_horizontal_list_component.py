@@ -25,7 +25,7 @@ class HorizontalListComponentTests(BaseTest):
         verifier = Verifier(self.driver)
         verifier.verify_elements_on_screen_by_text(texts_to_search, retries=7)
 
-    def shortDescription(self) -> str:
+    def shortDescription(self, test_name) -> str:
         return 'test_verify_horizontal_list:\n' \
                '    TestRail C22936 - Verify basic functionality of the rails component\n' \
                '    TestRail C22938 - Verify swiping between cells in the grid component\n' \

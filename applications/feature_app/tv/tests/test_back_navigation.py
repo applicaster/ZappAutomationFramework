@@ -27,8 +27,8 @@ class BackNavigationsBetweenScreenTest(BaseTest):
         self.driver.send_keys(RemoteControlKeys.BACK)
         self.building_blocks.screens['Home'].verify_in_screen()
 
-    def shortDescription(self):
-        return 'C17449 - Verify navigating between 3 screen'
+    def shortDescription(self, test_name):
+        return 'TestRail C17449 - Verify navigating between 3 screen'
 
 
 @pytest.mark.samsung_tv
@@ -47,7 +47,7 @@ class BackNavigationFromScreenPickerTest(BaseTest):
         PRINT('Step 4: Verify that the user is back again in Home screen')
         self.building_blocks.screens['Home'].verify_in_screen()
 
-    def shortDescription(self):
+    def shortDescription(self, test_name):
         return 'C17451 - Verify navigating inside Screen Picker tabs'
 
 
@@ -69,7 +69,7 @@ class BackNavigationFromPlayerTest(BaseTest):
         PRINT('Step 4: Verify that the application is now in "Horizontal List Screen" after navigating back')
         self.building_blocks.screens['Horizontal List Screen'].verify_in_screen(retries=20)
 
-    def shortDescription(self):
+    def shortDescription(self, test_name):
         return 'C17452 - Verify navigating back from player screen'
 
 
@@ -119,5 +119,5 @@ class BackNavigationFromConnectedScreenTest(BaseTest):
         element = self.driver.find_element_by_text(text_on_home_screen, retries=10)
         Logger.get_instance().log_assert(element, 'Test failed to find "%s" in Home screen' % text_on_home_screen)
 
-    def shortDescription(self):
+    def shortDescription(self, test_name):
         return 'C17453 - Verify navigation back from a connected screen to home screen'

@@ -45,7 +45,7 @@ class PlayerTest(BaseTest):
     def test_verify_cms_vod_streaming_in_list_component(self):
         self.find_play_and_verify(SCREEN_NAME, 'vod_0')
 
-    def shortDescription(self) -> str:
+    def shortDescription(self, test_name) -> str:
         return 'test_verify_json_feed_vod_streaming_in_list_component:\n' \
                '    TestRail C22957 - Verify playing a VOD from feed\n' \
                '    TestRail C22931 - Verify swiping between cells in the list component\n' \

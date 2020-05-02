@@ -3,7 +3,6 @@ import pytest
 
 from src.automation_manager.automation_manager import automation_driver
 from src.base_test import BaseTest, PRINT
-from src.verifiers.verifier import Verifier
 from src.utils.logger import Logger
 
 """
@@ -13,7 +12,7 @@ GROUP_COMPONENT_SCREEN = 'GroupComponent'
 
 
 class GroupComponentTests(BaseTest):
-    
+
     @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_group_info_cell(self):
@@ -58,12 +57,15 @@ class GroupComponentTests(BaseTest):
         PRINT('Step 1: Navigate to "%s" screen via the side menu' % GROUP_COMPONENT_SCREEN)
         group_component_screen.navigate()
 
-    def shortDescription(self) -> str:
-        return 'test_verify_group_info_cell:\n' \
+    def shortDescription(self, test_name) -> str:
+        if test_name == 'test_verify_group_info_cell':
+            return 'test_verify_group_info_cell:\n' \
                '    TestRail C22947 - Verify the Group ‘Info Cell’ styling in uiBuilder\n' \
                '    TestRail C22955 - Verify connected screen with Group Info Cell\n' \
                '    TestRail C22956 - Verify connected screen with Group component screen\n' \
-               '    TestRail C22987 - Verify Navbar functionality within Group Component Screen' \
-               '\n' \
-               'test_verify_group_component_items:\n' \
-               '    TestRail C22988 - Verify each section in Group component screen opens'
+               '    TestRail C22987 - Verify Navbar functionality within Group Component Screen'
+        if test_name == 'test_verify_group_component_items':
+            return 'test_verify_group_component_items:\n' \
+                   '    TestRail C22988 - Verify each section in Group component screen opens'
+
+        return 'Not Found'
