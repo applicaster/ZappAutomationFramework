@@ -57,6 +57,44 @@ class GroupComponentTests(BaseTest):
         PRINT('Step 1: Navigate to "%s" screen via the side menu' % GROUP_COMPONENT_SCREEN)
         group_component_screen.navigate()
 
+        # TODO: workaround, we need to cancel here the showing of RN yellow debug
+        group_component_screen.dismiss_react_native_yellow_console_box()
+
+        PRINT('Step 2: Verify items in the Grid Component of the Group')
+        counter = 1
+        for title in ('m3u8_vod', 'vod_with_play_next'):
+            element = group_component_screen.search_for_item_by_text(title)
+            Logger.get_instance().log_assert(
+                element,
+                'item "%s" in the Groups Grid Component is not found on the screen' % title
+            )
+            PRINT('     Step 2.%s: item "%s" found on the screen correctly' % (str(counter), title))
+            counter += 1
+
+        PRINT('Step 3: Verify items in the Horizontal List Component of the Group')
+        element = group_component_screen.search_for_item_by_text('future_program_feed')
+        Logger.get_instance().log_assert(
+            element,
+            'item "future_program_feed" in the Horizontal List Component not found on the screen'
+        )
+        PRINT('     Step 3.1: item "future_program_feed" found on the screen correctly')
+
+        PRINT('Step 4: Verify items in the List Component of the Group')
+        counter = 1
+        for title in ('past_program_feed', 'live_channel_feed'):
+            element = group_component_screen.search_for_item_by_text(title)
+            Logger.get_instance().log_assert(element, 'item "%s" in List Component not found on the screen')
+            PRINT('     Step 4.%s: item "%s" found on the screen correctly' % (str(counter), title))
+            counter += 1
+
+        PRINT('Step 5: Verify that the Fotter of the Group is displaying correctly')
+        element = group_component_screen.search_for_item_by_text('json_feed')
+        Logger.get_instance().log_assert(
+            element,
+            'The fotter of the Group component is not found on the screen'
+        )
+        PRINT('     Step 5.1: The Fotter is found on the screen correctly')
+
     def shortDescription(self, test_name) -> str:
         if test_name == 'test_verify_group_info_cell':
             return 'test_verify_group_info_cell:\n' \

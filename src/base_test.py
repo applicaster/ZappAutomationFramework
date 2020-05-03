@@ -32,7 +32,7 @@ class BaseTest(unittest.TestCase):
         PRINT('"%s" Steps:' % self._testMethodName, text_color='green', attributes=['underline'])
 
         # Boot step 1: Open application
-        PRINT('Step 0.1: Open application')
+        PRINT('Step 0: Open application')
         self.__activate_app__()
 
         # Boot step 2: Init the needed building blocks for test

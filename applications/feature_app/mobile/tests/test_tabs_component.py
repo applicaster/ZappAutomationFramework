@@ -49,9 +49,4 @@ class TabsComponentTests(BaseTest):
 
     def shortDescription(self, test_name) -> str:
         return 'test_verify_fractional_tabs:\n' \
-               '    TestRail \n' \
-               '    TestRail \n' \
-               '    TestRail \n' \
-               '\n' \
-               'test_verify_cms_vod_streaming_in_list_component:\n' \
-               '    '
+               '    Verify that a fractional tab component is displaying on screen and switch between the tabs'
