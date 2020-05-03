@@ -52,4 +52,5 @@ class GridComponentTests(BaseTest):
         return 'test_play_vod_item_in_feed_of_feeds_connected_screen:\n' \
                '    TestRail C22942 - Verify basic functionality of the grid component\n' \
                '    TestRail C22938 - Verify swiping between cells in the grid component\n' \
+               '    TestRail C22962 - Verify transition menu icon and back icon\n' \
                '    TestRail C22943 - Verify functionality of connected feature on grid'
