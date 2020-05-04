@@ -45,9 +45,8 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
         return self.driver_.get_log('logcat')
 
     '''
-        Private Implementation
-        '''
-
+    Private Implementation
+    '''
     def __send_key__(self, key_code):
         self.driver_.press_keycode(key_code)
 
@@ -69,6 +68,8 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
 
         if key_code == RemoteControlKeys.BACK:
             return AndroidRemoteControlKeyCodes.BACK
+
+        return key_code
 
     """
     Private Implementation

@@ -14,7 +14,6 @@ SCREEN_NAME = 'UrlSchemes'
 
 
 class UrlSchemesTests(BaseTest):
-    @pytest.mark.boaz
     @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_url_scheme_to_screen_by_id(self):

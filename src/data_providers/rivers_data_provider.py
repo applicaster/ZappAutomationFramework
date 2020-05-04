@@ -73,7 +73,8 @@ class RiversDataProvider(object):
                 screens.append(screen)
         return screens
 
-    def get_navigation_bar_items_for_screen(self, screen_id):
+    def get_navigation_bar_items_for_screen(self, screen_id=None):
+        screen_id = screen_id if screen_id is not None else self.get_home_node()['id']
         items = []
         for screen in self.rivers_dict_:
             if screen['id'] == screen_id:
@@ -83,22 +84,6 @@ class RiversDataProvider(object):
                             for nav_bar_item in item['nav_items']:
                                 items.append(nav_bar_item)
         return items
-
-    def get_navigation_bar_item(self, item_type):
-        for screen in self.rivers_dict_:
-            if screen['home'] is True:
-                for item in screen['navigations']:
-                    if 'category' in item:
-
-                        if item['category'] == 'menu':
-                            menu_item = item
-                            if menu_item['navigation_type'].lower() == item_type:
-                                return item
-
-                        if item['category'] == 'nav_bar':
-                            for nav_bar_item in item['nav_items']:
-                                if nav_bar_item['type'] == item_type:
-                                    return nav_bar_item
 
     def get_navigation_item(self, navigation_type, item_title):
         home_node = self.get_home_node()

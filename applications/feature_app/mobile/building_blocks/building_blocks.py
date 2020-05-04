@@ -3,6 +3,7 @@ from src.generic_building_blocks.building_blocks_interface import BuildingBlocks
 from src.generic_building_blocks.mobile.navigations.navigation_bar import NavigationBar
 from src.generic_building_blocks.mobile.navigations.side_menu import SideMenu
 from src.generic_building_blocks.mobile.screens.common_side_menu_screen import CommonSideMenuScreen
+from src.generic_building_blocks.mobile.screens.search_screen import SearchScreen
 from src.data_providers.rivers_data_provider import RiversDataProvider
 from applications.feature_app.feature_app_player import FeatureAppPlayer
 from src.utils.print import PRINT
@@ -42,6 +43,7 @@ class BuildingBlocks(BuildingBlocksInterface):
                 self.screens[screen['title']] = CommonSideMenuScreen(self.test, screen['title'])
 
         # Setup internal screens
+        self.screens['search_screen'] = SearchScreen(self.test)
         self.screens['player_screen'] = FeatureAppPlayer(self.test)
         self.screens['ListScreen'].set_screen_loading_timeout(5)
         self.screens['GridScreen'].set_screen_loading_timeout(5)

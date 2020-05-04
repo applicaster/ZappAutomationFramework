@@ -8,7 +8,6 @@ from src.global_defines import RemoteControlKeys
 
 
 class NavigationBarTests(BaseTest):
-    @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_back_navigation_from_3rd_screen_to_2nd(self):
         PRINT('Step 1: Navigate to "ListScreen"')
