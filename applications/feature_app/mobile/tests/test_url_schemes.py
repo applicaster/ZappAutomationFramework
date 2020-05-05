@@ -36,4 +36,5 @@ class UrlSchemesTests(BaseTest):
         # self.building_blocks.screens[SCREEN_NAME].verify_in_screen(retries=5)
 
     def shortDescription(self, test_name) -> str:
-        return 'TestRail C22996 - Verify URL scheme that opens another screen'
+        return 'test_verify_url_scheme_to_screen_by_id:\n' \
+               '    TestRail C22996 - Verify URL scheme that opens another screen'
