@@ -4,7 +4,6 @@ import pytest
 from src.automation_manager.automation_manager import automation_driver
 from src.utils.print import PRINT
 from src.base_test import BaseTest
-from src.global_defines import RemoteControlKeys
 from src.verifiers.verifier import Verifier
 
 """
@@ -14,6 +13,7 @@ SCREEN_NAME = 'UrlSchemes'
 
 
 class UrlSchemesTests(BaseTest):
+
     @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_url_scheme_to_screen_by_id(self):
@@ -25,7 +25,7 @@ class UrlSchemesTests(BaseTest):
         element.click()
 
         PRINT('Step 3: Verify we navigated successfully to "HorizontalList" screen')
-        self.building_blocks.screens['HorizontalList'].verify_in_screen(retries=5)
+        self.building_blocks.screens['HorizontalList'].verify_in_screen(retries=20)
         PRINT('     Step 3.1: Verify text elements in "HorizontalList" screen')
         Verifier(self.driver).verify_elements_on_screen_by_text(('m3u8_vod', 'json_feed'), retries=5)
 

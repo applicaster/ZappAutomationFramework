@@ -38,7 +38,7 @@ class SearchPluginTests(BaseTest):
 
         results = ('About a Boy', 'The Last Boy Scout')
         PRINT('Step 3: Verify the results for "%s"' % str(results))
-        verifier.verify_elements_on_screen_by_text(results, retries=3)
+        verifier.verify_elements_on_screen_by_text(results, retries=7)
 
     def test_verify_search_empty_results(self):
         pass

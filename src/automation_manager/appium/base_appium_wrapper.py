@@ -171,7 +171,7 @@ class BaseAppiumWrapper(AutomationDriver):
         return self.driver_.is_keyboard_shown()
 
     def send_keys(self, keys, time_out=0.5):
-        PRINT('Send remote control keys: %s' % str(keys), text_color='cyan')
+        PRINT('Send keys: %s' % str(keys), text_color='cyan')
         if isinstance(keys, str) or isinstance(keys, int):
             self.__send_key__(self.__convert_key_code__(keys))
             self.wait(time_out)
