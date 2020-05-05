@@ -27,14 +27,14 @@ class CommonSideMenuScreen(MobileScreen):
 
     def navigate(self, home_navigation=False, verify_in_screen=True):
         Logger.get_instance().info(self, 'navigate', START_NAVIGATING_TO_SCREEN % (self.screen_name, self.id))
-        PRINT('Start navigating to screen "%s" from the side menu' % self.screen_name)
+        PRINT('     Start navigating to screen "%s" from the side menu' % self.screen_name)
 
         self.test.building_blocks.side_menu.navigate_to_item(self.screen_name)
         if verify_in_screen:
             self.verify_in_screen(retries=5)
 
         self.test.driver.wait(self.get_screen_loading_timeout())
-        PRINT('Finished navigating to screen "%s"' % self.screen_name)
+        PRINT('     Finished navigating to screen "%s"' % self.screen_name)
         Logger.get_instance().info(self, 'navigate', FINISHED_NAVIGATING_TO_SCREEN % (self.screen_name, self.id))
 
     def set_loading_timeout(self, timeout):
