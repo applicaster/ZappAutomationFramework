@@ -37,6 +37,7 @@ def verify_component(driver, step_num, step_title, items):
         PRINT('     Step %s.%s: Item %s found on screen' % (str(step_num), str(counter), item))
 
 
+@pytest.mark.android_tv
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class GridScreenTest(BaseTest):
@@ -79,6 +80,12 @@ class GridScreenTest(BaseTest):
             'Step 4: Verify Applicaster 2 category in Grid component',
             ['vod_0', 'vod_1', 'vod_2', 'vod_3']
         )
+
+    def shortDescription(self, test_name) -> str:
+        if test_name == 'test_grid_screen':
+            return 'test_grid_screen:' \
+                   'TestRail C10293 - Verify basic functionality of grid component' \
+                   'TestRail C10280	- Verify Grid is displaying correct with different datasources'
 
 
 @pytest.mark.samsung_tv
