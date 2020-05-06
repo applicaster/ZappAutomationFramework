@@ -12,8 +12,6 @@ GROUP_COMPONENT_SCREEN = 'GroupComponent'
 
 
 class GroupComponentTests(BaseTest):
-
-    @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_group_info_cell(self):
         group_component_screen = self.building_blocks.screens[GROUP_COMPONENT_SCREEN]
@@ -49,7 +47,6 @@ class GroupComponentTests(BaseTest):
         PRINT('     Step 4.2: Verify we reached back to "%s" screen successfully' % GROUP_COMPONENT_SCREEN)
         group_component_screen.verify_in_screen(retries=5)
 
-    @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_group_component_items(self):
         group_component_screen = self.building_blocks.screens[GROUP_COMPONENT_SCREEN]

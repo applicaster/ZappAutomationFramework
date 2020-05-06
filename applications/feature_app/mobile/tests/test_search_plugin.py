@@ -9,7 +9,6 @@ from src.utils.logger import Logger
 
 
 class SearchPluginTests(BaseTest):
-    @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_search_fall_back_screen(self):
         verifier = Verifier(self.driver)
@@ -19,7 +18,6 @@ class SearchPluginTests(BaseTest):
         PRINT('Step 2: Verify that the fall back screen results are showing on the screen correctly')
         verifier.verify_elements_on_screen_by_text('url_scheme_to_screen', retries=5)
 
-    @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_basic_search(self):
         search_screen = self.building_blocks.screens['search_screen']
@@ -41,7 +39,6 @@ class SearchPluginTests(BaseTest):
         PRINT('Step 3: Verify that the results for "%s"' % str(results))
         verifier.verify_elements_on_screen_by_text(results, retries=7)
 
-    @pytest.mark.qb_android_mobile
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_search_empty_results(self):
         search_screen = self.building_blocks.screens['search_screen']
