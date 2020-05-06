@@ -157,9 +157,22 @@ class BaseAppiumWrapper(AutomationDriver):
                 'Appium failed performing swipe with an error: %s' % str(exception)
             )
 
+    def tap_by_coordinates(self, x_pos, y_pos, duration=DEFAULT_TAP_DURATION):
+        try:
+            self.driver_.tap([(x_pos, y_pos)], duration)
+        except Exception as exception:
+            Logger.get_instance().warning(
+                self,
+                'tap_by_coordinates',
+                'Appium failed on performing tap with error: %s' % str(exception)
+            )
+
+    def is_keyboard_shown(self):
+        return self.driver_.is_keyboard_shown()
+
     def send_keys(self, keys, time_out=0.5):
-        PRINT('Send remote control keys: %s' % str(keys), text_color='cyan')
-        if isinstance(keys, str):
+        PRINT('Send keys: %s' % str(keys), text_color='cyan')
+        if isinstance(keys, str) or isinstance(keys, int):
             self.__send_key__(self.__convert_key_code__(keys))
             self.wait(time_out)
 

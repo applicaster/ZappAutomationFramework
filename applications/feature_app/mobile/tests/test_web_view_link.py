@@ -14,6 +14,7 @@ class WebViewTests(BaseTest):
         PRINT('Step 1: Navigate to "ListScreen" screen')
         list_screen.navigate()
 
+        # TODO: workaround, we need to cancel here the showing of RN yellow debug
         self.driver.find_element_by_text('Dismiss All', retries=5).click()
 
         name = 'html_web_view'
@@ -41,7 +42,7 @@ class WebViewTests(BaseTest):
         PRINT('     Step 4.2: Verify that the application navigated back to ListScreen')
         list_screen.verify_in_screen(retries=7)
 
-    def shortDescription(self) -> str:
+    def shortDescription(self, test_name) -> str:
         return 'test_verify_external_web_view_link:\n' \
                '    TestRail C22993 - Verify general functionality of the Webview\n' \
                '    TestRail C22991 - Verify that URL is clickable in a cell\n' \
