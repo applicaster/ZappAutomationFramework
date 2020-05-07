@@ -168,44 +168,52 @@ class HeroScreenTest(BaseTest):
         verify_component(
             self.driver,
             2,
-            'Step 1: Verify xml feed data in Horizontal List component',
-            ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2', 'vod_mp4_item_3', 'vod_mp4_item_4']
+            'Step 1: Verify xml feed data in Hero component',
+            ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2']
         )
 
         if platform_type == PlatformType.ANDROID_TV:
-            self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 3)
+            self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
             3,
-            'Step 2: Verify json feed data in Horizontal List component',
+            'Step 2: Verify json feed data in Hero component',
             ['applicaster_cell_types', 'video_feed', 'current_program_feed', 'channel_feed']
         )
 
+        if platform_type == PlatformType.ANDROID_TV:
+            self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
             4,
-            'Step 3: Verify Applicaster 2 category in Horizontal List component',
+            'Step 3: Verify Applicaster 2 category in Hero component',
             ['Samsung TV Category', 'vod_1', 'vod_2', 'vod_3']
         )
 
+        if platform_type == PlatformType.ANDROID_TV:
+            self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
             5,
-            'Step 4: Verify Applicaster 2 collection in Horizontal List component',
+            'Step 4: Verify Applicaster 2 collection in Hero component',
             ['Samsung TV Collection']
         )
 
+        if platform_type == PlatformType.ANDROID_TV:
+            self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
             6,
-            'Step 5: Verify "damaged data" json feed in Horizontal List component',
+            'Step 5: Verify "damaged data" json feed in Hero component',
             ['damaged_atom_feed', 'Correct Item', 'Missing Item Image', 'Damaged Video Url']
         )
 
+        if platform_type == PlatformType.ANDROID_TV:
+            self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
             7,
-            'Step 6: Verify "big_data_atom_xml" XML feed in Horizontal List component',
+            'Step 6: Verify "big_data_atom_xml" XML feed in Hero component',
             ['big_data_atom_json']
         )
 
