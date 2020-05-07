@@ -19,6 +19,7 @@ class GridComponentTests(BaseTest):
         self.driver.wait(load_timeout)
         PRINT('     Step %s.4: Finished waiting for the screen to load' % step_index)
 
+    @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_play_vod_item_in_feed_of_feeds_connected_screen(self):
         grid_screen = self.building_blocks.screens['GridScreen']

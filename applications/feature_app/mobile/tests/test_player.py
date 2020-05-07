@@ -36,6 +36,7 @@ class PlayerTest(BaseTest):
         self.building_blocks.screens['player_screen'].verify_stream_is_playing()
         PRINT('     Step 3.1: Streaming is playing correctly')
 
+    @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_json_feed_vod_streaming_in_list_component(self):
         self.find_play_and_verify(SCREEN_NAME, 'm3u8_vod')

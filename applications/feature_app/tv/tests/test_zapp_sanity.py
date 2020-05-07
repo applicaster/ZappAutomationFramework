@@ -10,6 +10,8 @@ from src.utils.print import PRINT
 from src.base_test import BaseTest
 
 
+@pytest.mark.tv_os_nightly
+@pytest.mark.samsung_tv_nightly
 @pytest.mark.tv_os
 @pytest.mark.usefixtures('automation_driver')
 class SimpleLaunchToHomeScreenTest(BaseTest):
@@ -37,6 +39,7 @@ def verify_component(driver, step_num, step_title, items):
         PRINT('     Step %s.%s: Item %s found on screen' % (str(step_num), str(counter), item))
 
 
+@pytest.mark.android_tv_nightly
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class GridScreenTest(BaseTest):
@@ -155,6 +158,7 @@ class HorizontalListScreenTest(BaseTest):
         )
 
 
+@pytest.mark.android_tv_nightly
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class HeroScreenTest(BaseTest):

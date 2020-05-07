@@ -13,7 +13,7 @@ SCREEN_NAME = 'UrlSchemes'
 
 
 class UrlSchemesTests(BaseTest):
-
+    @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_url_scheme_to_screen_by_id(self):
         PRINT('Step 1: Navigate to "%s"' % SCREEN_NAME)
