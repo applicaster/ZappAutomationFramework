@@ -20,6 +20,7 @@ OPEN_CONNECTION_WITH_APPIUM_SERVER_SUCCEEDED = 'Opening connection with Appium s
 MESSAGE_CLOSE_CONNECTION_WITH_APPIUM_SERVER = "Closing connection with Appium server finished successfully"
 MESSAGE_IMPLEMENT_METHOD_IN_DERIVED_CLASS = "Function '%s' must be implemented in derived class"
 FINDING_ELEMENT_BY_ACCESSIBILITY_ID = 'Appium failed finding element by accessibility id "%s"'
+FINDING_ELEMENT_BY_ID = 'Appium failed finding element by id "%s"'
 FINDING_ELEMENT_BY_TEXT = "Appium failed finding element by text '%s'"
 FAILED_FINDING_ELEMENT_BY_XPATH = 'Appium failed finding element by xpath "%s"'
 ERROR_FAILED_ON_CLOSING_CONNECTION_WITH_APPIUM_SERVER = "Closing connection with Appium server failed"
@@ -137,6 +138,15 @@ class BaseAppiumWrapper(AutomationDriver):
                 self.wait(1)
         return None
 
+    def find_element_by_id(self, resource_id, retries=1):
+        for i in range(retries):
+            try:
+                return self.driver_.find_element_by_id(resource_id)
+            except Exception as exception:
+                Logger.get_instance().warning(self, 'find_element_by_id', FINDING_ELEMENT_BY_ID)
+                self.wait(1)
+        return None
+
     def find_element_by_xpath(self, text, retries=1):
         for i in range(retries):
             try:
@@ -183,6 +193,13 @@ class BaseAppiumWrapper(AutomationDriver):
                 else:
                     self.__send_key__(self.__convert_key_code__(key))
                     self.wait(time_out)
+
+    def f(self):
+        rect = self.driver_.get_window_rect()
+        self.tap_by_coordinates(
+            rect['x'] + rect['height'] / 2,
+            rect['y'] + rect['width'] / 2
+        )
 
     """
     Private Implementation

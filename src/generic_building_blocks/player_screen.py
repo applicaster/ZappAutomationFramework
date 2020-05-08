@@ -3,6 +3,8 @@ from src.generic_building_blocks.generic_screen import GenericScreen
 from src.global_defines import ScreenType
 from src.utils.logger import Logger
 from src.global_defines import ScreenUiState
+from src.global_defines import PlatformType
+from src.configuration.configuration import Configuration
 
 '''
 Global Defines
@@ -16,8 +18,18 @@ class PlayerScreen(GenericScreen):
     Public Implementation
     """
     def hide_controls(self): raise NotImplementedError
+    def press_play_pause_button(self): raise NotImplementedError
+    def press_rew_button(self): raise NotImplementedError
+    def press_ffwd_button(self):raise NotImplementedError
 
     def navigate(self): pass
+
+    def close(self):
+        if Configuration.get_instance().platform_type() not in (PlatformType.ANDROID, PlatformType.ANDROID_TV):
+            # in case the player is not android
+            raise NotImplementedError
+            
+        self.test.driver.back()
 
     def get_screen_type(self):
         return ScreenType.STANDALONE_SCREEN
@@ -52,6 +64,10 @@ class PlayerScreen(GenericScreen):
         self.hide_controls()
         ui_status = self.screen_UI_state()
         Logger.get_instance().log_assert(ui_status == ScreenUiState.STATIC, ERROR_VERIFY_STREAM_IS_NOT_PLAYING)
+    
+    def show_controls(self):
+        self.hide_controls()
+        self.test.driver.press_screen_centre()
 
     """
     Private Implementation
