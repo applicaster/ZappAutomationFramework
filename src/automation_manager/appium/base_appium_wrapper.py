@@ -140,9 +140,8 @@ class BaseAppiumWrapper(AutomationDriver):
                 return self.driver_.find_element_by_accessibility_id(accessibility_id)
             except Exception as exception:
                 Logger.get_instance().warning(
-                    self,
-                    'find_element_by_accessibility_id',
-                    FINDING_ELEMENT_BY_ACCESSIBILITY_ID % accessibility_id)
+                    self, 'find_element_by_accessibility_id', FINDING_ELEMENT_BY_ACCESSIBILITY_ID % accessibility_id
+                )
                 self.wait(1)
         return None
 
@@ -151,7 +150,9 @@ class BaseAppiumWrapper(AutomationDriver):
             try:
                 return self.driver_.find_element_by_id(resource_id)
             except Exception as exception:
-                Logger.get_instance().warning(self, 'find_element_by_id', FINDING_ELEMENT_BY_ID)
+                Logger.get_instance().warning(
+                    self, 'find_element_by_id', FINDING_ELEMENT_BY_ID % resource_id
+                )
                 self.wait(1)
         return None
 
@@ -162,7 +163,9 @@ class BaseAppiumWrapper(AutomationDriver):
                     '//*[@text="%s" or @label="%s" or @name="%s"]' % (text, text, text)
                 )
             except Exception as exception:
-                Logger.get_instance().warning(self, 'find_element_by_xpath', FAILED_FINDING_ELEMENT_BY_XPATH)
+                Logger.get_instance().warning(
+                    self, 'find_element_by_xpath', FAILED_FINDING_ELEMENT_BY_XPATH
+                )
                 self.wait(1)
 
     def swipe_by_coordinates(self, start_x, start_y, end_x, end_y, duration=DEFAULT_SWIPE_DURATION):
@@ -170,9 +173,7 @@ class BaseAppiumWrapper(AutomationDriver):
             self.driver_.swipe(start_x, start_y, end_x, end_y, duration)
         except Exception as exception:
             Logger.get_instance().warning(
-                self,
-                'swipe_by_coordinates',
-                'Appium failed performing swipe with an error: %s' % str(exception)
+                self, 'swipe_by_coordinates', 'Appium failed performing swipe with an error: %s' % str(exception)
             )
 
     def tap_by_coordinates(self, x_pos, y_pos, duration=DEFAULT_TAP_DURATION):
@@ -180,9 +181,7 @@ class BaseAppiumWrapper(AutomationDriver):
             self.driver_.tap([(x_pos, y_pos)], duration)
         except Exception as exception:
             Logger.get_instance().warning(
-                self,
-                'tap_by_coordinates',
-                'Appium failed on performing tap with error: %s' % str(exception)
+                self, 'tap_by_coordinates', 'Appium failed on performing tap with error: %s' % str(exception)
             )
 
     def is_keyboard_shown(self):

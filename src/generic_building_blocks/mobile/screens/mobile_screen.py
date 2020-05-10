@@ -118,10 +118,10 @@ class MobileScreen(GenericScreen):
         while True:
 
             if access_type == 'text':
-                element = self.test.driver.find_element_by_text(value, retries=5)
+                element = self.test.driver.find_element_by_text(value, retries=2)
 
             elif access_type == 'id':
-                element = self.test.driver.find_element_by_accessibility_id(value, retries=5)
+                element = self.test.driver.find_element_by_accessibility_id(value, retries=2)
 
             if element:
                 break
