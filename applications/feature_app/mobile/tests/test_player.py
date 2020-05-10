@@ -31,19 +31,13 @@ class PlayerTest(BaseTest):
         PRINT('     Step 2.3: Wait %s seconds until the streaming will start' % START_PLAYING_VOD_TIMEOUT)
         self.driver.wait(START_PLAYING_VOD_TIMEOUT)
         PRINT('     Step 2.4: Finished waiting the %s seconds' % START_PLAYING_VOD_TIMEOUT)
-        
 
-        # PRINT('Step 3.0: Verify that the streaming is playing')
-        # self.building_blocks.screens['player_screen'].verify_stream_is_playing()
-        # PRINT('     Step 3.1: Streaming is playing correctly')
-        
         screen.dismiss_react_native_yellow_console_box()
         self.building_blocks.screens['player_screen'].press_play_pause_button()
         self.building_blocks.screens['player_screen'].verify_stream_is_not_playing()
-        self.driver.wait(3)
+
         self.building_blocks.screens['player_screen'].press_play_pause_button()
         self.building_blocks.screens['player_screen'].verify_stream_is_playing()
-        self.driver.wait(10)
 
     @pytest.mark.boaz
     @pytest.mark.qb_android_mobile_nightly

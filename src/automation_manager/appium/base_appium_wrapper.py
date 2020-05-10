@@ -194,7 +194,7 @@ class BaseAppiumWrapper(AutomationDriver):
                     self.__send_key__(self.__convert_key_code__(key))
                     self.wait(time_out)
 
-    def f(self):
+    def press_screen_centre(self):
         rect = self.driver_.get_window_rect()
         self.tap_by_coordinates(
             rect['x'] + rect['height'] / 2,

@@ -44,7 +44,7 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
         """
         return self.driver_.get_log('logcat')
 
-    def press_back_button():
+    def press_back_button(self):
         """
         Press the device back button
         """
