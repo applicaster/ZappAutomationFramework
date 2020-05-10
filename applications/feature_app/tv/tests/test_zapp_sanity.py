@@ -39,6 +39,7 @@ def verify_component(driver, step_num, step_title, items):
         PRINT('     Step %s.%s: Item %s found on screen' % (str(step_num), str(counter), item))
 
 
+@pytest.mark.boaz
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class GridScreenTest(BaseTest):
@@ -55,7 +56,7 @@ class GridScreenTest(BaseTest):
             ['applicaster_cell_types', 'video_feed', 'current_program_feed', 'channel_feed']
         )
 
-        if platform in [PlatformType.ANDROID_TV]:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
@@ -64,7 +65,7 @@ class GridScreenTest(BaseTest):
             ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2', 'vod_mp4_item_3', 'vod_mp4_item_2']
         )
 
-        if platform in [PlatformType.ANDROID_TV]:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
@@ -73,7 +74,7 @@ class GridScreenTest(BaseTest):
             ['vod_m3u8_item_1', 'vod_m3u8_item_2', 'vod_m3u8_item_3', 'vod_m3u8_item_4']
         )
 
-        if platform in [PlatformType.ANDROID_TV]:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 3)
         verify_component(
             self.driver,
@@ -84,8 +85,8 @@ class GridScreenTest(BaseTest):
 
     def shortDescription(self, test_name) -> str:
         if test_name == 'test_grid_screen':
-            return 'test_grid_screen:' \
-                   'TestRail C10293 - Verify basic functionality of grid component' \
+            return 'test_grid_screen:\n' \
+                   'TestRail C10293 - Verify basic functionality of grid component\n' \
                    'TestRail C10280	- Verify Grid is displaying correct with different datasources'
 
 
