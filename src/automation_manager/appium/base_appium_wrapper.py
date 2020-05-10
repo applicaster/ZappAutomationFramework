@@ -20,6 +20,7 @@ OPEN_CONNECTION_WITH_APPIUM_SERVER_SUCCEEDED = 'Opening connection with Appium s
 MESSAGE_CLOSE_CONNECTION_WITH_APPIUM_SERVER = "Closing connection with Appium server finished successfully"
 MESSAGE_IMPLEMENT_METHOD_IN_DERIVED_CLASS = "Function '%s' must be implemented in derived class"
 FINDING_ELEMENT_BY_ACCESSIBILITY_ID = 'Appium failed finding element by accessibility id "%s"'
+FINDING_ELEMENT_BY_ID = 'Appium failed finding element by id "%s"'
 FINDING_ELEMENT_BY_TEXT = "Appium failed finding element by text '%s'"
 FAILED_FINDING_ELEMENT_BY_XPATH = 'Appium failed finding element by xpath "%s"'
 ERROR_FAILED_ON_CLOSING_CONNECTION_WITH_APPIUM_SERVER = "Closing connection with Appium server failed"
@@ -128,12 +129,30 @@ class BaseAppiumWrapper(AutomationDriver):
     def get_device_log(self): raise NotImplementedError
 
     def find_element_by_accessibility_id(self, accessibility_id, retries=1):
+        """
+        Finds an element by accessibility id.
+        :Args:
+         - accessibility_id - a string corresponding to a recursive element search using the
+         Id/Name that the native Accessibility options utilize
+        """
         for i in range(retries):
             try:
                 return self.driver_.find_element_by_accessibility_id(accessibility_id)
             except Exception as exception:
-                Logger.get_instance().warning(self, 'find_element_by_accessibility_id',
-                                              FINDING_ELEMENT_BY_ACCESSIBILITY_ID)
+                Logger.get_instance().warning(
+                    self, 'find_element_by_accessibility_id', FINDING_ELEMENT_BY_ACCESSIBILITY_ID % accessibility_id
+                )
+                self.wait(1)
+        return None
+
+    def find_element_by_id(self, resource_id, retries=1):
+        for i in range(retries):
+            try:
+                return self.driver_.find_element_by_id(resource_id)
+            except Exception as exception:
+                Logger.get_instance().warning(
+                    self, 'find_element_by_id', FINDING_ELEMENT_BY_ID % resource_id
+                )
                 self.wait(1)
         return None
 
@@ -144,7 +163,9 @@ class BaseAppiumWrapper(AutomationDriver):
                     '//*[@text="%s" or @label="%s" or @name="%s"]' % (text, text, text)
                 )
             except Exception as exception:
-                Logger.get_instance().warning(self, 'find_element_by_xpath', FAILED_FINDING_ELEMENT_BY_XPATH)
+                Logger.get_instance().warning(
+                    self, 'find_element_by_xpath', FAILED_FINDING_ELEMENT_BY_XPATH
+                )
                 self.wait(1)
 
     def swipe_by_coordinates(self, start_x, start_y, end_x, end_y, duration=DEFAULT_SWIPE_DURATION):
@@ -152,9 +173,7 @@ class BaseAppiumWrapper(AutomationDriver):
             self.driver_.swipe(start_x, start_y, end_x, end_y, duration)
         except Exception as exception:
             Logger.get_instance().warning(
-                self,
-                'swipe_by_coordinates',
-                'Appium failed performing swipe with an error: %s' % str(exception)
+                self, 'swipe_by_coordinates', 'Appium failed performing swipe with an error: %s' % str(exception)
             )
 
     def tap_by_coordinates(self, x_pos, y_pos, duration=DEFAULT_TAP_DURATION):
@@ -162,9 +181,7 @@ class BaseAppiumWrapper(AutomationDriver):
             self.driver_.tap([(x_pos, y_pos)], duration)
         except Exception as exception:
             Logger.get_instance().warning(
-                self,
-                'tap_by_coordinates',
-                'Appium failed on performing tap with error: %s' % str(exception)
+                self, 'tap_by_coordinates', 'Appium failed on performing tap with error: %s' % str(exception)
             )
 
     def is_keyboard_shown(self):
@@ -183,6 +200,13 @@ class BaseAppiumWrapper(AutomationDriver):
                 else:
                     self.__send_key__(self.__convert_key_code__(key))
                     self.wait(time_out)
+
+    def press_screen_centre(self):
+        rect = self.driver_.get_window_rect()
+        self.tap_by_coordinates(
+            rect['x'] + rect['height'] / 2,
+            rect['y'] + rect['width'] / 2
+        )
 
     """
     Private Implementation

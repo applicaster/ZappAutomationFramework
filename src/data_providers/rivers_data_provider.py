@@ -26,11 +26,6 @@ class RiversDataProvider(object):
     def get_data(self):
         return self.rivers_dict_
 
-    def get_node_by_id(self, id):
-        for node in self.rivers_dict_:
-            if node['id'] == id:
-                return node
-
     def get_home_node(self):
         for screen in self.rivers_dict_:
             if screen['home'] is True:

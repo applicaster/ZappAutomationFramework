@@ -10,9 +10,9 @@ from selenium.webdriver.common.keys import Keys
 from src.automation_manager.automation_driver import AutomationDriver
 
 
-'''
+"""
 Global Defines
-'''
+"""
 WINDOW_DEFAULT_WIDTH_SIZE = 1024
 WINDOW_DEFAULT_HEIGHT_SIZE = 768
 
