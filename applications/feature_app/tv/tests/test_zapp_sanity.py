@@ -39,7 +39,7 @@ def verify_component(driver, step_num, step_title, items):
         PRINT('     Step %s.%s: Item %s found on screen' % (str(step_num), str(counter), item))
 
 
-@pytest.mark.android_tv_nightly
+@pytest.mark.android_tv
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class GridScreenTest(BaseTest):
@@ -221,7 +221,7 @@ class HeroScreenTest(BaseTest):
         )
 
 
-@pytest.mark.android_tv
+@pytest.mark.android_tv_nightly
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class ScreenPickerScreenTest(BaseTest):
