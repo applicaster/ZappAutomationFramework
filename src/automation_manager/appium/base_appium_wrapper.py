@@ -129,12 +129,20 @@ class BaseAppiumWrapper(AutomationDriver):
     def get_device_log(self): raise NotImplementedError
 
     def find_element_by_accessibility_id(self, accessibility_id, retries=1):
+        """
+        Finds an element by accessibility id.
+        :Args:
+         - accessibility_id - a string corresponding to a recursive element search using the
+         Id/Name that the native Accessibility options utilize
+        """
         for i in range(retries):
             try:
                 return self.driver_.find_element_by_accessibility_id(accessibility_id)
             except Exception as exception:
-                Logger.get_instance().warning(self, 'find_element_by_accessibility_id',
-                                              FINDING_ELEMENT_BY_ACCESSIBILITY_ID)
+                Logger.get_instance().warning(
+                    self,
+                    'find_element_by_accessibility_id',
+                    FINDING_ELEMENT_BY_ACCESSIBILITY_ID % accessibility_id)
                 self.wait(1)
         return None
 
