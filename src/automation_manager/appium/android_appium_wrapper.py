@@ -13,6 +13,24 @@ class AndroidRemoteControlKeyCodes:
     ENTER = 23
     BACK = 4
 
+# from ppadb.client import Client as AdbClient
+#
+# class AndroidAdbManager(AdbClient):
+#     HOST = '127.0.0.1'
+#     PORT = 5037
+#
+#     """
+#     Public Implementation
+#     """
+#     def send_keyevent(self, key, device_name=Configuration.get_instance().get('appium', 'deviceName')):
+#         self.device(device_name).shell('input keyevent %s' % str(key))
+#
+#     """
+#     Private Implementation
+#     """
+#     def __init__(self):
+#         AdbClient.__init__(self, host=self.HOST, port=self.PORT)
+
 
 class AndroidAppiumWrapper(BaseAppiumWrapper):
     """

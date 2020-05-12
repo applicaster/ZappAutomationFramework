@@ -74,6 +74,6 @@ class AutomationManager(object):
 
 
 @pytest.fixture(scope="class")
-def automation_driver(request) -> AutomationDriver:
+def automation_driver(request):
     # set a class attribute on the invoking test context
     request.cls.driver = AutomationManager.get_instance().get_driver()
