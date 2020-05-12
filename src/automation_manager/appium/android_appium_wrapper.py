@@ -13,6 +13,7 @@ class AndroidRemoteControlKeyCodes:
     ENTER = 23
     BACK = 4
 
+# This class and import requires adding to requirements.txt file this line "pure-python-adb==0.2.3.dev0"
 # from ppadb.client import Client as AdbClient
 #
 # class AndroidAdbManager(AdbClient):
