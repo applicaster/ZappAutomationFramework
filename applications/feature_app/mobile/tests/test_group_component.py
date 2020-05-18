@@ -20,9 +20,6 @@ class GroupComponentTests(BaseTest):
         PRINT('Step 1: Navigate to "%s" screen via the side menu' % GROUP_COMPONENT_SCREEN)
         group_component_screen.navigate()
 
-        # TODO: workaround, we need to cancel here the showing of RN yellow debug
-        group_component_screen.dismiss_react_native_yellow_console_box()
-
         info_cell_title = 'json_feed'
         PRINT('Step 2: Verify that group info cell with title "%s" is found on the screen' % info_cell_title)
         element = self.driver.find_element_by_text(info_cell_title)
@@ -32,8 +29,6 @@ class GroupComponentTests(BaseTest):
         element.click()
         list_screen = self.building_blocks.screens['ListScreen']
         self.driver.wait(list_screen.get_screen_loading_timeout())
-        # TODO: workaround, we need to cancel here the showing of RN yellow debug
-        list_screen.dismiss_react_native_yellow_console_box()
 
         PRINT('     Step 3.1: Verify that the application reached "ListScreen"')
         list_screen.verify_in_screen(retries=5)
@@ -55,9 +50,6 @@ class GroupComponentTests(BaseTest):
 
         PRINT('Step 1: Navigate to "%s" screen via the side menu' % GROUP_COMPONENT_SCREEN)
         group_component_screen.navigate()
-
-        # TODO: workaround, we need to cancel here the showing of RN yellow debug
-        group_component_screen.dismiss_react_native_yellow_console_box()
 
         PRINT('Step 2: Verify items in the Grid Component of the Group')
         counter = 1

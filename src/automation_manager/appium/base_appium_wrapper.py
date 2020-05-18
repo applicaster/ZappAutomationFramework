@@ -190,7 +190,7 @@ class BaseAppiumWrapper(AutomationDriver):
     def send_keys(self, keys, time_out=0.5):
         PRINT('Send keys: %s' % str(keys), text_color='cyan')
         if isinstance(keys, str) or isinstance(keys, int):
-            self.__send_key__(self.__convert_key_code__(keys))
+            self.__send_key__(keys)
             self.wait(time_out)
 
         elif isinstance(keys, type([])):
@@ -198,7 +198,7 @@ class BaseAppiumWrapper(AutomationDriver):
                 if isinstance(key, int):
                     self.wait(key)
                 else:
-                    self.__send_key__(self.__convert_key_code__(key))
+                    self.__send_key__(key)
                     self.wait(time_out)
 
     def press_screen_centre(self):

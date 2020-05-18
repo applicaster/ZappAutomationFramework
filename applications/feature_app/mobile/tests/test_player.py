@@ -19,9 +19,6 @@ class PlayerTest(BaseTest):
         PRINT('Step 1: Navigate to "%s" screen' % screen_name)
         screen.navigate()
 
-        # TODO: workaround, we need to cancel here the showing of RN yellow debug
-        screen.dismiss_react_native_yellow_console_box()
-
         PRINT('Step 2: Press on vod "%s" item' % vod_name)
         PRINT('     Step 2.1: Search for vod "%s" item on the screen' % vod_name)
         element = screen.search_for_item_by_text(vod_name)

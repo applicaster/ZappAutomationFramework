@@ -3,6 +3,19 @@ from src.automation_manager.appium.base_appium_wrapper import BaseAppiumWrapper
 from appium.webdriver.common.mobileby import MobileBy
 from src.utils.logger import Logger
 from src.automation_manager.appium.base_appium_wrapper import FINDING_ELEMENT_BY_TEXT
+from src.global_defines import RemoteControlKeys, PlatformType
+from src.configuration.configuration import Configuration
+
+
+class AppleTvRemoteControlKeyCodes:
+    MENU = 'menu'
+    UP = 'up'
+    DOWN = 'down'
+    RIGHT = 'right'
+    LEFT = 'left'
+    HOME = 'home'
+    PLAY_PAUSE = 'playpause'
+    SELECT = 'select'
 
 
 class IosAppiumWrapper(BaseAppiumWrapper):
@@ -32,6 +45,44 @@ class IosAppiumWrapper(BaseAppiumWrapper):
         Logger.get_instance().warning(self, "find_element_by_text", FINDING_ELEMENT_BY_TEXT % str(text))
         Logger.get_instance().warning(self, "find_element_by_text", exception_message)
         return None
+
+    def __send_key__(self, key_code):
+        if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
+            self.driver_.execute_script('mobile: pressButton', {'name': self.__convert_tv_os_key_code__(key_code)})
+
+    def __convert_tv_ios_key_code__(self, key_code):
+        return key_code
+
+    def __convert_tv_os_key_code__(self, key_code):
+        switcher = {
+            RemoteControlKeys.MENU:
+                AppleTvRemoteControlKeyCodes.MENU,
+
+            RemoteControlKeys.UP:
+                AppleTvRemoteControlKeyCodes.UP,
+
+            RemoteControlKeys.DOWN:
+                AppleTvRemoteControlKeyCodes.DOWN,
+
+            RemoteControlKeys.LEFT:
+                AppleTvRemoteControlKeyCodes.LEFT,
+
+            RemoteControlKeys.RIGHT:
+                AppleTvRemoteControlKeyCodes.RIGHT,
+
+            RemoteControlKeys.BACK:
+                AppleTvRemoteControlKeyCodes.HOME,
+
+            RemoteControlKeys.HOME:
+                AppleTvRemoteControlKeyCodes.HOME,
+
+            RemoteControlKeys.ENTER:
+                AppleTvRemoteControlKeyCodes.SELECT,
+
+            RemoteControlKeys.PLAY_PAUSE:
+                AppleTvRemoteControlKeyCodes.PLAY_PAUSE
+        }
+        return switcher[key_code] if key_code in switcher.keys() else key_code
 
     def get_device_log(self):
         """
