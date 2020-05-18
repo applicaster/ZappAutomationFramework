@@ -9,6 +9,7 @@ from src.utils.logger import Logger
 
 
 class SearchPluginTests(BaseTest):
+    @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_search_fall_back_screen(self):
@@ -19,6 +20,7 @@ class SearchPluginTests(BaseTest):
         PRINT('Step 2: Verify that the fall back screen results are showing on the screen correctly')
         verifier.verify_elements_on_screen_by_text('url_scheme_to_screen', retries=5)
 
+    @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_basic_search(self):

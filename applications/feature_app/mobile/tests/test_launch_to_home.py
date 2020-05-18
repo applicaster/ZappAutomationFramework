@@ -6,7 +6,6 @@ from src.utils.print import PRINT
 from src.base_test import BaseTest
 
 
-@pytest.mark.qb_ios_mobile_nightly
 @pytest.mark.qb_android_mobile
 @pytest.mark.qb_ios_mobile
 @pytest.mark.usefixtures('automation_driver')
