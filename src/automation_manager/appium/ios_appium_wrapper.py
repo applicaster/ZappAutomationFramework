@@ -50,7 +50,7 @@ class IosAppiumWrapper(BaseAppiumWrapper):
         if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
             self.driver_.execute_script('mobile: pressButton', {'name': self.__convert_tv_os_key_code__(key_code)})
 
-    def __convert_tv_ios_key_code__(self, key_code):
+    def __convert_ios_key_code__(self, key_code):
         return key_code
 
     def __convert_tv_os_key_code__(self, key_code):
