@@ -73,7 +73,7 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
     Private Implementation
     '''
     def __send_key__(self, key_code):
-        self.driver_.press_keycode(key_code)
+        self.driver_.press_keycode(self.__convert_key_code__(key_code))
 
     def __convert_key_code__(self, key_code):
         if key_code == RemoteControlKeys.UP:

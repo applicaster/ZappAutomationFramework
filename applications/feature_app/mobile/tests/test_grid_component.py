@@ -27,8 +27,6 @@ class GridComponentTests(BaseTest):
         PRINT('Step 1: Navigate to "GridScreen" screen')
         grid_screen.navigate()
 
-        grid_screen.dismiss_react_native_yellow_console_box()
-
         self.search_and_press(
             'item_0',
             grid_screen,

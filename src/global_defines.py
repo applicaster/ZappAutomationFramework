@@ -26,6 +26,8 @@ class RemoteControlKeys(object):
     ENTER = 'enter'
     HOME = 'home'
     BACK = 'back'
+    PLAY_PAUSE = 'play_pause'
+    MENU = 'menu'
 
 
 class BrowserTypes(object):

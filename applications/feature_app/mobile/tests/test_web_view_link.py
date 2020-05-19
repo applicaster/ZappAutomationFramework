@@ -15,9 +15,6 @@ class WebViewTests(BaseTest):
         PRINT('Step 1: Navigate to "ListScreen" screen')
         list_screen.navigate()
 
-        # TODO: workaround, we need to cancel here the showing of RN yellow debug
-        self.driver.find_element_by_text('Dismiss All', retries=5).click()
-
         name = 'html_web_view'
         PRINT('Step 2: Press on external web view link "%s" item' % name)
         PRINT('     Step 2.1: Start searching for "%s" item' % name)
