@@ -35,7 +35,7 @@ class GridComponentTests(BaseTest):
             item_name,
             grid_screen,
             2,
-            'Press on feed of feed item named "%s" that will lead us to a connected screen',
+            'Press on feed of feed item named "%s" that will lead us to a connected screen' % item_name,
             3
         )
         self.search_and_press(
