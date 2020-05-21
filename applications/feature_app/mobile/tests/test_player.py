@@ -2,7 +2,8 @@
 import pytest
 
 from src.automation_manager.automation_manager import automation_driver
-from src.base_test import BaseTest, PRINT
+from src.base_test import BaseTest, PRINT, Configuration
+from src.global_defines import PlatformType
 
 """
 Global Defines
@@ -33,10 +34,12 @@ class PlayerTest(BaseTest):
         self.building_blocks.screens['player_screen'].verify_stream_is_playing()
         PRINT('     Step 3.1: Streaming is playing correctly')
 
+    # @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_json_feed_vod_streaming_in_list_component(self):
-        self.find_play_and_verify(SCREEN_NAME, 'm3u8_vod')
+        item_name = 'm3u8_vod' if Configuration.get_instance().platform_type() == PlatformType.ANDROID else 'Id1'
+        self.find_play_and_verify(SCREEN_NAME, item_name)
 
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_cms_vod_streaming_in_list_component(self):

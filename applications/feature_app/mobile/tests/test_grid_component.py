@@ -2,7 +2,8 @@
 import pytest
 
 from src.automation_manager.automation_manager import automation_driver
-from src.base_test import BaseTest, PRINT
+from src.base_test import BaseTest, PRINT, Configuration
+from src.global_defines import PlatformType
 
 
 class GridComponentTests(BaseTest):
@@ -19,6 +20,7 @@ class GridComponentTests(BaseTest):
         self.driver.wait(load_timeout)
         PRINT('     Step %s.4: Finished waiting for the screen to load' % step_index)
 
+    # @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_play_vod_item_in_feed_of_feeds_connected_screen(self):
@@ -27,18 +29,20 @@ class GridComponentTests(BaseTest):
         PRINT('Step 1: Navigate to "GridScreen" screen')
         grid_screen.navigate()
 
+        item_name = 'item_0' if Configuration.get_instance().platform_type() == PlatformType.ANDROID else '000'
+
         self.search_and_press(
-            'item_0',
+            item_name,
             grid_screen,
             2,
-            'Press on feed of feed item named "item_0" that will lead us to a connected screen',
+            'Press on feed of feed item named "%s" that will lead us to a connected screen',
             3
         )
         self.search_and_press(
-            'item_0',
+            item_name,
             grid_screen,
             3,
-            'Step 3: Press on a VOD item named "item_0"',
+            'Press on a VOD item with id  "%s"' % item_name,
             10
         )
 

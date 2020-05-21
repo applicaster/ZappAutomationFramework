@@ -13,12 +13,12 @@ SCREEN_NAME = 'ScreenWithPreHook'
 
 
 class ScreenPreHookTests(BaseTest):
-
     def verify_dummy_pre_hook_screen(self):
         verifier = Verifier(self.driver)
         PRINT('     Verify that pre hook screen is presented correctly')
         verifier.verify_elements_on_screen_by_text(('Quick Brick Hooks test', 'Success', 'Cancel', 'Error'), retries=5)
 
+    # @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_pre_hook_handle_cancel(self):
         screen_with_pre_hook = self.building_blocks.screens[SCREEN_NAME]
@@ -37,6 +37,7 @@ class ScreenPreHookTests(BaseTest):
         PRINT('     Step 3.1: Verify we fell back to "ListScreen" screen successfully')
         list_screen.verify_in_screen(retries=5)
 
+    # @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_pre_hook_handle_error(self):
         screen_with_pre_hook = self.building_blocks.screens[SCREEN_NAME]
@@ -55,6 +56,8 @@ class ScreenPreHookTests(BaseTest):
         PRINT('     Step 3.1: Verify we fell back to "ListScreen" screen successfully')
         list_screen.verify_in_screen(retries=5)
 
+    # @pytest.mark.qb_ios_mobile_nightly
+    @pytest.mark.usefixtures('automation_driver')
     def test_pre_hook_handle_success(self):
         screen_with_pre_hook = self.building_blocks.screens[SCREEN_NAME]
 
