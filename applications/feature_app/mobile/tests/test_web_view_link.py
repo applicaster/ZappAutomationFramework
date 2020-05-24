@@ -3,10 +3,12 @@ import pytest
 
 from src.automation_manager.automation_manager import automation_driver
 from src.base_test import BaseTest, PRINT
+from src.configuration.configuration import Configuration, PlatformType
 from src.utils.logger import Logger
 
 
 class WebViewTests(BaseTest):
+    # @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_external_web_view_link(self):
@@ -15,7 +17,7 @@ class WebViewTests(BaseTest):
         PRINT('Step 1: Navigate to "ListScreen" screen')
         list_screen.navigate()
 
-        name = 'html_web_view'
+        name = 'html_web_view' if Configuration.get_instance().platform_type() == PlatformType.ANDROID else 'Id7'
         PRINT('Step 2: Press on external web view link "%s" item' % name)
         PRINT('     Step 2.1: Start searching for "%s" item' % name)
         element = list_screen.search_for_item_by_text(name)

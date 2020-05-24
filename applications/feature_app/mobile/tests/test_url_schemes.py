@@ -3,7 +3,8 @@ import pytest
 
 from src.automation_manager.automation_manager import automation_driver
 from src.utils.print import PRINT
-from src.base_test import BaseTest
+from src.base_test import BaseTest, Configuration
+from src.global_defines import PlatformType
 from src.verifiers.verifier import Verifier
 
 """
@@ -22,6 +23,10 @@ class UrlSchemesTests(BaseTest):
         PRINT('Step 2: Press the url scheme item that leads the user to other Horizontal List UIBuilder screen')
         element = self.driver.find_element_by_text('url_scheme_to_screen')
         element.click()
+
+        if Configuration.get_instance().platform_type() == PlatformType.IOS:
+            PRINT('     Step 2.1: Wait for pop up alert message and accept it')
+            self.driver.accept_alert_message()
 
         PRINT('Step 3: Verify we navigated successfully to "HorizontalList" screen')
         self.building_blocks.screens['HorizontalList'].verify_in_screen(retries=20)

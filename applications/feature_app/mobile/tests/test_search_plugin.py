@@ -43,6 +43,7 @@ class SearchPluginTests(BaseTest):
         PRINT('Step 3: Verify that the results for "%s"' % str(results))
         verifier.verify_elements_on_screen_by_text(results, retries=7)
 
+    @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_search_empty_results(self):

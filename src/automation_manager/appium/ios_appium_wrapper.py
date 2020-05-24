@@ -84,6 +84,26 @@ class IosAppiumWrapper(BaseAppiumWrapper):
         }
         return switcher[key_code] if key_code in switcher.keys() else key_code
 
+    def accept_alert_message(self, timeout=5):
+        for i in range(timeout):
+            try:
+                self.driver_.switch_to.alert.accept()
+                break
+            except Exception:
+                self.wait(1)
+
+        self.wait(1)
+
+    def dismiss_alert_message(self, timeout=5):
+        for i in range(timeout):
+            try:
+                self.driver_.switch_to.alert.dismiss()
+                break
+            except Exception:
+                self.wait(1)
+
+        self.wait(1)
+
     def get_device_log(self):
         """
         Gets the log for a given log type
