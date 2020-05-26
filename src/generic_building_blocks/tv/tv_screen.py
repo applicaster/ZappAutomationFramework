@@ -29,7 +29,7 @@ class TvScreen(GenericScreen):
     def navigate(self):
         Logger.get_instance().info(self, 'navigate', START_NAVIGATING_TO_SCREEN % (self.screen_name, self.id))
 
-        if Configuration.get_instance().platform_type() == PlatformType.ANDROID_TV:
+        if Configuration.get_instance().platform_type() in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.test.driver.send_keys(self.navigation_steps, 2)
         else:
             self.test.driver.send_keys(self.navigation_steps)

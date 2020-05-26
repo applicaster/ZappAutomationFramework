@@ -39,6 +39,7 @@ def verify_component(driver, step_num, step_title, items):
         PRINT('     Step %s.%s: Item %s found on screen' % (str(step_num), str(counter), item))
 
 
+@pytest.mark.tv_os
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class GridScreenTest(BaseTest):
@@ -55,7 +56,7 @@ class GridScreenTest(BaseTest):
             ['applicaster_cell_types', 'video_feed', 'current_program_feed', 'channel_feed']
         )
 
-        if platform in [PlatformType.ANDROID_TV]:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
@@ -64,7 +65,7 @@ class GridScreenTest(BaseTest):
             ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2', 'vod_mp4_item_3', 'vod_mp4_item_2']
         )
 
-        if platform in [PlatformType.ANDROID_TV]:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
@@ -73,7 +74,7 @@ class GridScreenTest(BaseTest):
             ['vod_m3u8_item_1', 'vod_m3u8_item_2', 'vod_m3u8_item_3', 'vod_m3u8_item_4']
         )
 
-        if platform in [PlatformType.ANDROID_TV]:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 3)
         verify_component(
             self.driver,
@@ -89,11 +90,12 @@ class GridScreenTest(BaseTest):
                    'TestRail C10280	- Verify Grid is displaying correct with different datasources'
 
 
+@pytest.mark.tv_os
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class HorizontalListScreenTest(BaseTest):
     def test_horizontal_list_screen(self):
-        platform_type = Configuration.get_instance().platform_type()
+        platform = Configuration.get_instance().platform_type()
 
         PRINT('Step 1: Verify that the application launched into home screen')
         self.building_blocks.screens['Home'].verify_in_screen()
@@ -108,7 +110,7 @@ class HorizontalListScreenTest(BaseTest):
             ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2', 'vod_mp4_item_3', 'vod_mp4_item_4']
         )
 
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 3)
         verify_component(
             self.driver,
@@ -117,7 +119,7 @@ class HorizontalListScreenTest(BaseTest):
             ['applicaster_cell_types', 'video_feed', 'current_program_feed', 'channel_feed']
         )
 
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys([RemoteControlKeys.DOWN], 3)
         verify_component(
             self.driver,
@@ -126,7 +128,7 @@ class HorizontalListScreenTest(BaseTest):
             ['Samsung TV Category', 'vod_1', 'vod_2', 'vod_3']
         )
 
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys([RemoteControlKeys.DOWN], 3)
         verify_component(
             self.driver,
@@ -135,7 +137,7 @@ class HorizontalListScreenTest(BaseTest):
             ['Samsung TV Collection', 'vod_0', 'vod_1', 'vod_2', 'vod_3']
         )
 
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
@@ -147,7 +149,7 @@ class HorizontalListScreenTest(BaseTest):
             ]
         )
 
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 3)
         verify_component(
             self.driver,
@@ -157,12 +159,13 @@ class HorizontalListScreenTest(BaseTest):
         )
 
 
+@pytest.mark.tv_os
 @pytest.mark.android_tv_nightly
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class HeroScreenTest(BaseTest):
     def test_hero_screen(self):
-        platform_type = Configuration.get_instance().platform_type()
+        platform = Configuration.get_instance().platform_type()
 
         PRINT('Step 1: navigate to "Hero Screen" screen from top menu bar')
         self.building_blocks.screens['Hero Screen'].navigate()
@@ -174,7 +177,7 @@ class HeroScreenTest(BaseTest):
             ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2']
         )
 
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
@@ -183,7 +186,7 @@ class HeroScreenTest(BaseTest):
             ['applicaster_cell_types', 'video_feed', 'current_program_feed', 'channel_feed']
         )
 
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
@@ -192,7 +195,7 @@ class HeroScreenTest(BaseTest):
             ['Samsung TV Category', 'vod_1', 'vod_2', 'vod_3']
         )
 
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
@@ -201,7 +204,7 @@ class HeroScreenTest(BaseTest):
             ['Samsung TV Collection']
         )
 
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
@@ -210,7 +213,7 @@ class HeroScreenTest(BaseTest):
             ['damaged_atom_feed', 'Correct Item', 'Missing Item Image', 'Damaged Video Url']
         )
 
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
@@ -221,11 +224,12 @@ class HeroScreenTest(BaseTest):
 
 
 @pytest.mark.android_tv_nightly
+@pytest.mark.tv_os
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class ScreenPickerScreenTest(BaseTest):
     def test_screen_picker(self):
-        platform_type = Configuration.get_instance().platform_type()
+        platform = Configuration.get_instance().platform_type()
         PRINT('Step 1: navigate to "Screen Picker" screen from top menu bar')
         self.building_blocks.screens['Screen Picker'].navigate()
 
@@ -241,7 +245,7 @@ class ScreenPickerScreenTest(BaseTest):
         self.driver.wait(2)
 
         elements_to_verify = ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2', 'vod_mp4_item_3', 'vod_mp4_item_4']
-        if platform_type in [PlatformType.ANDROID_TV, PlatformType.TV_OS]:
+        if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.wait(3)
             elements_to_verify = ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2']
 

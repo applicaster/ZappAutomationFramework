@@ -25,7 +25,14 @@ class BuildingBlocks(BuildingBlocksInterface):
         PRINT('Finish waiting for home screen to load')
         Logger.get_instance().log_assert(element is not None, 'Application failed launching to home screen correctly')
 
-        self.test.driver.wait(10)
+        self.test.driver.wait(7)
+
+        if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
+            PRINT(
+                'Workaround: navigate 2 times Down,'
+                ' that is for solving https://applicaster.atlassian.net/browse/ZPP-2279', text_color='magenta')
+            self.test.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 4)
+
         return True
 
     def __setup_building_blocks__(self):

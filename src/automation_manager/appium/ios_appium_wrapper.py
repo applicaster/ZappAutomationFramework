@@ -8,14 +8,14 @@ from src.configuration.configuration import Configuration
 
 
 class AppleTvRemoteControlKeyCodes:
-    MENU = 'menu'
-    UP = 'up'
-    DOWN = 'down'
-    RIGHT = 'right'
-    LEFT = 'left'
-    HOME = 'home'
+    MENU = 'Menu'
+    UP = 'Up'
+    DOWN = 'Down'
+    RIGHT = 'Right'
+    LEFT = 'Left'
+    HOME = 'Home'
     PLAY_PAUSE = 'playpause'
-    SELECT = 'select'
+    SELECT = 'Select'
 
 
 class IosAppiumWrapper(BaseAppiumWrapper):
@@ -71,7 +71,7 @@ class IosAppiumWrapper(BaseAppiumWrapper):
                 AppleTvRemoteControlKeyCodes.RIGHT,
 
             RemoteControlKeys.BACK:
-                AppleTvRemoteControlKeyCodes.HOME,
+                AppleTvRemoteControlKeyCodes.MENU,
 
             RemoteControlKeys.HOME:
                 AppleTvRemoteControlKeyCodes.HOME,
