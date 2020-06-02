@@ -79,7 +79,7 @@ class BackNavigationFromPlayerTest(BaseTest):
         return 'C17452 - Verify navigating back from player screen'
 
 
-@pytest.mark.boaz
+@pytest.mark.tv_os
 @pytest.mark.samsung_tv
 @pytest.mark.android_tv
 @pytest.mark.usefixtures('automation_driver')
@@ -114,7 +114,7 @@ class BackNavigationFromConnectedScreenTest(BaseTest):
             index += 1
             element = self.driver.find_element_by_text(item, retries=5)
             Logger.get_instance().log_assert(element, 'Test failed to find "%s" on screen' % item)
-            PRINT('     Step 5.%s: Item %s found on screen' % (str(index), item))
+            PRINT('     Step 5.%s: Item "%s" found on screen' % (str(index), item))
 
         PRINT('Step 4: Press Back button in order to get out of the child connect screen')
         self.driver.send_keys(RemoteControlKeys.BACK)
