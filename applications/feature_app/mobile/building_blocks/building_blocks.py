@@ -11,7 +11,7 @@ from src.utils.print import PRINT
 """
 Global Defines
 """
-BOOT_TIMEOUT = 90
+BOOT_TIMEOUT = 120
 
 
 class BuildingBlocks(BuildingBlocksInterface):

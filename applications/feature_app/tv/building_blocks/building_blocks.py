@@ -11,7 +11,7 @@ from src.utils.logger import Logger
 
 class BuildingBlocks(BuildingBlocksInterface):
     def boot_step(self):
-        boot_timeout = 100
+        boot_timeout = 136
         PRINT('Start waiting for home screen to load')
         element = None
         for i in range(boot_timeout):
