@@ -32,7 +32,7 @@ class BackNavigationsBetweenScreenTest(BaseTest):
         return 'TestRail C17449 - Verify navigating between 3 screen'
 
 
-@pytest.mark.tv_os
+@pytest.mark.tv_os_nighly
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationFromScreenPickerTest(BaseTest):
@@ -56,7 +56,7 @@ class BackNavigationFromScreenPickerTest(BaseTest):
         return 'C17451 - Verify navigating inside Screen Picker tabs'
 
 
-@pytest.mark.tv_os
+# @pytest.mark.tv_os
 @pytest.mark.android_tv
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
@@ -79,7 +79,7 @@ class BackNavigationFromPlayerTest(BaseTest):
         return 'C17452 - Verify navigating back from player screen'
 
 
-@pytest.mark.tv_os
+# @pytest.mark.tv_os
 @pytest.mark.samsung_tv
 @pytest.mark.android_tv
 @pytest.mark.usefixtures('automation_driver')

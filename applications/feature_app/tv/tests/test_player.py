@@ -7,7 +7,7 @@ from src.global_defines import RemoteControlKeys
 
 
 class PlayerTest(BaseTest):
-    @pytest.mark.tv_os
+    # @pytest.mark.tv_os
     @pytest.mark.android_tv
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_vod_streaming(self):
