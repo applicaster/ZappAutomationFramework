@@ -180,7 +180,7 @@ class HeroScreenTest(BaseTest):
             self.driver,
             3,
             'Step 2: Verify json feed data in Hero component',
-            ['applicaster_cell_types', 'video_feed', 'current_program_feed', 'channel_feed']
+            ['applicaster_cell_types', 'video_feed', 'current_program_feed']
         )
 
         if platform_type == PlatformType.ANDROID_TV:
@@ -189,7 +189,7 @@ class HeroScreenTest(BaseTest):
             self.driver,
             4,
             'Step 3: Verify Applicaster 2 category in Hero component',
-            ['Samsung TV Category', 'vod_1', 'vod_2', 'vod_3']
+            ['Samsung TV Category', 'vod_3', 'vod_2']
         )
 
         if platform_type == PlatformType.ANDROID_TV:
@@ -207,7 +207,7 @@ class HeroScreenTest(BaseTest):
             self.driver,
             6,
             'Step 5: Verify "damaged data" json feed in Hero component',
-            ['damaged_atom_feed', 'Correct Item', 'Missing Item Image', 'Damaged Video Url']
+            ['damaged_atom_feed', 'Correct Item', 'Missing Item Image']
         )
 
         if platform_type == PlatformType.ANDROID_TV:
