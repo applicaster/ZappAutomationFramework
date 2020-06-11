@@ -25,11 +25,12 @@ class GridComponentTests(BaseTest):
     @pytest.mark.usefixtures('automation_driver')
     def test_play_vod_item_in_feed_of_feeds_connected_screen(self):
         grid_screen = self.building_blocks.screens['GridScreen']
+        platform_type = Configuration.get_instance().platform_type()
 
         PRINT('Step 1: Navigate to "GridScreen" screen')
         grid_screen.navigate()
 
-        item_name = 'item_0' if Configuration.get_instance().platform_type() == PlatformType.ANDROID else '000'
+        item_name = 'item_0' if platform_type == PlatformType.ANDROID else '000'
 
         self.search_and_press(
             item_name,
@@ -38,6 +39,8 @@ class GridComponentTests(BaseTest):
             'Press on feed of feed item named "%s" that will lead us to a connected screen' % item_name,
             3
         )
+
+        item_name = 'child_item_0' if platform_type == PlatformType.ANDROID else 'child_000'
         self.search_and_press(
             item_name,
             grid_screen,
