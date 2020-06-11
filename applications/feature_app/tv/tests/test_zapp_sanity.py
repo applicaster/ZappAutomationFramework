@@ -10,9 +10,9 @@ from src.utils.print import PRINT
 from src.base_test import BaseTest
 
 
-@pytest.mark.tv_os_nightly
+# @pytest.mark.tv_os_nightly
 @pytest.mark.samsung_tv_nightly
-@pytest.mark.tv_os
+# @pytest.mark.tv_os
 @pytest.mark.usefixtures('automation_driver')
 class SimpleLaunchToHomeScreenTest(BaseTest):
     def verify_text_on_screen(self, text):
@@ -57,25 +57,25 @@ class GridScreenTest(BaseTest):
         )
 
         if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
-            self.driver.send_keys(RemoteControlKeys.DOWN, 3)
+            self.driver.send_keys(RemoteControlKeys.DOWN, 2)
         verify_component(
             self.driver,
             3,
             'Step 3: Verify XML feed data in Grid component',
-            ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2', 'vod_mp4_item_3', 'vod_mp4_item_2']
+            ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2']
         )
 
         if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
-            self.driver.send_keys(RemoteControlKeys.DOWN, 3)
+            self.driver.send_keys(RemoteControlKeys.DOWN, 2)
         verify_component(
             self.driver,
             3,
             'Step 3.1: Verify XML feed data in Grid component',
-            ['vod_m3u8_item_1', 'vod_m3u8_item_2', 'vod_m3u8_item_3', 'vod_m3u8_item_4']
+            ['vod_m3u8_item_1', 'vod_m3u8_item_2']
         )
 
         if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
-            self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 3)
+            self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 2)
         verify_component(
             self.driver,
             4,
@@ -85,9 +85,9 @@ class GridScreenTest(BaseTest):
 
     def shortDescription(self, test_name) -> str:
         if test_name == 'test_grid_screen':
-            return 'test_grid_screen:' \
-                   'TestRail C10293 - Verify basic functionality of grid component' \
-                   'TestRail C10280	- Verify Grid is displaying correct with different datasources'
+            return 'test_grid_screen:\n' \
+                   'TestRail C10293 - Verify basic functionality of grid component\n' \
+                   'TestRail C10280	- Verify Grid is displaying correct with different datasources\n'
 
 
 @pytest.mark.tv_os_nightly
