@@ -33,11 +33,11 @@ class UrlSchemesTests(BaseTest):
         PRINT('     Step 3.1: Verify text elements in "HorizontalList" screen')
         Verifier(self.driver).verify_elements_on_screen_by_text(('m3u8_vod', 'json_feed'), retries=5)
 
-        PRINT('Step 4: Verify navigation back to "%s"' % SCREEN_NAME)
-        PRINT('     Step 4.1: Press the navigation bar Back button')
-        self.building_blocks.navigation_bar.press_back_button()
-        PRINT('     Step 4.1: Verify we navigated back successfully to "%s" screen' % SCREEN_NAME)
-        self.building_blocks.screens[SCREEN_NAME].verify_in_screen(retries=5)
+        # PRINT('Step 4: Verify navigation back to "%s"' % SCREEN_NAME)
+        # PRINT('     Step 4.1: Press the navigation bar Back button')
+        # self.building_blocks.navigation_bar.press_back_button()
+        # PRINT('     Step 4.1: Verify we navigated back successfully to "%s" screen' % SCREEN_NAME)
+        # self.building_blocks.screens[SCREEN_NAME].verify_in_screen(retries=5)
 
     def shortDescription(self, test_name) -> str:
         return 'test_verify_url_scheme_to_screen_by_id:\n' \
