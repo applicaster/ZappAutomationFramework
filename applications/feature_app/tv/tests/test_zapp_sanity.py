@@ -11,7 +11,6 @@ from src.base_test import BaseTest
 
 
 @pytest.mark.samsung_tv_nightly
-@pytest.mark.tv_os
 @pytest.mark.usefixtures('automation_driver')
 class SimpleLaunchToHomeScreenTest(BaseTest):
     def verify_text_on_screen(self, text):
