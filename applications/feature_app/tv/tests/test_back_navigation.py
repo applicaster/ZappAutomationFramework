@@ -8,6 +8,7 @@ from src.utils.print import PRINT
 from src.base_test import BaseTest
 
 
+# @pytest.mark.tv_os
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationsBetweenScreenTest(BaseTest):
@@ -31,6 +32,7 @@ class BackNavigationsBetweenScreenTest(BaseTest):
         return 'TestRail C17449 - Verify navigating between 3 screen'
 
 
+# @pytest.mark.tv_os_nighly
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationFromScreenPickerTest(BaseTest):
@@ -39,10 +41,13 @@ class BackNavigationFromScreenPickerTest(BaseTest):
         self.building_blocks.screens['Screen Picker'].navigate()
 
         PRINT('Step 2: Navigate to the second tab in the "Screen 2" in screen picker tabs')
-        self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.ENTER], 2)
+        self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.ENTER], 2)
 
         PRINT('Step 3: Press the Back button')
-        self.driver.send_keys(RemoteControlKeys.BACK)
+        back_actions = [RemoteControlKeys.BACK]
+        if Configuration.get_instance().platform_type() in (PlatformType.TV_OS, PlatformType.ANDROID_TV):
+            back_actions = [RemoteControlKeys.BACK, RemoteControlKeys.BACK]
+        self.driver.send_keys(back_actions, 2)
 
         PRINT('Step 4: Verify that the user is back again in Home screen')
         self.building_blocks.screens['Home'].verify_in_screen()
@@ -51,6 +56,7 @@ class BackNavigationFromScreenPickerTest(BaseTest):
         return 'C17451 - Verify navigating inside Screen Picker tabs'
 
 
+#@pytest.mark.tv_os
 @pytest.mark.android_tv
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
@@ -73,6 +79,7 @@ class BackNavigationFromPlayerTest(BaseTest):
         return 'C17452 - Verify navigating back from player screen'
 
 
+# @pytest.mark.tv_os_nightly
 @pytest.mark.samsung_tv
 @pytest.mark.android_tv
 @pytest.mark.usefixtures('automation_driver')
@@ -81,7 +88,7 @@ class BackNavigationFromConnectedScreenTest(BaseTest):
         platform_type = Configuration.get_instance().platform_type()
 
         remote_control_actions = []
-        if platform_type == PlatformType.ANDROID_TV:
+        if platform_type in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             timeout = 2
             # 7 times on down button
             for i in range(7):
@@ -107,7 +114,7 @@ class BackNavigationFromConnectedScreenTest(BaseTest):
             index += 1
             element = self.driver.find_element_by_text(item, retries=5)
             Logger.get_instance().log_assert(element, 'Test failed to find "%s" on screen' % item)
-            PRINT('     Step 5.%s: Item %s found on screen' % (str(index), item))
+            PRINT('     Step 5.%s: Item "%s" found on screen' % (str(index), item))
 
         PRINT('Step 4: Press Back button in order to get out of the child connect screen')
         self.driver.send_keys(RemoteControlKeys.BACK)
