@@ -168,6 +168,9 @@ class HeroScreenTest(BaseTest):
         PRINT('Step 1: navigate to "Hero Screen" screen from top menu bar')
         self.building_blocks.screens['Hero Screen'].navigate()
 
+        if platform == PlatformType.TV_OS:
+            self.driver.send_keys(RemoteControlKeys.DOWN, 3)
+
         verify_component(
             self.driver,
             2,

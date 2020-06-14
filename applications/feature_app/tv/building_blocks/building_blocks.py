@@ -15,17 +15,14 @@ class BuildingBlocks(BuildingBlocksInterface):
         PRINT('Start waiting for home screen to load')
         element = None
         for i in range(boot_timeout):
-            if Configuration.get_instance().platform_type() == PlatformType.ANDROID_TV:
-                element = self.test.driver.find_element_by_text('applicaster_cell_types')
-            else:
-                element = self.test.driver.find_element_by_text('Home')
+            element = self.test.driver.find_element_by_text('applicaster_cell_types')
             if element is not None:
                 break
             self.test.driver.wait(1)
         PRINT('Finish waiting for home screen to load')
         Logger.get_instance().log_assert(element is not None, 'Application failed launching to home screen correctly')
 
-        self.test.driver.wait(7)
+        self.test.driver.wait(10)
 
         if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
             PRINT(
