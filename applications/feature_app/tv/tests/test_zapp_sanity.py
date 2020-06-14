@@ -10,6 +10,7 @@ from src.utils.print import PRINT
 from src.base_test import BaseTest
 
 
+@pytest.mark.tv_os
 @pytest.mark.samsung_tv_nightly
 @pytest.mark.usefixtures('automation_driver')
 class SimpleLaunchToHomeScreenTest(BaseTest):
