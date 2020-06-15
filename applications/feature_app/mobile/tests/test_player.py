@@ -4,6 +4,7 @@ import pytest
 from src.automation_manager.automation_manager import automation_driver
 from src.base_test import BaseTest, PRINT, Configuration
 from src.global_defines import PlatformType
+from src.utils.logger import Logger
 
 """
 Global Defines
@@ -28,8 +29,11 @@ class PlayerTest(BaseTest):
         element.click()
         if Configuration.get_instance().platform_type() == PlatformType.IOS:
             PRINT('     Step 2.3: Dismiss the pre hook screen with Success')
+            Logger.get_instance().take_screenshot('before_pre_hook_dismissal')
             pre_hook.enter_with_success()
-
+        Logger.get_instance().take_screenshot('after_pre_hook_dismissal')
+        self.driver.wait(3)
+        Logger.get_instance().take_screenshot('after_3_seconds_in_buffering')
         PRINT('     Step 2.4: Wait %s seconds until the streaming will start' % START_PLAYING_VOD_TIMEOUT)
         self.driver.wait(START_PLAYING_VOD_TIMEOUT)
         PRINT('     Step 2.5: Finished waiting the %s seconds' % START_PLAYING_VOD_TIMEOUT)
@@ -42,7 +46,7 @@ class PlayerTest(BaseTest):
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_json_feed_vod_streaming_in_list_component(self):
-        item_name = 'm3u8_vod' if Configuration.get_instance().platform_type() == PlatformType.ANDROID else 'Id1'
+        item_name = 'm3u8_vod' if Configuration.get_instance().platform_type() == PlatformType.ANDROID else 'Id4'
         self.find_play_and_verify(SCREEN_NAME, item_name)
 
     @pytest.mark.usefixtures('automation_driver')
