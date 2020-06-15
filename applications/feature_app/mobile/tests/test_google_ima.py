@@ -9,7 +9,6 @@ from src.utils.logger import Logger
 
 class GoogleInteractiveMediaAdsTests(BaseTest):
     @pytest.mark.usefixtures('automation_driver')
-    @pytest.mark.ima
     def test_verify_playing_vast_ads_from_json_feed(self):
         grid_screen = self.building_blocks.screens['GridScreen']
         pre_hook = self.building_blocks.screens['demo_pre_hook']
