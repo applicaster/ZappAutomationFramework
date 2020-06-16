@@ -38,6 +38,7 @@ def verify_component(driver, step_num, step_title, items):
         PRINT('     Step %s.%s: Item %s found on screen' % (str(step_num), str(counter), item))
 
 
+@pytest.mark.android_tv_nightly
 @pytest.mark.tv_os_nightly
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
@@ -89,6 +90,7 @@ class GridScreenTest(BaseTest):
                    'TestRail C10280	- Verify Grid is displaying correct with different datasources\n'
 
 
+@pytest.mark.android_tv_nightly
 @pytest.mark.tv_os_nightly
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
@@ -110,7 +112,7 @@ class HorizontalListScreenTest(BaseTest):
         )
 
         if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
-            self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 3)
+            self.driver.send_keys(RemoteControlKeys.DOWN, 3)
         verify_component(
             self.driver,
             4,
