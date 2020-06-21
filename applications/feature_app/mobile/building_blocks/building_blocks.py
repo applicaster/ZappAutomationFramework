@@ -8,6 +8,8 @@ from src.data_providers.rivers_data_provider import RiversDataProvider
 from applications.feature_app.feature_app_player import FeatureAppPlayer
 from src.utils.print import PRINT
 
+from applications.feature_app.mobile.building_blocks.demo_pre_hook import DemoPreHook
+
 """
 Global Defines
 """
@@ -45,5 +47,6 @@ class BuildingBlocks(BuildingBlocksInterface):
         # Setup internal screens
         self.screens['search_screen'] = SearchScreen(self.test)
         self.screens['player_screen'] = FeatureAppPlayer(self.test)
+        self.screens['demo_pre_hook'] = DemoPreHook(self.test)
         self.screens['ListScreen'].set_screen_loading_timeout(5)
         self.screens['GridScreen'].set_screen_loading_timeout(5)
