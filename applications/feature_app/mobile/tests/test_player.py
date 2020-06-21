@@ -27,7 +27,10 @@ class PlayerTest(BaseTest):
         PRINT('     Step 2.2: Tap on "%s" vod item in order to start playing it' % vod_name)
         element.click()
         if Configuration.get_instance().platform_type() == PlatformType.IOS:
-            PRINT('     Step 2.3: Dismiss the pre hook screen with success')
+            PRINT('     Step 2.3: Pass the presented pre hook screen with success, in order to watch the video')
+            PRINT('     Step 2.4: Verify that the demo pre hook screen is presented')
+            pre_hook.verify_in_screen(retries=3)
+            PRINT('     Step 2.5: Dismiss the pre hook screen with success')
             pre_hook.enter_with_success()
 
         PRINT('     Step 2.3: Wait %s seconds until the streaming will start' % START_PLAYING_VOD_TIMEOUT)
