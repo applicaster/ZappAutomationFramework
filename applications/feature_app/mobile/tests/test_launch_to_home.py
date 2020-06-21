@@ -7,7 +7,7 @@ from src.base_test import BaseTest
 
 
 @pytest.mark.qb_android_mobile
-# @pytest.mark.qb_ios_mobile
+@pytest.mark.qb_ios_mobile
 @pytest.mark.usefixtures('automation_driver')
 class LaunchToHomeTest(BaseTest):
     def test_launch_to_home(self):

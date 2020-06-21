@@ -4,7 +4,6 @@ import pytest
 from src.automation_manager.automation_manager import automation_driver
 from src.base_test import BaseTest, PRINT, Configuration
 from src.global_defines import PlatformType
-from src.utils.logger import Logger
 
 """
 Global Defines
@@ -17,7 +16,6 @@ class PlayerTest(BaseTest):
 
     def find_play_and_verify(self, screen_name, vod_name):
         screen = self.building_blocks.screens[screen_name]
-        pre_hook = self.building_blocks.screens['demo_pre_hook']
 
         PRINT('Step 1: Navigate to "%s" screen' % screen_name)
         screen.navigate()
@@ -27,26 +25,20 @@ class PlayerTest(BaseTest):
         element = screen.search_for_item_by_text(vod_name)
         PRINT('     Step 2.2: Tap on "%s" vod item in order to start playing it' % vod_name)
         element.click()
-        if Configuration.get_instance().platform_type() == PlatformType.IOS:
-            PRINT('     Step 2.3: Dismiss the pre hook screen with Success')
-            Logger.get_instance().take_screenshot('before_pre_hook_dismissal')
-            pre_hook.enter_with_success()
-        Logger.get_instance().take_screenshot('after_pre_hook_dismissal')
-        self.driver.wait(3)
-        Logger.get_instance().take_screenshot('after_3_seconds_in_buffering')
-        PRINT('     Step 2.4: Wait %s seconds until the streaming will start' % START_PLAYING_VOD_TIMEOUT)
+
+        PRINT('     Step 2.3: Wait %s seconds until the streaming will start' % START_PLAYING_VOD_TIMEOUT)
         self.driver.wait(START_PLAYING_VOD_TIMEOUT)
-        PRINT('     Step 2.5: Finished waiting the %s seconds' % START_PLAYING_VOD_TIMEOUT)
+        PRINT('     Step 2.4: Finished waiting the %s seconds' % START_PLAYING_VOD_TIMEOUT)
 
         PRINT('Step 3.0: Verify that the streaming is playing')
         self.building_blocks.screens['player_screen'].verify_stream_is_playing()
         PRINT('     Step 3.1: Streaming is playing correctly')
 
-    @pytest.mark.qb_ios_mobile
+    # @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_json_feed_vod_streaming_in_list_component(self):
-        item_name = 'm3u8_vod' if Configuration.get_instance().platform_type() == PlatformType.ANDROID else 'Id4'
+        item_name = 'm3u8_vod' if Configuration.get_instance().platform_type() == PlatformType.ANDROID else 'Id1'
         self.find_play_and_verify(SCREEN_NAME, item_name)
 
     @pytest.mark.usefixtures('automation_driver')
