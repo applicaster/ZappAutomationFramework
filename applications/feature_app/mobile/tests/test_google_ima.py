@@ -38,7 +38,6 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
     def test_verify_playing_vast_adv_from_json_feed(self):
         grid_screen = self.building_blocks.screens['GridScreen']
         pre_hook = self.building_blocks.screens['demo_pre_hook']
-        platform_type = Configuration.get_instance().platform_type()
 
         PRINT('Step 1: Navigate to "GridScreen" screen')
         grid_screen.navigate()
