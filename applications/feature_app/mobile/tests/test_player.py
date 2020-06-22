@@ -8,7 +8,7 @@ from src.global_defines import PlatformType
 """
 Global Defines
 """
-START_PLAYING_VOD_TIMEOUT = 10
+START_PLAYING_VOD_TIMEOUT = 15
 SCREEN_NAME = 'ListScreen'
 
 
