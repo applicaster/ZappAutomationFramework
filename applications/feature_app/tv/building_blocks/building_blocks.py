@@ -22,7 +22,7 @@ class BuildingBlocks(BuildingBlocksInterface):
         PRINT('Finish waiting for home screen to load')
         Logger.get_instance().log_assert(element is not None, 'Application failed launching to home screen correctly')
 
-        self.test.driver.wait(10)
+        self.test.driver.wait(15)
 
         if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
             PRINT(
