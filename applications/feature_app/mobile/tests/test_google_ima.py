@@ -34,6 +34,7 @@ VMAP_ADV_URL = 'https://assets-secure.applicaster.com/qa/zapp_qa/automation/adve
 
 
 class GoogleInteractiveMediaAdsTests(BaseTest):
+    @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_playing_vast_adv_from_json_feed(self):
         grid_screen = self.building_blocks.screens['GridScreen']
