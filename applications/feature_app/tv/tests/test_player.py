@@ -7,13 +7,13 @@ from src.global_defines import RemoteControlKeys
 
 
 class PlayerTest(BaseTest):
-    # @pytest.mark.tv_os
+    @pytest.mark.tv_os_nightly
     @pytest.mark.android_tv
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_vod_streaming(self):
         PRINT('Step 1: Start playing "video_feed" vod item from the first component')
         self.driver.send_keys(RemoteControlKeys.ENTER)
-        timeout = 10
+        timeout = 15
         PRINT('     Step 1.1: Wait %s seconds until the streaming will start' % timeout)
         self.driver.wait(timeout)
 

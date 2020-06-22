@@ -14,6 +14,7 @@ SCREEN_NAME = 'UrlSchemes'
 
 
 class UrlSchemesTests(BaseTest):
+    @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_url_scheme_to_screen_by_id(self):
@@ -26,6 +27,7 @@ class UrlSchemesTests(BaseTest):
 
         if Configuration.get_instance().platform_type() == PlatformType.IOS:
             PRINT('     Step 2.1: Wait for pop up alert message and accept it')
+            self.driver.accept_alert_message()
             self.driver.accept_alert_message()
 
         PRINT('Step 3: Verify we navigated successfully to "HorizontalList" screen')
