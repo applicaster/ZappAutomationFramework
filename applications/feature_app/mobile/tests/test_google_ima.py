@@ -106,3 +106,11 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
         self.verify_adv(3, 'pre-roll', 20, 15, VMAP_PRE_ROLL_URL)
         self.verify_adv(4, 'mid-roll', 30, 15, VMAP_MID_ROLL_URL)
         self.verify_adv(5, 'post-roll', 30, 15, VMAP_POST_ROLL_URL)
+
+    def shortDescription(self, test_name) -> str:
+        if test_name == 'test_verify_playing_vast_adv_from_json_feed':
+            return 'Verify playing of pre roll from a json feed VOD item extension'
+
+        if test_name == 'test_verify_playing_vmap_adv_from_ui_builder_fallback':
+            return 'Verify playing of pre/mid/post roll VMPA ad url that is defined as fall back ad url in the plugin' \
+                   ' configuration'
