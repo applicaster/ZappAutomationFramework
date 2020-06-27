@@ -23,7 +23,7 @@ class GroupComponentTests(BaseTest):
 
         info_cell_title = 'json_feed'
         PRINT('Step 2: Verify that group info cell with title "%s" is found on the screen' % info_cell_title)
-        element = self.driver.find_element_by_text(info_cell_title)
+        element = self.driver.find_element_by_text(info_cell_title, retries=5)
         Logger.get_instance().log_assert(element, 'Group info cell is not found in "%s" screen' % GROUP_COMPONENT_SCREEN)
 
         PRINT('Step 3: Press on "%s" group info cell and navigate by that to "ListScreen"' % info_cell_title)
