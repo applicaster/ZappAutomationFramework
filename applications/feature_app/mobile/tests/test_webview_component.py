@@ -12,7 +12,6 @@ SCREEN_NAME = 'UrlSchemes'
 
 
 class WebviewComponent(BaseTest):
-    @pytest.mark.boaz
     @pytest.mark.qb_ios_mobile_nightly
     # @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
