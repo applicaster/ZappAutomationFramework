@@ -36,7 +36,6 @@ class FavouritesTests(BaseTest):
         self.driver.wait(ADD_REMOVE_FAVORITES_ANIMATION)
         PRINT('Step %s.2: Item removed from favourites' % item_name)
 
-    @pytest.mark.boaz
     @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
@@ -69,6 +68,8 @@ class FavouritesTests(BaseTest):
 
     def shortDescription(self, test_name) -> str:
         if test_name == 'test_add_and_remove_from_favorites':
-            return 'test_verify_webview_component:\n' \
-               '    TestRail C23511 - Verify the web view component is loading in the app \n'
+            return 'test_add_and_remove_from_favorites:' \
+                   '    TestRail: C22970 - Verify adding to Favorites CMS VOD item\n'\
+                   '    TestRail: C22972 - Verify adding to Favorites json feed VOD item\n'\
+                   '    TestRail: C23006 - Verify removing item from Favorites screen\n'
         return 'Not Found'
