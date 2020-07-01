@@ -50,6 +50,11 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
                     if button.text == text:
                         return button
 
+                views = self.driver_.find_elements_by_class_name('android.view.View')
+                for view in views:
+                    if view.text == text:
+                        return view
+
             except Exception as exception:
                 Logger.get_instance().warning(self, "find_element_by_text", FINDING_ELEMENT_BY_TEXT % str(text))
 
