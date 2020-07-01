@@ -208,6 +208,9 @@ class BaseAppiumWrapper(AutomationDriver):
             rect['y'] + rect['width'] / 2
         )
 
+    def restart_application(self):
+        self.activate_app()
+
     def get_page_source(self):
         return self.driver_.page_source
 

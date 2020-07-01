@@ -19,7 +19,7 @@ class CommonSideMenuScreen(MobileScreen):
     def get_screen_id(self):
         river_data = RiversDataProvider.get_instance().get_data()
         for node in river_data:
-            if 'name' in node and 'id' in node and str(node['name']) == self.screen_name:
+            if 'name' in node and 'id' in node and node['name'].lower() == self.screen_name.lower():
                 return node['id']
 
     def get_screen_type(self):
