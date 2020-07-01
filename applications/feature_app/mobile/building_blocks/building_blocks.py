@@ -48,5 +48,5 @@ class BuildingBlocks(BuildingBlocksInterface):
         self.screens['search_screen'] = SearchScreen(self.test)
         self.screens['player_screen'] = FeatureAppPlayer(self.test)
         self.screens['demo_pre_hook'] = DemoPreHook(self.test)
-        self.screens['ListScreen'].set_screen_loading_timeout(5)
+        self.screens['ListScreen'].set_screen_loading_timeout(6)
         self.screens['GridScreen'].set_screen_loading_timeout(5)
