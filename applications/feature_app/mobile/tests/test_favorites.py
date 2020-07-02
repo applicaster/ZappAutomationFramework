@@ -39,7 +39,7 @@ class FavouritesTests(BaseTest):
         PRINT('Step %s.2: Item removed from favourites' % item_name)
 
     @pytest.mark.qb_ios_mobile_nightly
-    # @pytest.mark.qb_android_mobile_nightly
+    @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_add_and_remove_from_favourites(self):
         list_screen = self.building_blocks.screens['ListScreen']
@@ -47,7 +47,8 @@ class FavouritesTests(BaseTest):
 
         PRINT('Step 1: Navigate to ListScreen')
         list_screen.navigate()
-        self.driver.wait(5)
+        Logger.get_instance().take_screenshot('before_adding_to_favorites')
+        self.driver.wait(2)
 
         json_feed_item_name = 'm3u8_vod'
         cms_item_name = 'vod_0'
@@ -63,7 +64,9 @@ class FavouritesTests(BaseTest):
         PRINT('Step 5: Navigate from the side menu to Favorites screen')
         favorites_screen.navigate()
 
+        Logger.get_instance().take_screenshot('before_removing_m3u8_vod_from_favourites')
         self.remove_item_from_favourites(json_feed_item_name, 6)
+        Logger.get_instance().take_screenshot('before_removing_cms_vod_from_favourites')
         self.remove_item_from_favourites(cms_item_name, 7)
 
         element = self.driver.find_element_by_text(NO_FAVORITES_TITLE, retries=3)
