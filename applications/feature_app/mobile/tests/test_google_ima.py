@@ -98,6 +98,7 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
         Logger.get_instance().log_assert(is_gone, '%s did not dismiss after %s' % (section, dismiss_timeout))
         PRINT('     Step %s.3: %s adv displayed and dismissed successfully' % (step, section))
 
+    @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_playing_vmap_adv_from_ui_builder_fallback(self):
         grid_screen = self.building_blocks.screens['GridScreen']
