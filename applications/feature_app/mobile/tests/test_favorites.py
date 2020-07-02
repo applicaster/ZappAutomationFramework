@@ -66,8 +66,9 @@ class FavouritesTests(BaseTest):
         PRINT('Step 5: Navigate from the side menu to Favorites screen')
         favorites_screen.navigate()
 
-        Logger.get_instance().take_screenshot('before_removing_from_favorites')
+        Logger.get_instance().take_screenshot('before_removing_json_feed_item')
         self.remove_item_from_favourites(json_feed_item_name, 6)
+        Logger.get_instance().take_screenshot('before_removing_CMS_feed_item')
         self.remove_item_from_favourites(cms_item_name, 7)
 
         element = self.driver.find_element_by_text(NO_FAVORITES_TITLE, retries=3)
