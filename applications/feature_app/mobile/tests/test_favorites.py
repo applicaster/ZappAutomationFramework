@@ -39,7 +39,7 @@ class FavouritesTests(BaseTest):
         PRINT('Step %s.2: Item removed from favourites' % item_name)
 
     @pytest.mark.qb_ios_mobile_nightly
-    @pytest.mark.qb_android_mobile_nightly
+    # @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_add_and_remove_from_favourites(self):
         list_screen = self.building_blocks.screens['ListScreen']
