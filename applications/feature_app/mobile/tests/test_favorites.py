@@ -47,7 +47,10 @@ class FavouritesTests(BaseTest):
 
         PRINT('Step 1: Navigate to ListScreen')
         list_screen.navigate()
+        Logger.get_instance().take_screenshot('before_searching_for_m3u8_before_time_out')
         self.driver.wait(5)
+        Logger.get_instance().take_screenshot('before_searching_for_m3u8_after_time_out')
+
 
         json_feed_item_name = 'm3u8_vod'
         cms_item_name = 'vod_0'
