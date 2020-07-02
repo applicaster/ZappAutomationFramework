@@ -48,7 +48,7 @@ class FavouritesTests(BaseTest):
         PRINT('Step 1: Navigate to ListScreen')
         list_screen.navigate()
         Logger.get_instance().take_screenshot('before_searching_for_m3u8_before_time_out')
-        self.driver.wait(5)
+        self.driver.wait(2)
         Logger.get_instance().take_screenshot('before_searching_for_m3u8_after_time_out')
 
 
@@ -66,6 +66,7 @@ class FavouritesTests(BaseTest):
         PRINT('Step 5: Navigate from the side menu to Favorites screen')
         favorites_screen.navigate()
 
+        Logger.get_instance().take_screenshot('before_removing_from_favorites')
         self.remove_item_from_favourites(json_feed_item_name, 6)
         self.remove_item_from_favourites(cms_item_name, 7)
 
