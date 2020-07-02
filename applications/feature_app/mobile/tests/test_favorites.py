@@ -4,7 +4,6 @@ import pytest
 from src.automation_manager.automation_manager import automation_driver
 from src.base_test import BaseTest, PRINT, Configuration
 from src.utils.logger import Logger
-from src.global_defines import PlatformType
 
 """
 Global Defines
