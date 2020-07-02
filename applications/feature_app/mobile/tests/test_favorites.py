@@ -2,8 +2,9 @@
 import pytest
 
 from src.automation_manager.automation_manager import automation_driver
-from src.base_test import BaseTest, PRINT
+from src.base_test import BaseTest, PRINT, Configuration
 from src.utils.logger import Logger
+from src.global_defines import PlatformType
 
 """
 Global Defines
@@ -12,6 +13,7 @@ FAVORITES_ICON_TAG = 'local_storage_favourites_action_%s'
 NO_FAVORITES_TITLE = "You don't have any favourites"
 ADD_REMOVE_FAVORITES_ANIMATION = 3
 APP_BOOT_TIMEOUT = 18
+PLATFORM = Configuration.get_instance().platform_type()
 
 
 class FavouritesTests(BaseTest):
@@ -45,6 +47,7 @@ class FavouritesTests(BaseTest):
 
         PRINT('Step 1: Navigate to ListScreen')
         list_screen.navigate()
+        self.driver.wait(5)
 
         json_feed_item_name = 'm3u8_vod'
         cms_item_name = 'vod_0'
