@@ -4,6 +4,7 @@ import pytest
 from src.automation_manager.automation_manager import automation_driver
 from src.base_test import BaseTest, PRINT, Configuration
 from src.utils.logger import Logger
+from src.global_defines import PlatformType
 
 """
 Global Defines
@@ -54,17 +55,19 @@ class FavouritesTests(BaseTest):
         self.add_item_to_favourites(json_feed_item_name, 2)
         self.add_item_to_favourites(cms_item_name, 3)
 
-        PRINT('Step 4: Relaunch application')
-        self.driver.restart_application()
-        PRINT('     Step 4.1: Wait up to %s seconds until the application will get to home screen' % APP_BOOT_TIMEOUT)
-        self.building_blocks.screens['Home'].verify_in_screen(retries=APP_BOOT_TIMEOUT)
-        PRINT('     Step 4.2: Application finished restarting successfully')
+        if PLATFORM == PlatformType.IOS:
+            PRINT('Step 4: Relaunch application')
+            self.driver.restart_application()
+            PRINT('     Step 4.1: Wait up to %s seconds until the application will get to home screen' % APP_BOOT_TIMEOUT)
+            self.building_blocks.screens['Home'].verify_in_screen(retries=APP_BOOT_TIMEOUT)
+            PRINT('     Step 4.2: Application finished restarting successfully')
 
         PRINT('Step 5: Navigate from the side menu to Favorites screen')
         favorites_screen.navigate()
 
         Logger.get_instance().take_screenshot('before_removing_m3u8_vod_from_favourites')
         self.remove_item_from_favourites(json_feed_item_name, 6)
+        
         Logger.get_instance().take_screenshot('before_removing_cms_vod_from_favourites')
         self.remove_item_from_favourites(cms_item_name, 7)
 
