@@ -41,6 +41,7 @@ class PlayerTest(BaseTest):
         self.building_blocks.screens['player_screen'].verify_stream_is_playing()
         PRINT('     Step 3.1: Streaming is playing correctly')
 
+    @pytest.mark.boaz
     @pytest.mark.qb_ios_mobile
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
@@ -52,8 +53,7 @@ class PlayerTest(BaseTest):
     def test_verify_cms_vod_streaming_in_list_component(self):
         self.find_play_and_verify(SCREEN_NAME, 'vod_0')
 
-    @pytest.mark.usefixtures('automation_driver')
-    def test_pause_stream(self):
+    def play_item_and_pass_preroll(self, vod_name):
         screen = self.building_blocks.screens[SCREEN_NAME]
         pre_hook = self.building_blocks.screens['demo_pre_hook']
         player_screen = self.building_blocks.screens['player_screen']
@@ -76,6 +76,15 @@ class PlayerTest(BaseTest):
         pre_roll_timeout = 20
         PRINT('Step 3: Wait %s seconds until that the pre roll will finish playing' % pre_roll_timeout)
         self.driver.wait(pre_roll_timeout)
+
+    @pytest.mark.boaz
+    @pytest.mark.usefixtures('automation_driver')
+    def test_pause_stream(self):
+        screen = self.building_blocks.screens[SCREEN_NAME]
+        player_screen = self.building_blocks.screens['player_screen']
+        vod_name = 'm3u8_vod'
+
+        self.play_item_and_pass_preroll(vod_name)
 
         PRINT('Step 4: Pause the stream')
         player_screen.press_pause_button()
@@ -92,28 +101,15 @@ class PlayerTest(BaseTest):
     @pytest.mark.usefixtures('automation_driver')
     def test_scrub_progress_bar(self):
         screen = self.building_blocks.screens[SCREEN_NAME]
-        pre_hook = self.building_blocks.screens['demo_pre_hook']
         player_screen = self.building_blocks.screens['player_screen']
         vod_name = 'm3u8_vod'
 
-        PRINT('Step 1: Navigate to "%s" screen' % SCREEN_NAME)
-        screen.navigate()
-        PRINT('Step 2: Press on vod "%s" item' % vod_name)
-        PRINT('     Step 2.1: Search for vod "%s" item on the screen' % vod_name)
-        element = screen.search_for_item_by_text(vod_name)
-        PRINT('     Step 2.2: Tap on "%s" vod item in order to start playing it' % vod_name)
-        element.click()
-        if Configuration.get_instance().platform_type() == PlatformType.IOS:
-            PRINT('     Step 2.3: Pass the presented pre hook screen with success, in order to watch the video')
-            PRINT('     Step 2.4: Verify that the demo pre hook screen is presented')
-            pre_hook.verify_in_screen(retries=3)
-            PRINT('     Step 2.5: Dismiss the pre hook screen with success')
-            pre_hook.enter_with_success()
+        self.play_item_and_pass_preroll(vod_name)
 
-        pre_roll_timeout = 20
-        PRINT('Step 3: Wait %s seconds until that the pre roll will finish playing' % pre_roll_timeout)
-        self.driver.wait(pre_roll_timeout)
-        player_screen.press_progress_bar(end_offset=10)
+        PRINT('Step 6: Scrub the progress bar to the end')
+        player_screen.press_progress_bar(end_offset=15)
+        PRINT('     Step 6.1: Verify we navigated back to %s screen' % SCREEN_NAME)
+        screen.verify_in_screen(retries=20)
 
     def shortDescription(self, test_name) -> str:
         return 'test_verify_json_feed_vod_streaming_in_list_component:\n' \

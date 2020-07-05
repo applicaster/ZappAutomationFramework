@@ -127,8 +127,10 @@ class FeatureAppPlayer(PlayerScreen):
             self.selected_player_.progress_bar_accessibility_identifier(),
             retries=2
         )
-        print(element)
-        print(dir(element))
+        self.test.driver.tap_by_coordinates(
+            x_pos=element.rect['x'] + element.rect['width'] - end_offset,
+            y_pos=element.rect['y'] + (element.rect['height'] / 2)
+        )
 
     def __init__(self, test):
         self.test = test
