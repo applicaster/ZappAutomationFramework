@@ -56,8 +56,6 @@ class PlayerTest(BaseTest):
     def play_item_and_pass_preroll(self, vod_name):
         screen = self.building_blocks.screens[SCREEN_NAME]
         pre_hook = self.building_blocks.screens['demo_pre_hook']
-        player_screen = self.building_blocks.screens['player_screen']
-        vod_name = 'm3u8_vod'
 
         PRINT('Step 1: Navigate to "%s" screen' % SCREEN_NAME)
         screen.navigate()
@@ -112,10 +110,20 @@ class PlayerTest(BaseTest):
         screen.verify_in_screen(retries=20)
 
     def shortDescription(self, test_name) -> str:
-        return 'test_verify_json_feed_vod_streaming_in_list_component:\n' \
+        if test_name == 'test_verify_json_feed_vod_streaming_in_list_component':
+            return 'test_verify_json_feed_vod_streaming_in_list_component:\n' \
                '    TestRail C22957 - Verify playing a VOD from feed\n' \
                '    TestRail C22931 - Verify swiping between cells in the list component\n' \
-               '    TestRail C22940 - Verify basic functionality of the list component\n' \
-               '\n' \
-               'test_verify_cms_vod_streaming_in_list_component:\n' \
-               '    TestRail C22958 - Verify playing a VOD from CMS'
+               '    TestRail C22940 - Verify basic functionality of the list component\n'
+
+        if test_name == 'test_verify_json_feed_vod_streaming_in_list_component':
+            return 'test_verify_cms_vod_streaming_in_list_component:\n' \
+                   '    TestRail C22958 - Verify playing a VOD from CMS'
+
+        if test_name == 'test_scrub_progress_bar':
+            return 'test_scrub_progress_bar:\n' \
+                   '    Scrub the progress bar to the end of the VOD and verify that the player closing to ListScreen'
+
+        if test_name == 'test_pause_stream':
+            return 'test_pause_stream:\n' \
+                   '    Verify that pause button pausing the stream playing'
