@@ -10,82 +10,41 @@ Global Defines
 SHOW_CONTROLS_ANIMATION_DURATION = 0.4
 
 
-class AppPlayerInterface(object):
+class BaseFeatureAppPlayer(object):
     """
     Public Implementation
     """
-    def play_button_accessibility_identifier(self): raise NotImplementedError
-    def pause_button_accessibility_identifier(self): raise NotImplementedError
-    def rew_button_accessibility_identifier(self): raise NotImplementedError
-    def ffwd_button_accessibility_identifier(self):raise NotImplementedError
-    def close_button_accessibility_identifier(self): raise NotImplementedError
-    def progress_bar_accessibility_identifier(self): raise NotImplementedError
-    def hide_controls_timeout(self): raise NotImplementedError
-    def get_screen_id(self): raise NotImplementedError
+
+    def play_button_accessibility_identifier(self):
+        return PlayerDefaultAccessibilityIdentifiers.PLAY_PAUSE_BUTTON_ACCESSIBILITY_ID
+
+    def pause_button_accessibility_identifier(self):
+        return PlayerDefaultAccessibilityIdentifiers.PAUSE_BUTTON_ACCESSIBILITY_ID
+
+    def rew_button_accessibility_identifier(self):
+        return PlayerDefaultAccessibilityIdentifiers.REW_BUTTON_ACCESSIBILITY_ID
+
+    def ffwd_button_accessibility_identifier(self):
+        return PlayerDefaultAccessibilityIdentifiers.FFWD_BUTTON_ACCESSIBILITY_ID
+
+    def close_button_accessibility_identifier(self):
+        return PlayerDefaultAccessibilityIdentifiers.CLOSE_BUTTON_ACCESSIBILITY_ID
+
+    def progress_bar_accessibility_identifier(self):
+        return PlayerDefaultAccessibilityIdentifiers.PROGRESS_BAR_ACCESSIBILITY_ID
+
+    def hide_controls_timeout(self):
+        return DEFAULT_HIDE_CONTROLS_TIMEOUT
+
+    def get_screen_id(self):
+        return self.screen_id
 
     """
     Private Implementation
     """
-    def __init__(self, driver):
+    def __init__(self, driver, screen_id):
         self.driver = driver
-
-
-class JwPlayer(AppPlayerInterface):
-    """
-    Public Implementation
-    """
-    def play_button_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.PLAY_PAUSE_BUTTON_ACCESSIBILITY_ID
-
-    def pause_button_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.PAUSE_BUTTON_ACCESSIBILITY_ID
-
-    def rew_button_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.REW_BUTTON_ACCESSIBILITY_ID
-
-    def ffwd_button_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.FFWD_BUTTON_ACCESSIBILITY_ID
-
-    def close_button_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.CLOSE_BUTTON_ACCESSIBILITY_ID
-
-    def progress_bar_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.PROGRESS_BAR_ACCESSIBILITY_ID
-
-    def hide_controls_timeout(self):
-        return DEFAULT_HIDE_CONTROLS_TIMEOUT
-
-    def get_screen_id(self):
-        return 'jw_player_screen'
-
-
-class ApplicasterPlayer(AppPlayerInterface):
-    """
-    Public Implementation
-    """
-    def play_button_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.PLAY_PAUSE_BUTTON_ACCESSIBILITY_ID
-
-    def pause_button_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.PAUSE_BUTTON_ACCESSIBILITY_ID
-
-    def rew_button_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.REW_BUTTON_ACCESSIBILITY_ID
-
-    def ffwd_button_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.FFWD_BUTTON_ACCESSIBILITY_ID
-
-    def close_button_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.CLOSE_BUTTON_ACCESSIBILITY_ID
-
-    def progress_bar_accessibility_identifier(self):
-        return PlayerDefaultAccessibilityIdentifiers.PROGRESS_BAR_ACCESSIBILITY_ID
-
-    def hide_controls_timeout(self):
-        return DEFAULT_HIDE_CONTROLS_TIMEOUT
-
-    def get_screen_id(self):
-        return 'applicaster_player'
+        self.screen_id = screen_id
 
 
 class FeatureAppPlayer(PlayerScreen):
@@ -134,8 +93,8 @@ class FeatureAppPlayer(PlayerScreen):
 
     def __init__(self, test):
         self.test = test
-        self.applicaster_player_ = ApplicasterPlayer(self.test.driver)
-        self.jw_player_ = JwPlayer(self.test.driver)
+        self.applicaster_player_ = BaseFeatureAppPlayer(self.test.driver, 'applicaster_player')
+        self.jw_player_ = BaseFeatureAppPlayer(self.test.driver, 'jw_player_screen')
         self.selected_player_ = self.applicaster_player_
         PlayerScreen.__init__(self, test)
 

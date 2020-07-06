@@ -83,10 +83,9 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
                 self, 'tap_by_coordinates', 'Appium failed on performing tap with error: %s' % str(exception)
             )
 
-
-    '''
+    """
     Private Implementation
-    '''
+    """
     def __send_key__(self, key_code):
         self.driver_.press_keycode(self.__convert_key_code__(key_code))
 
@@ -111,8 +110,5 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
 
         return key_code
 
-    """
-    Private Implementation
-    """
     def __init__(self, desired_capabilities, appium_server_host):
         BaseAppiumWrapper.__init__(self, desired_capabilities, appium_server_host)
