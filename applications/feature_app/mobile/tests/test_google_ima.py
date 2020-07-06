@@ -31,7 +31,7 @@ VMAP_POST_ROLL_URL = 'https://pubads.g.doubleclick.net/gampad/ads?slotname=/1243
 VMAP_ADV_URL = 'https://assets-secure.applicaster.com/qa/zapp_qa/automation/advertising/pre_mid_post_roll_vmap.xml'
 
 VMAP_VOD_ITEM_NAME = 'vod_with_play_next'
-VAST_VOD_ITEM_NAME = 'm3u8_vod'
+VAST_VOD_ITEM_NAME = 'Id1'
 
 PLATFORM = Configuration.get_instance().platform_type()
 
