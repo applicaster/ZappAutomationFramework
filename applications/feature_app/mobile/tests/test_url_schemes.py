@@ -11,6 +11,7 @@ from src.verifiers.verifier import Verifier
 Global Defines
 """
 SCREEN_NAME = 'UrlSchemes'
+PLATFORM = Configuration.get_instance().platform_type()
 
 
 class UrlSchemesTests(BaseTest):
@@ -22,7 +23,7 @@ class UrlSchemesTests(BaseTest):
         self.building_blocks.screens[SCREEN_NAME].navigate()
 
         PRINT('Step 2: Press the url scheme item that leads the user to other Horizontal List UIBuilder screen')
-        element = self.driver.find_element_by_text('url_scheme_to_screen')
+        element = self.driver.find_element_by_text('001' if PLATFORM == PlatformType.IOS else 'url_scheme_to_screen')
         element.click()
 
         if Configuration.get_instance().platform_type() == PlatformType.IOS:
