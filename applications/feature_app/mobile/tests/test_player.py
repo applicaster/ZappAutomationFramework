@@ -93,7 +93,6 @@ class PlayerTests(BaseTest):
         PRINT('     Step 6.1: Verify we navigated back to %s screen' % SCREEN_NAME)
         screen.verify_in_screen(retries=20)
 
-    @pytest.mark.boaz
     @pytest.mark.usefixtures('automation_driver')
     def test_ffwd_button(self):
         screen = self.building_blocks.screens[SCREEN_NAME]
