@@ -11,7 +11,7 @@ Global Defines
 '''
 ERROR_VERIFY_STREAM_IS_PLAYING = 'Failed verifying that the streaming is playing correctly'
 ERROR_VERIFY_STREAM_IS_NOT_PLAYING = 'Failed verifying that the streaming is not playing correctly'
-DEFAULT_HIDE_CONTROLS_TIMEOUT = 5
+DEFAULT_HIDE_CONTROLS_TIMEOUT = 6
 
 
 class PlayerDefaultAccessibilityIdentifiers:

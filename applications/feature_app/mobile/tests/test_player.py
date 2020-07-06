@@ -93,6 +93,22 @@ class PlayerTests(BaseTest):
         PRINT('     Step 6.1: Verify we navigated back to %s screen' % SCREEN_NAME)
         screen.verify_in_screen(retries=20)
 
+    @pytest.mark.boaz
+    @pytest.mark.usefixtures('automation_driver')
+    def test_ffwd_button(self):
+        screen = self.building_blocks.screens[SCREEN_NAME]
+        player_screen = self.building_blocks.screens['player_screen']
+
+        self.play_item_in_screen(SCREEN_NAME, 'current_program_feed')
+
+        counter = 5
+        PRINT('Step 3: Press the ffwd button %s times' % counter)
+        for i in range(counter):
+            PRINT('     Step 3.%s: Press on the ffwd button for the %s time' % (i, i+1))
+            player_screen.press_ffwd_button()
+
+        screen.verify_in_screen(retries=15)
+
     def shortDescription(self, test_name) -> str:
         if test_name == 'test_verify_json_feed_vod_streaming_in_list_component':
             return 'test_verify_json_feed_vod_streaming_in_list_component:\n' \
@@ -111,3 +127,7 @@ class PlayerTests(BaseTest):
         if test_name == 'test_pause_stream':
             return 'test_pause_stream:\n' \
                    '    Verify that pause button pausing the stream playing'
+
+        if test_name == 'test_ffwd_button':
+            return 'test_ffwd_button:\n' \
+                   '    TestRail C22945 - Verify skip forward in video'

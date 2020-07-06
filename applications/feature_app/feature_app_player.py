@@ -8,6 +8,7 @@ from src.base_test import PRINT
 Global Defines
 """
 SHOW_CONTROLS_ANIMATION_DURATION = 0.4
+FFWD_REW_ANIMATION_DURATION = 0.7
 
 
 class BaseFeatureAppPlayer(object):
@@ -73,9 +74,11 @@ class FeatureAppPlayer(PlayerScreen):
 
     def press_rew_button(self):
         self.__press_controls_button__(self.selected_player_.rew_button_accessibility_identifier())
+        self.test.driver.wait(FFWD_REW_ANIMATION_DURATION)
 
     def press_ffwd_button(self):
         self.__press_controls_button__(self.selected_player_.ffwd_button_accessibility_identifier())
+        self.test.driver.wait(FFWD_REW_ANIMATION_DURATION)
 
     def press_close_button(self):
         self.__press_controls_button__(self.selected_player_.close_button_accessibility_identifier())
@@ -91,13 +94,13 @@ class FeatureAppPlayer(PlayerScreen):
             y_pos=element.rect['y'] + (element.rect['height'] / 2)
         )
 
+    def __press_controls_button__(self, accessibility_identifier):
+        self.show_controls()
+        self.test.driver.find_element_by_accessibility_id(accessibility_identifier, retries=2).click()
+
     def __init__(self, test):
         self.test = test
         self.applicaster_player_ = BaseFeatureAppPlayer(self.test.driver, 'applicaster_player')
         self.jw_player_ = BaseFeatureAppPlayer(self.test.driver, 'jw_player_screen')
         self.selected_player_ = self.applicaster_player_
         PlayerScreen.__init__(self, test)
-
-    def __press_controls_button__(self, accessibility_identifier):
-        self.show_controls()
-        self.test.driver.find_element_by_accessibility_id(accessibility_identifier, retries=2).click()
