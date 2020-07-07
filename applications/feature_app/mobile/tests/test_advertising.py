@@ -25,10 +25,11 @@ class AdvertisingTests(BaseTest):
 
         PRINT('Step 3: Close the interstitial')
         advertising_screen.close_interstitial()
-        PRINT('     Step 3.1: Verify that we reached the actual screen behind the interstitial')
+
+        PRINT('Step 4: Verify that we reached the actual screen behind the interstitial')
         advertising_screen.verify_in_screen()
         item_name = 'vod_0'
-        PRINT('     Step 3.2: Verify that item "%s" from the data of the screen is displaying' % item_name)
+        PRINT('     Step 4.1: Verify that item "%s" from the data of the screen is displaying' % item_name)
         Logger.get_instance().log_assert(
             advertising_screen.search_for_item_by_text(item_name), '"%s" item not found in the screen' % item_name
         )

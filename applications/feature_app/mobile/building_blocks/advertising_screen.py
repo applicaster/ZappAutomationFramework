@@ -55,8 +55,8 @@ class AdvertisingScreen(CommonSideMenuScreen):
     """
     def __press_element_by_title__(self, title):
         element = self.test.driver.find_element_by_text(title, retries=3)
-        Logger.get_instance().log_assert(element, 'Element with title "%s" not found on the demo pre hook screen' % title)
-        PRINT('     Test will press on "%s" button in the demo pre hook screen' % title)
+        Logger.get_instance().log_assert(element, 'Element with title "%s" not found on the screen' % title)
+        PRINT('     Test will press on "%s" element ' % title)
         element.click()
 
     def __init__(self, test, screen_name):
