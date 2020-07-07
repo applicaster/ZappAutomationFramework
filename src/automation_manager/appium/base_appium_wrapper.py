@@ -204,8 +204,8 @@ class BaseAppiumWrapper(AutomationDriver):
     def press_screen_centre(self):
         rect = self.driver_.get_window_rect()
         self.tap_by_coordinates(
-            rect['x'] + rect['height'] / 2,
-            rect['y'] + rect['width'] / 2
+            rect['x'] + rect['width'] / 2,
+            rect['y'] + rect['height'] / 2
         )
 
     def restart_application(self):

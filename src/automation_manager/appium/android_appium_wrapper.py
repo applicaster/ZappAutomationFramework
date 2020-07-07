@@ -3,6 +3,7 @@ from src.utils.logger import Logger
 from src.global_defines import RemoteControlKeys
 from src.automation_manager.appium.base_appium_wrapper import BaseAppiumWrapper
 from src.automation_manager.appium.base_appium_wrapper import FINDING_ELEMENT_BY_TEXT
+from os import system
 
 
 class AndroidRemoteControlKeyCodes:
@@ -74,9 +75,17 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
         """
         self.driver_.back()
 
-    '''
+    def tap_by_coordinates(self, x_pos, y_pos, duration=0):
+        try:
+            return system('"$ANDROID_HOME"/platform-tools/adb shell input tap %s %s' % (x_pos, y_pos))
+        except Exception as exception:
+            Logger.get_instance().warning(
+                self, 'tap_by_coordinates', 'Appium failed on performing tap with error: %s' % str(exception)
+            )
+
+    """
     Private Implementation
-    '''
+    """
     def __send_key__(self, key_code):
         self.driver_.press_keycode(self.__convert_key_code__(key_code))
 
@@ -101,8 +110,5 @@ class AndroidAppiumWrapper(BaseAppiumWrapper):
 
         return key_code
 
-    """
-    Private Implementation
-    """
     def __init__(self, desired_capabilities, appium_server_host):
         BaseAppiumWrapper.__init__(self, desired_capabilities, appium_server_host)

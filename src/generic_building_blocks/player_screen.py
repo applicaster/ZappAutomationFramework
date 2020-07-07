@@ -4,23 +4,36 @@ from src.global_defines import ScreenType
 from src.utils.logger import Logger
 from src.global_defines import ScreenUiState
 from src.global_defines import PlatformType
-from src.configuration.configuration import Configuration
+from src.base_test import PRINT, Configuration
 
 '''
 Global Defines
 '''
 ERROR_VERIFY_STREAM_IS_PLAYING = 'Failed verifying that the streaming is playing correctly'
 ERROR_VERIFY_STREAM_IS_NOT_PLAYING = 'Failed verifying that the streaming is not playing correctly'
+DEFAULT_HIDE_CONTROLS_TIMEOUT = 6
+
+
+class PlayerDefaultAccessibilityIdentifiers:
+    PLAY_BUTTON_ACCESSIBILITY_ID = 'controls_play_button'
+    PAUSE_BUTTON_ACCESSIBILITY_ID = 'controls_pause_button'
+    REW_BUTTON_ACCESSIBILITY_ID = 'controls_rewind_button'
+    FFWD_BUTTON_ACCESSIBILITY_ID = 'controls_forward_button'
+    CLOSE_BUTTON_ACCESSIBILITY_ID = 'controls_close_button'
+    PROGRESS_BAR_ACCESSIBILITY_ID = 'controls_progress_bar'
 
 
 class PlayerScreen(GenericScreen):
     """
     Public Implementation
     """
-    def hide_controls(self): raise NotImplementedError
-    def press_play_pause_button(self): raise NotImplementedError
+    def press_play_button(self): raise NotImplementedError
+    def press_pause_button(self): raise NotImplementedError
     def press_rew_button(self): raise NotImplementedError
-    def press_ffwd_button(self):raise NotImplementedError
+    def press_ffwd_button(self): raise NotImplementedError
+    def press_close_button(self): raise NotImplementedError
+    def press_progress_bar(self, end_offset): raise NotImplementedError
+    def hide_controls(self): raise NotImplementedError
 
     def navigate(self): pass
 
@@ -66,8 +79,10 @@ class PlayerScreen(GenericScreen):
         Logger.get_instance().log_assert(ui_status == ScreenUiState.STATIC, ERROR_VERIFY_STREAM_IS_NOT_PLAYING)
     
     def show_controls(self):
+        PRINT('     Start showing player controls')
         self.hide_controls()
         self.test.driver.press_screen_centre()
+        PRINT('     Finished showing player controls')
 
     """
     Private Implementation

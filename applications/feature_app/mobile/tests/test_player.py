@@ -12,9 +12,9 @@ START_PLAYING_VOD_TIMEOUT = 15
 SCREEN_NAME = 'ListScreen'
 
 
-class PlayerTest(BaseTest):
+class PlayerTests(BaseTest):
 
-    def find_play_and_verify(self, screen_name, vod_name):
+    def play_item_in_screen(self, screen_name, vod_name):
         screen = self.building_blocks.screens[screen_name]
         pre_hook = self.building_blocks.screens['demo_pre_hook']
 
@@ -37,26 +37,96 @@ class PlayerTest(BaseTest):
         self.driver.wait(START_PLAYING_VOD_TIMEOUT)
         PRINT('     Step 2.4: Finished waiting the %s seconds' % START_PLAYING_VOD_TIMEOUT)
 
-        PRINT('Step 3.0: Verify that the streaming is playing')
-        self.building_blocks.screens['player_screen'].verify_stream_is_playing()
-        PRINT('     Step 3.1: Streaming is playing correctly')
-
     @pytest.mark.qb_ios_mobile
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_json_feed_vod_streaming_in_list_component(self):
-        item_name = 'm3u8_vod' if Configuration.get_instance().platform_type() == PlatformType.ANDROID else 'Id1'
-        self.find_play_and_verify(SCREEN_NAME, item_name)
+        self.play_item_in_screen(SCREEN_NAME, 'm3u8_vod')
+
+        PRINT('Step 3: Verify that the streaming is playing')
+        self.building_blocks.screens['player_screen'].verify_stream_is_playing()
+        PRINT('     Step 3.1: Streaming is playing correctly')
 
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_cms_vod_streaming_in_list_component(self):
-        self.find_play_and_verify(SCREEN_NAME, 'vod_0')
+        self.play_item_in_screen(SCREEN_NAME, 'vod_0')
+
+        PRINT('Step 3: Verify that the streaming is playing')
+        self.building_blocks.screens['player_screen'].verify_stream_is_playing()
+        PRINT('     Step 3.1: Streaming is playing correctly')
+
+    @pytest.mark.usefixtures('automation_driver')
+    def test_pause_stream(self):
+        screen = self.building_blocks.screens[SCREEN_NAME]
+        player_screen = self.building_blocks.screens['player_screen']
+
+        self.play_item_in_screen(SCREEN_NAME, 'm3u8_vod')
+
+        pre_roll_timeout = 20
+        PRINT('Step 3: Wait %s seconds until that the pre roll will finish playing' % pre_roll_timeout)
+        self.driver.wait(pre_roll_timeout)
+
+        PRINT('Step 4: Pause the stream')
+        player_screen.press_pause_button()
+        PRINT('     Step 4.1: Verify that the streaming is paused')
+        player_screen.verify_stream_is_not_playing()
+
+        PRINT('Step 5: Close player and verify we navigated back to %s screen' % SCREEN_NAME)
+        PRINT('     Step 5.1: Close player')
+        player_screen.press_close_button()
+        PRINT('     Step 5.2: Verify we are in %s screen' % SCREEN_NAME)
+        screen.verify_in_screen(retries=15)
+
+    @pytest.mark.usefixtures('automation_driver')
+    def test_scrub_progress_bar(self):
+        screen = self.building_blocks.screens[SCREEN_NAME]
+        player_screen = self.building_blocks.screens['player_screen']
+
+        self.play_item_in_screen(SCREEN_NAME, 'm3u8_vod')
+
+        pre_roll_timeout = 20
+        PRINT('Step 3: Wait %s seconds until that the pre roll will finish playing' % pre_roll_timeout)
+        self.driver.wait(pre_roll_timeout)
+
+        PRINT('Step 6: Scrub the progress bar to the end')
+        player_screen.press_progress_bar(end_offset=15)
+        PRINT('     Step 6.1: Verify we navigated back to %s screen' % SCREEN_NAME)
+        screen.verify_in_screen(retries=20)
+
+    @pytest.mark.usefixtures('automation_driver')
+    def test_ffwd_button(self):
+        screen = self.building_blocks.screens[SCREEN_NAME]
+        player_screen = self.building_blocks.screens['player_screen']
+
+        self.play_item_in_screen(SCREEN_NAME, 'current_program_feed')
+
+        counter = 5
+        PRINT('Step 3: Press the ffwd button %s times' % counter)
+        for i in range(counter):
+            PRINT('     Step 3.%s: Press on the ffwd button for the %s time' % (i, i+1))
+            player_screen.press_ffwd_button()
+
+        screen.verify_in_screen(retries=15)
 
     def shortDescription(self, test_name) -> str:
-        return 'test_verify_json_feed_vod_streaming_in_list_component:\n' \
+        if test_name == 'test_verify_json_feed_vod_streaming_in_list_component':
+            return 'test_verify_json_feed_vod_streaming_in_list_component:\n' \
                '    TestRail C22957 - Verify playing a VOD from feed\n' \
                '    TestRail C22931 - Verify swiping between cells in the list component\n' \
-               '    TestRail C22940 - Verify basic functionality of the list component\n' \
-               '\n' \
-               'test_verify_cms_vod_streaming_in_list_component:\n' \
-               '    TestRail C22958 - Verify playing a VOD from CMS'
+               '    TestRail C22940 - Verify basic functionality of the list component\n'
+
+        if test_name == 'test_verify_json_feed_vod_streaming_in_list_component':
+            return 'test_verify_cms_vod_streaming_in_list_component:\n' \
+                   '    TestRail C22958 - Verify playing a VOD from CMS'
+
+        if test_name == 'test_scrub_progress_bar':
+            return 'test_scrub_progress_bar:\n' \
+                   '    Scrub the progress bar to the end of the VOD and verify that the player closing to ListScreen'
+
+        if test_name == 'test_pause_stream':
+            return 'test_pause_stream:\n' \
+                   '    Verify that pause button pausing the stream playing'
+
+        if test_name == 'test_ffwd_button':
+            return 'test_ffwd_button:\n' \
+                   '    TestRail C22945 - Verify skip forward in video'

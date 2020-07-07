@@ -9,6 +9,7 @@ from applications.feature_app.feature_app_player import FeatureAppPlayer
 from src.utils.print import PRINT
 
 from applications.feature_app.mobile.building_blocks.demo_pre_hook import DemoPreHook
+from applications.feature_app.mobile.building_blocks.advertising_screen import AdvertisingScreen
 
 """
 Global Defines
@@ -48,5 +49,6 @@ class BuildingBlocks(BuildingBlocksInterface):
         self.screens['search_screen'] = SearchScreen(self.test)
         self.screens['player_screen'] = FeatureAppPlayer(self.test)
         self.screens['demo_pre_hook'] = DemoPreHook(self.test)
+        self.screens['AdvertisingScreen'] = AdvertisingScreen(self.test, 'AdvertisingScreen')
         self.screens['ListScreen'].set_screen_loading_timeout(8)
         self.screens['GridScreen'].set_screen_loading_timeout(5)
