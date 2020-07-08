@@ -3,6 +3,7 @@ from src.generic_building_blocks.building_blocks_interface import BuildingBlocks
 from src.generic_building_blocks.mobile.navigations.navigation_bar import NavigationBar
 from src.generic_building_blocks.mobile.navigations.side_menu import SideMenu
 from src.generic_building_blocks.mobile.screens.common_side_menu_screen import CommonSideMenuScreen
+from src.generic_building_blocks.mobile.screens.common_child_screen import CommonChildScreen
 from src.generic_building_blocks.mobile.screens.search_screen import SearchScreen
 from src.data_providers.rivers_data_provider import RiversDataProvider
 from applications.feature_app.feature_app_player import FeatureAppPlayer
@@ -52,3 +53,7 @@ class BuildingBlocks(BuildingBlocksInterface):
         self.screens['AdvertisingScreen'] = AdvertisingScreen(self.test, 'AdvertisingScreen')
         self.screens['ListScreen'].set_screen_loading_timeout(8)
         self.screens['GridScreen'].set_screen_loading_timeout(5)
+        self.screens['InterstitialScreen'] = CommonChildScreen(self.test, 'InterstitialScreen', 'AdvertisingRootScreen')
+        self.screens['InterstitialScreen'].set_screen_loading_timeout(5)
+        self.screens['InterstitialOnceScreen'] = CommonChildScreen(self.test, 'InterstitialOnceScreen', 'AdvertisingRootScreen')
+        self.screens['InterstitialOnceScreen'].set_screen_loading_timeout(5)
