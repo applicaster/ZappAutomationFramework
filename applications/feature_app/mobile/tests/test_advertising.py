@@ -34,6 +34,7 @@ class AdvertisingTests(BaseTest):
             advertising_screen.search_for_item_by_text(item_name), '"%s" item not found in the screen' % item_name
         )
 
+    @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_interstitial_once(self):
         interstitial_once_screen = self.building_blocks.screens[INTERSTITIAL_ONCE_SCREEN]
@@ -42,11 +43,11 @@ class AdvertisingTests(BaseTest):
         PRINT('Step 1: Navigate to "%s" screen' % INTERSTITIAL_ONCE_SCREEN)
         interstitial_once_screen.navigate()
 
-        # PRINT('Step 2: Verify that the interstitial screen is presented')
-        # advertising_screen.verify_interstitial_is_displaying()
-        #
-        # PRINT('Step 3: Close the interstitial')
-        # advertising_screen.close_interstitial()
+        PRINT('Step 2: Verify that the interstitial screen is presented')
+        advertising_screen.verify_interstitial_is_displaying()
+
+        PRINT('Step 3: Close the interstitial')
+        advertising_screen.close_interstitial()
 
         PRINT('Step 4: Verify that we reached the actual screen behind the interstitial')
         interstitial_once_screen.verify_in_screen()
@@ -74,3 +75,7 @@ class AdvertisingTests(BaseTest):
         if test_name == 'test_verify_interstitial':
             return 'test_verify_interstitial:\n' \
                '    Verify that the interstitial is presenting when entering a screen\n'
+
+        if test_name == 'test_verify_interstitial_once':
+            return 'test_verify_interstitial:\n' \
+               '    Verify that the interstitial is presenting when entering a screen only on the first enter\n'

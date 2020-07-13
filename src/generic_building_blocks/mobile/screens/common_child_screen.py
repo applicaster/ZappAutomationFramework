@@ -1,7 +1,8 @@
 
-from src.global_defines import ScreenType
+from src.global_defines import ScreenType, PlatformType
 from src.utils.logger import Logger
 from src.utils.print import PRINT
+from src.configuration.configuration import Configuration
 from src.data_providers.rivers_data_provider import RiversDataProvider
 from src.generic_building_blocks.generic_screen import START_NAVIGATING_TO_SCREEN, FINISHED_NAVIGATING_TO_SCREEN
 from src.generic_building_blocks.mobile.screens.mobile_screen import MobileScreen
@@ -40,6 +41,16 @@ class CommonChildScreen(MobileScreen):
         # From within parent screen navigate to child screen
         self.test.driver.find_element_by_text(self.screen_name).click()
 
+        if Configuration.get_instance().platform_type() == PlatformType.IOS and self.open_with_url_scheme_:
+            '''
+            Workaround: when we install a fresh Simulator, like we are doing in CI machine. We have a bug that the first
+            call to url scheme to screen pops a pop up message that asking the user permissions to open the app.
+            This accept_alert_message() drop the message.
+            '''
+            PRINT('     Wait for pop up alert message and accept it')
+            self.test.driver.accept_alert_message()
+            self.test.driver.accept_alert_message()
+
         if verify_in_screen:
             self.verify_in_screen(retries=5)
 
@@ -54,8 +65,9 @@ class CommonChildScreen(MobileScreen):
     '''
     Private Implementation
     '''
-    def __init__(self, test, screen_name, parent_screen_name, screen_id=None):
+    def __init__(self, test, screen_name, parent_screen_name, open_with_url_scheme=False):
         self.screen_name = screen_name
         self.parent_screen_name = parent_screen_name
         self.loading_timeout = SCREEN_LOADING_TIMEOUT
+        self.open_with_url_scheme_ = open_with_url_scheme
         MobileScreen.__init__(self, test)
