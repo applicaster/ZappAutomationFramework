@@ -47,7 +47,7 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
         grid_screen.navigate()
 
         PRINT('Step 2: Press on item "%s" element on screen' % VAST_VOD_ITEM_NAME)
-        element = self.driver.find_element_by_text(VAST_VOD_ITEM_NAME)
+        element = self.driver.find_element_by_text(VAST_VOD_ITEM_NAME, retries=3)
         element.click()
 
         if Configuration.get_instance().platform_type() == PlatformType.IOS:
