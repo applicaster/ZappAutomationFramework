@@ -7,18 +7,20 @@ from src.base_test import BaseTest, PRINT, Logger
 """
 Global Defines
 """
-SCREEN_NAME = 'AdvertisingScreen'
+ADVERTISING_SCREEN = 'AdvertisingScreen'
 INTERSTITIAL_ONCE_SCREEN = 'InterstitialOnceScreen'
+INTERSTITIAL_SCREEN = 'InterstitialScreen'
 
 
 class AdvertisingTests(BaseTest):
     @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_interstitial(self):
-        advertising_screen = self.building_blocks.screens[SCREEN_NAME]
+        interstitial_screen = self.building_blocks.screens[INTERSTITIAL_SCREEN]
+        advertising_screen = self.building_blocks.screens[ADVERTISING_SCREEN]
 
-        PRINT('Step 1: Navigate to "%s" screen' % SCREEN_NAME)
-        advertising_screen.navigate()
+        PRINT('Step 1: Navigate to "%s" screen' % INTERSTITIAL_SCREEN)
+        interstitial_screen.navigate()
 
         PRINT('Step 2: Verify that the interstitial screen is presented')
         advertising_screen.verify_interstitial_is_displaying()
@@ -27,18 +29,18 @@ class AdvertisingTests(BaseTest):
         advertising_screen.close_interstitial()
 
         PRINT('Step 4: Verify that we reached the actual screen behind the interstitial')
-        advertising_screen.verify_in_screen()
+        interstitial_screen.verify_in_screen()
         item_name = 'vod_0'
         PRINT('     Step 4.1: Verify that item "%s" from the data of the screen is displaying' % item_name)
         Logger.get_instance().log_assert(
-            advertising_screen.search_for_item_by_text(item_name), '"%s" item not found in the screen' % item_name
+            interstitial_screen.search_for_item_by_text(item_name), '"%s" item not found in the screen' % item_name
         )
 
     @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_interstitial_once(self):
         interstitial_once_screen = self.building_blocks.screens[INTERSTITIAL_ONCE_SCREEN]
-        advertising_screen = self.building_blocks.screens[SCREEN_NAME]
+        advertising_screen = self.building_blocks.screens[ADVERTISING_SCREEN]
 
         PRINT('Step 1: Navigate to "%s" screen' % INTERSTITIAL_ONCE_SCREEN)
         interstitial_once_screen.navigate()
