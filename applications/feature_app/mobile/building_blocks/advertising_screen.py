@@ -1,6 +1,5 @@
 
 
-from src.generic_building_blocks.mobile.screens.mobile_screen import MobileScreen
 from src.utils.logger import Logger
 from src.utils.print import PRINT
 from src.global_defines import ScreenType
@@ -45,6 +44,13 @@ class AdvertisingScreen(CommonSideMenuScreen):
             self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=3) and
             self.test.driver.find_element_by_text(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID, retries=3),
             'Interstitial is not displaying on the screen'
+        )
+
+    def verify_interstitial_is_not_displaying(self):
+        Logger.get_instance().log_assert(
+            not self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=3) and
+            not self.test.driver.find_element_by_text(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID, retries=3),
+            'Interstitial once is displaying on the screen, when it should not'
         )
 
     def get_screen_type(self):
