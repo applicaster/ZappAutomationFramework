@@ -40,6 +40,12 @@ class AdvertisingScreen(CommonSideMenuScreen):
         if PLATFORM == PlatformType.IOS:
             self.__press_element_by_title__(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID)
         else:
+            """
+            Workaround:
+            We have a limitation that not allowing us to add accessibility identifiers to the interstitial view of
+            the Android app. Its forces us to press by coordinates the top left corner of the screen in order to close
+            the adv.  
+            """
             self.test.driver.wait(2)
             self.test.driver.tap_by_coordinates(CLOSE_BUTTON_CENTRE_X, CLOSE_BUTTON_CENTRE_Y)
 
@@ -47,6 +53,11 @@ class AdvertisingScreen(CommonSideMenuScreen):
         PRINT('     Finished closing the interstitial')
 
     def verify_interstitial_is_displaying(self):
+        """
+        Workaround:
+        We have a limitation that not allowing us to add accessibility identifiers to the interstitial view of
+        the Android app. Its forces us to validate with "what we have on screen" from google. 
+        """
         if PLATFORM == PlatformType.IOS:
             Logger.get_instance().log_assert(
                 self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=3) and
