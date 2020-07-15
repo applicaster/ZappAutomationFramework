@@ -13,8 +13,10 @@ from src.generic_building_blocks.mobile.screens.common_side_menu_screen import F
 Class Defines
 """
 PLATFORM = Configuration.get_instance().platform_type()
-INTERSTITIAL_SCREEN_ID = 'Test mode' if PLATFORM == PlatformType.IOS else 'ANDROID_TODO_ID'
+INTERSTITIAL_SCREEN_ID = 'Test mode' if PLATFORM == PlatformType.IOS else 'Test Ad'
 CLOSE_INTERSTITIAL_ACCESSIBILITY_ID = 'Close Advertisement' if PLATFORM == PlatformType.IOS else 'ANDROID_TODO_ID'
+CLOSE_BUTTON_CENTRE_X = 20
+CLOSE_BUTTON_CENTRE_Y = 20
 INTERSTITIAL_LOAD_TIMEOUT = 5
 SCREEN_LOAD_TIMEOUT = 5
 
@@ -35,16 +37,27 @@ class AdvertisingScreen(CommonSideMenuScreen):
 
     def close_interstitial(self):
         PRINT('     Start closing the interstitial')
-        self.__press_element_by_title__(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID)
+        if PLATFORM == PlatformType.IOS:
+            self.__press_element_by_title__(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID)
+        else:
+            self.test.driver.wait(2)
+            self.test.driver.tap_by_coordinates(CLOSE_BUTTON_CENTRE_X, CLOSE_BUTTON_CENTRE_Y)
+
         self.test.driver.wait(SCREEN_LOAD_TIMEOUT)
         PRINT('     Finished closing the interstitial')
 
     def verify_interstitial_is_displaying(self):
-        Logger.get_instance().log_assert(
-            self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=3) and
-            self.test.driver.find_element_by_text(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID, retries=3),
-            'Interstitial is not displaying on the screen'
-        )
+        if PLATFORM == PlatformType.IOS:
+            Logger.get_instance().log_assert(
+                self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=3) and
+                self.test.driver.find_element_by_text(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID, retries=3),
+                'Interstitial is not displaying on the screen'
+            )
+        else:
+            Logger.get_instance().log_assert(
+                self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=3),
+                'Interstitial is not displaying on the screen'
+            )
 
     def verify_interstitial_is_not_displaying(self):
         Logger.get_instance().log_assert(

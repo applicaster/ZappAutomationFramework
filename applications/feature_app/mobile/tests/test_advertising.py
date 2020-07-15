@@ -13,6 +13,7 @@ INTERSTITIAL_SCREEN = 'InterstitialScreen'
 
 
 class AdvertisingTests(BaseTest):
+    @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_interstitial(self):
@@ -36,6 +37,7 @@ class AdvertisingTests(BaseTest):
             interstitial_screen.search_for_item_by_text(item_name), '"%s" item not found in the screen' % item_name
         )
 
+    @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_interstitial_once(self):
