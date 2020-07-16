@@ -60,20 +60,20 @@ class AdvertisingScreen(CommonSideMenuScreen):
         """
         if PLATFORM == PlatformType.IOS:
             Logger.get_instance().log_assert(
-                self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=3) and
-                self.test.driver.find_element_by_text(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID, retries=3),
+                self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=INTERSTITIAL_LOAD_TIMEOUT) and
+                self.test.driver.find_element_by_text(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID, retries=INTERSTITIAL_LOAD_TIMEOUT),
                 'Interstitial is not displaying on the screen'
             )
         else:
             Logger.get_instance().log_assert(
-                self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=3),
+                self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=INTERSTITIAL_LOAD_TIMEOUT),
                 'Interstitial is not displaying on the screen'
             )
 
     def verify_interstitial_is_not_displaying(self):
         Logger.get_instance().log_assert(
-            not self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=3) and
-            not self.test.driver.find_element_by_text(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID, retries=3),
+            not self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=INTERSTITIAL_LOAD_TIMEOUT) and
+            not self.test.driver.find_element_by_text(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID, retries=INTERSTITIAL_LOAD_TIMEOUT),
             'Interstitial once is displaying on the screen, when it should not'
         )
 
