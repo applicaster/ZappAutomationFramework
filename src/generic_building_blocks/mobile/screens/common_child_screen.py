@@ -39,7 +39,7 @@ class CommonChildScreen(MobileScreen):
         self.test.building_blocks.screens[self.parent_screen_name].navigate()
 
         # From within parent screen navigate to child screen
-        self.test.driver.find_element_by_text(self.screen_name).click()
+        self.test.driver.find_element_by_text(self.screen_name, retries=5).click()
 
         if Configuration.get_instance().platform_type() == PlatformType.IOS and self.open_with_url_scheme_:
             '''
