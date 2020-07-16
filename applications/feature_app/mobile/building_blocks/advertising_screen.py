@@ -66,7 +66,7 @@ class AdvertisingScreen(CommonSideMenuScreen):
             )
         else:
             Logger.get_instance().log_assert(
-                self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=10),
+                self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=15),
                 'Interstitial is not displaying on the screen'
             )
 
