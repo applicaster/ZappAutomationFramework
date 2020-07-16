@@ -53,9 +53,6 @@ class BuildingBlocks(BuildingBlocksInterface):
         self.screens['AdvertisingScreen'] = AdvertisingScreen(self.test, 'AdvertisingScreen')
         self.screens['ListScreen'].set_screen_loading_timeout(8)
         self.screens['GridScreen'].set_screen_loading_timeout(5)
-
         self.screens['InterstitialScreen'] = CommonChildScreen(self.test, 'InterstitialScreen', 'AdvertisingRootScreen', open_with_url_scheme=True)
-        self.screens['InterstitialScreen'].set_screen_loading_timeout(5)
-
         self.screens['InterstitialOnceScreen'] = CommonChildScreen(self.test, 'InterstitialOnceScreen', 'AdvertisingRootScreen', open_with_url_scheme=True)
-        self.screens['InterstitialOnceScreen'].set_screen_loading_timeout(5)
+

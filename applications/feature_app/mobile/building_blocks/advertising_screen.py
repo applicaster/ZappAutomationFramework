@@ -17,7 +17,7 @@ INTERSTITIAL_SCREEN_ID = 'Test mode' if PLATFORM == PlatformType.IOS else 'Test 
 CLOSE_INTERSTITIAL_ACCESSIBILITY_ID = 'Close Advertisement' if PLATFORM == PlatformType.IOS else 'ANDROID_TODO_ID'
 CLOSE_BUTTON_CENTRE_X = 20
 CLOSE_BUTTON_CENTRE_Y = 20
-INTERSTITIAL_LOAD_TIMEOUT = 5
+INTERSTITIAL_LOAD_TIMEOUT = 25
 SCREEN_LOAD_TIMEOUT = 5
 
 
@@ -30,7 +30,7 @@ class AdvertisingScreen(CommonSideMenuScreen):
         PRINT('     Start navigating to screen "%s" from the side menu' % self.screen_name)
 
         self.test.building_blocks.side_menu.navigate_to_item(self.screen_name)
-        self.test.driver.wait(INTERSTITIAL_LOAD_TIMEOUT)
+        self.test.driver.wait(SCREEN_LOAD_TIMEOUT)
 
         PRINT('     Finished navigating to screen "%s"' % self.screen_name)
         Logger.get_instance().info(self, 'navigate', FINISHED_NAVIGATING_TO_SCREEN % (self.screen_name, self.id))
@@ -66,14 +66,14 @@ class AdvertisingScreen(CommonSideMenuScreen):
             )
         else:
             Logger.get_instance().log_assert(
-                self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=15),
+                self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=INTERSTITIAL_LOAD_TIMEOUT),
                 'Interstitial is not displaying on the screen'
             )
 
     def verify_interstitial_is_not_displaying(self):
         Logger.get_instance().log_assert(
-            not self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=INTERSTITIAL_LOAD_TIMEOUT) and
-            not self.test.driver.find_element_by_text(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID, retries=INTERSTITIAL_LOAD_TIMEOUT),
+            not self.test.driver.find_element_by_text(INTERSTITIAL_SCREEN_ID, retries=3) and
+            not self.test.driver.find_element_by_text(CLOSE_INTERSTITIAL_ACCESSIBILITY_ID, retries=3),
             'Interstitial once is displaying on the screen, when it should not'
         )
 
