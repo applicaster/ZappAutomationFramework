@@ -7,6 +7,8 @@ from src.utils.print import PRINT
 from src.utils.logger import Logger
 from src.configuration.configuration import Configuration
 
+from src.analytics.analytics_manager import AnalyticsManager
+
 
 '''
 Global Defines
@@ -38,7 +40,10 @@ class BaseTest(unittest.TestCase):
         # Boot step 2: Init the needed building blocks for test
         self.__setup_building_blocks__()
 
-        # Boot step 3: Run ui boot steps
+        # Boot step 3: Init analytics manager
+        self.__setup_analytics_manager__()
+
+        # Boot step 4: Run ui boot steps
         self.__ui_boot_step__()
 
     def tearDown(self):
@@ -82,3 +87,7 @@ class BaseTest(unittest.TestCase):
         Logger.get_instance().take_screenshot('tear_down')
         Logger.get_instance().close_logs()
         self.driver.terminate_app()
+
+    def __setup_analytics_manager__(self):
+        if Configuration.get_instance().get('general', 'yarn_server_log'):
+            self.analytics_manager = AnalyticsManager()
