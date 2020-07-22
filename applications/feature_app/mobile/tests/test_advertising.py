@@ -43,7 +43,7 @@ class AdvertisingTests(BaseTest):
         item_name = 'vod_0'
         PRINT('     Step 4.1: Verify that item "%s" from the data of the screen is displaying' % item_name)
         Logger.get_instance().log_assert(
-            interstitial_screen.search_for_item_by_text(item_name), '"%s" item not found in the screen' % item_name
+            interstitial_screen.search_for_item_by_text(item_name, retries=4), '"%s" item not found in the screen' % item_name
         )
 
         self.verify_banner(5, '/19489716/smartbanner_test', 'smart')
