@@ -13,8 +13,8 @@ from src.analytics.analytics_manager import AnalyticsManager
 '''
 Global Defines
 '''
-TEST_START_RUNNING = '\n===============| Test "%s" Started Running |==============='
-TEST_FINISHED_RUNNING = '===============| Test "%s" Finished Running |===============\n'
+TEST_START_RUNNING = '\n================| Test "%s" Started Running |================'
+TEST_FINISHED_RUNNING = '================| Test "%s" Finished Running |================\n'
 
 
 class BaseTest(unittest.TestCase):

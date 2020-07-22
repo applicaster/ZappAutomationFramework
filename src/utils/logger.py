@@ -16,7 +16,6 @@ TEST_FAILED_WITH_ERROR = 'Test "%s" failed with error message: "%s"'
 
 class Logger(object):
     __instance = None
-
     '''
     Public Implementation
     '''
