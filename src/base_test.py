@@ -11,8 +11,8 @@ from src.configuration.configuration import Configuration
 '''
 Global Defines
 '''
-TEST_START_RUNNING = '\n===============| Test "%s" Started Running |==============='
-TEST_FINISHED_RUNNING = '===============| Test "%s" Finished Running |===============\n'
+TEST_START_RUNNING = '\n================| Test "%s" Started Running |================'
+TEST_FINISHED_RUNNING = '================| Test "%s" Finished Running |================\n'
 
 
 class BaseTest(unittest.TestCase):
