@@ -6,42 +6,37 @@ Python project for running automation UI tests on the following platforms based 
 4. Apple TV 
 5. Web
 
-
-
 #### Prerequisites: ####
+- Command line tools: git, pip, brew, node and npm
 - python 3.8.3 [Download](https://www.python.org/downloads/)
 (Tip: If your local machine has other versions of python installed I would advise to uninstall it and stay with a single version)
-- __For iOS Mobile developers only who want to run the tests on real devices:__:<br>http://appium.io/docs/en/drivers/ios-xcuitest-real-devices/
-- For mobile testings download and install Appium desktop server version 1.15.1:<br>http://appium.io/
-- Command line tools: git, pip, brew, node and npm
-- For mobile testings install in advance any Applicaster app with "Appium UI Tests" plugin
-
+- iOS Mobile testers only who want to run the tests on real devices: [Instructions](http://appium.io/docs/en/drivers/ios-xcuitest-real-devices/)
+- Appium CLI tool 1.17.1 [Download](http://appium.io/)
 
 #### Installation: ####
-`git clone https://github.com/applicaster/ZappAutomationInfrastructure`<br>
-`cd ZappAutomationInfrastructure`<br>
+`git clone https://github.com/applicaster/ZappAutomationInfrastructure` <br>
+`cd ZappAutomationFramework` <br>
 `sudo pip install -r requierments.txt`
 
-
-#### Generate config.cfg settings file: ####
-https://github.com/applicaster/ZappAutomationInfrastructure/wiki/Generating-config.cfg<br>
-
-__Example config.cfg files:__
-https://github.com/applicaster/ZappAutomationInfrastructure/blob/master/config_files/feature_app.cfg<br>
-(choose your correct configuration according to the platform and comment out the rest)
+#### Generate config.cfg settings file: ####<br>
+[Instructions](https://applicaster.atlassian.net/wiki/spaces/~794659641/pages/1048510939/Framework+config.cfg+settings+file)
 
 #### Example Test: ####
-An example can be found here: __ZappAutomationInfrastructure/tests/feature_app/test_zapp_sanity.py__<br>
+[Web view cell test](https://github.com/applicaster/ZappAutomationFramework/blob/master/applications/feature_app/mobile/tests/test_web_view_link.py)
 
-In order to run it from command line first define the python path to your project:<br>
-`export PYTHONPATH=~/<full path to project>/ZappAutomationInfrastructure/`<br>
+#### Running test from CLI: ####
+1. In order to run it from command line first define the python path to your project:<br>
+`export PYTHONPATH=<full path to project>/ZappAutomationFramework/`<br>
 For mobile testings start the Appium server before starting the test.
-Then run: <br>
-`py.test tests/mobile/feature_app/ -m "test_advertising_screen" -v -s --log-level=CRITICAL`
+2. Start Appium server from other terminal window: `appium`
+3. `pytest applications/feature_app/mobile/tests/ -m "<my_test_marker>" -v -s --log-level=CRITICAL`
 
-#### Documentations: ####
-__Appium API:__ https://appium.io/docs/en/about-appium/api/<br>
-__Appium Desired Capabilities:__ http://appium.io/docs/en/writing-running-appium/caps/
+#### Addional Documentations: ####
+[Appium API](https://appium.io/docs/en/about-appium/api/)<br>
+[Appium Desired Capabilities](http://appium.io/docs/en/writing-running-appium/caps/)<br>
+[Azure UI Tests check for Quick Brick pull requests](https://applicaster.atlassian.net/wiki/spaces/~794659641/pages/904527967/Azure+UI+Tests+check+for+Quick+Brick+pull+requests)<br>
+
+
 
 
 
