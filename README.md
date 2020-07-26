@@ -10,11 +10,16 @@ Python project for running automation UI tests on the following platforms based 
 #### Prerequisites ####
 - Command line tools: git, pip, brew, node and npm
 - [Download and install](https://www.python.org/downloads/) python 3.8.3
-- iOS Only - [Instructions](http://appium.io/docs/en/drivers/ios-xcuitest-real-devices/) for running against real devices 
-- [Download and install](http://appium.io/) Appium CLI tool 1.17.1
 <br><br>
 
-#### Install ####
+#### Install Appium CLI tool ####
+`npm install -g appium@1.17.1` <br>
+`npm install wd` <br>
+(restart your terminal when the installation completes)
+<br><br>
+
+
+#### Setup Framework ####
 `git clone git@github.com:applicaster/ZappAutomationFramework.git` <br>
 `cd ZappAutomationFramework` <br>
 `sudo pip install -r requierments.txt`
@@ -40,4 +45,6 @@ For mobile testings start the Appium server before starting the test.
 [Appium API](https://appium.io/docs/en/about-appium/api/) <br>
 [Appium Desired Capabilities](http://appium.io/docs/en/writing-running-appium/caps/) <br>
 [Azure UI Tests check for Quick Brick pull requests](https://applicaster.atlassian.net/wiki/spaces/~794659641/pages/904527967/Azure+UI+Tests+check+for+Quick+Brick+pull+requests) <br>
+[Instructions for running against real devices (iOS Only)](http://appium.io/docs/en/drivers/ios-xcuitest-real-devices/)  
+[Download Appium Desktop App](http://appium.io/)
 <br><br>
