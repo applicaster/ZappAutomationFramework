@@ -13,10 +13,19 @@ INTERSTITIAL_SCREEN = 'InterstitialScreen'
 
 
 class AdvertisingTests(BaseTest):
+    def verify_banner(self, step, unit_id, banner_type):
+        interstitial_screen = self.building_blocks.screens[INTERSTITIAL_SCREEN]
+        PRINT('Step %s: Verify %s banner with id %s' % (step, banner_type, unit_id))
+        Logger.get_instance().log_assert(
+            interstitial_screen.search_for_item_by_id(unit_id, retries=5),
+            '%s banner "%s" not is found on the screen' % (banner_type, unit_id)
+        )
+        PRINT('     Step %s.1: %s banner with id %s found successfully on the screen' % (step, banner_type, unit_id))
+
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
-    def test_verify_interstitial(self):
+    def test_verify_interstitial_and_banners(self):
         interstitial_screen = self.building_blocks.screens[INTERSTITIAL_SCREEN]
         advertising_screen = self.building_blocks.screens[ADVERTISING_SCREEN]
 
@@ -36,6 +45,10 @@ class AdvertisingTests(BaseTest):
         Logger.get_instance().log_assert(
             interstitial_screen.search_for_item_by_text(item_name, retries=4), '"%s" item not found in the screen' % item_name
         )
+
+        # self.verify_banner(5, '/19489716/smartbanner_test', 'smart')
+        self.verify_banner(6, '/5644/es.lasestrellas.app/home', 'standard')
+        self.verify_banner(7, '/5644/es.lasestrellas.app/secciones', 'box')
 
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.qb_ios_mobile_nightly
@@ -72,13 +85,13 @@ class AdvertisingTests(BaseTest):
         item_name = 'vod_0'
         PRINT('     Step 5.4: Verify that item "%s" from the data of the screen is displaying' % item_name)
         Logger.get_instance().log_assert(
-            advertising_screen.search_for_item_by_text(item_name), '"%s" item not found in the screen' % item_name
+            advertising_screen.search_for_item_by_text(item_name, retries=3), '"%s" item not found in the screen' % item_name
         )
 
     def shortDescription(self, test_name) -> str:
-        if test_name == 'test_verify_interstitial':
-            return 'test_verify_interstitial:\n' \
-               '    Verify that the interstitial is presenting when entering a screen\n'
+        if test_name == 'test_verify_interstitial_and_banners':
+            return 'test_verify_interstitial_and_banners:\n' \
+               '    Verify that the interstitial and banners are presenting when entering a screen\n'
 
         if test_name == 'test_verify_interstitial_once':
             return 'test_verify_interstitial:\n' \
