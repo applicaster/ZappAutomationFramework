@@ -14,7 +14,7 @@ Python project for running automation UI tests on the following platforms based 
 - Appium CLI tool 1.17.1 [Download](http://appium.io/)
 
 #### Installation: ####
-`git clone https://github.com/applicaster/ZappAutomationInfrastructure` <br>
+`git clone git@github.com:applicaster/ZappAutomationFramework.git` <br>
 `cd ZappAutomationFramework` <br>
 `sudo pip install -r requierments.txt`
 
