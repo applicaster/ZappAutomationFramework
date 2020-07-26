@@ -19,7 +19,7 @@ Python project for running automation UI tests on the following platforms based 
 <br><br>
 
 
-#### Install Framework ####
+#### Setup Framework ####
 `git clone git@github.com:applicaster/ZappAutomationFramework.git` <br>
 `cd ZappAutomationFramework` <br>
 `sudo pip install -r requierments.txt`
