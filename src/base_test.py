@@ -65,6 +65,14 @@ class BaseTest(unittest.TestCase):
             self.assertEqual(0, 1, exp)
 
     def __ui_boot_step__(self):
+        """
+        # When pytest start running at test its performing a few boot steps that found in BaseTestboot sequence,
+        # some of them are a UI actions and some are just initialising the test it self.
+        # In one of the steps its doing a call to boot_step() method that is must be override as part of the
+        # building_blocks.py file.
+        # For more info read here:
+        # https://applicaster.atlassian.net/wiki/spaces/~794659641/pages/1042022816/Building+Blocks
+        """
         try:
             self.building_blocks.boot_step()
         except Exception as exp:
@@ -72,6 +80,11 @@ class BaseTest(unittest.TestCase):
             self.assertEqual(0, 1, exp)
 
     def __setup_building_blocks__(self):
+        """
+        # For more info about this method read here:
+        # https://applicaster.atlassian.net/wiki/spaces/~794659641/pages/1042022816/Building+Blocks
+        # :return: None
+        """
         try:
             building_blocks_path = Configuration.get_instance().get('general', 'building_blocks')
             spec = spec_from_file_location('BuildingBlocks', '%s/%s' % (ROOT_DIR, building_blocks_path))
@@ -89,5 +102,11 @@ class BaseTest(unittest.TestCase):
         self.driver.terminate_app()
 
     def __setup_analytics_manager__(self):
+        """
+        # Analytics manager object is being setup only if the tester added in the config.cfg file pointer to some log
+        # file. Analytics manager idea is to search for events inside log file. The manager assumes that a line with
+        # prefix of AutomationAnalyticsEvent contain inside analytic event.
+        # :return: None
+        """
         if Configuration.get_instance().get('general', 'yarn_server_log'):
             self.analytics_manager = AnalyticsManager()
