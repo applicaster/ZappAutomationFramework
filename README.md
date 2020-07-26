@@ -34,10 +34,9 @@ Python project for running automation UI tests on the following platforms based 
 <br><br>
 
 #### Running test from CLI ####
-1. Define the python path to your project:<br>
+1. Define system PYTHONPATH local repo:<br>
 `export PYTHONPATH=<full path to project>/ZappAutomationFramework/`<br>
-For mobile testings start the Appium server before starting the test.
-2. Start Appium server from other terminal window: `appium`
+2. Start Appium server from another terminal window: `appium`
 3. `pytest applications/feature_app/mobile/tests/ -m "<my_test_marker>" -v -s --log-level=CRITICAL`
 <br><br>
 
