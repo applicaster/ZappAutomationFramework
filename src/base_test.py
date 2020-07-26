@@ -9,7 +9,6 @@ from src.configuration.configuration import Configuration
 
 from src.analytics.analytics_manager import AnalyticsManager
 
-
 '''
 Global Defines
 '''
