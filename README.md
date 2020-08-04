@@ -38,6 +38,11 @@ Python project for running automation UI tests on the following platforms based 
 `export PYTHONPATH=<full path to project>/ZappAutomationFramework/`<br>
 2. Start Appium server from another terminal window: `appium`
 3. `pytest applications/feature_app/mobile/tests/ -m "<my_test_marker>" -v -s --log-level=CRITICAL`
+
+##### Comment: 
+when running the tests against a local Quick Brick yarn server, the following env should be defined:<br>
+`DISABLE_REACT_YELLOW_BOX=true`<br>
+**The env should be setup before building the quick brick project locally.** 
 <br><br>
 
 #### More Documentations ####
