@@ -32,13 +32,11 @@ class GridComponentTests(BaseTest):
     def test_play_vod_item_in_feed_of_feeds_connected_screen(self):
         grid_screen = self.building_blocks.screens['GridScreen']
         pre_hook = self.building_blocks.screens['demo_pre_hook']
-        platform_type = Configuration.get_instance().platform_type()
 
         PRINT('Step 1: Navigate to "GridScreen" screen')
         grid_screen.navigate()
 
-        item_name = 'item_0' if platform_type == PlatformType.ANDROID else '000'
-
+        item_name = 'item_0' if PLATFORM == PlatformType.ANDROID else '000'
         self.search_and_press(
             item_name,
             grid_screen,
@@ -47,7 +45,7 @@ class GridComponentTests(BaseTest):
             3
         )
 
-        item_name = 'child_item_0' if platform_type == PlatformType.ANDROID else 'child_000'
+        item_name = 'child_item_0' if PLATFORM == PlatformType.ANDROID else 'child_000'
         self.search_and_press(
             item_name,
             grid_screen,
@@ -56,13 +54,12 @@ class GridComponentTests(BaseTest):
             1
         )
 
-        if Configuration.get_instance().platform_type() == PlatformType.IOS:
-            PRINT('Step 4: Verify that the pre hook screen is presented and dismiss it')
-            pre_hook.verify_in_screen(retries=3)
-            PRINT('     Step 4.1: Pre hook screen is presented correctly')
-            pre_hook.enter_with_success()
-            PRINT('     Step 4.2: Pre hook screen dismissed')
-            PRINT('     Step 4.3: Wait 10 seconds until the streaming will start')
+        PRINT('Step 4: Verify that the pre hook screen is presented and dismiss it')
+        pre_hook.verify_in_screen(retries=5)
+        PRINT('     Step 4.1: Pre hook screen is presented correctly')
+        pre_hook.enter_with_success()
+        PRINT('     Step 4.2: Pre hook screen dismissed')
+        PRINT('     Step 4.3: Wait 10 seconds until the streaming will start')
 
         PRINT('Wait 10 seconds until that the streaming will start')
         self.driver.wait(10)
