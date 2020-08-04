@@ -1,5 +1,5 @@
 # Zapp automation framework for running UI tests
-Python project for running automation UI tests on the following platforms based on Appium and Selenium:
+**Python project for running automation UI tests on the following platforms based on Appium and Selenium:**
 1. Android mobile
 2. iOS mobile
 3. Android TV 
