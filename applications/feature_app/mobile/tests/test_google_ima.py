@@ -111,10 +111,10 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
         PRINT('Step 2: Press on item "%s" element on screen' % VMAP_VOD_ITEM_NAME)
         element = self.driver.find_element_by_text(VMAP_VOD_ITEM_NAME)
         element.click()
-        if Configuration.get_instance().platform_type() == PlatformType.IOS:
-            PRINT('     Step 2.1: Wait for pre hook and dismiss it')
-            self.driver.wait(2)
-            pre_hook.enter_with_success()
+
+        PRINT('     Step 2.1: Wait for pre hook and dismiss it')
+        self.driver.wait(2)
+        pre_hook.enter_with_success()
 
         self.verify_adv(3, 'pre-roll', 20, 15, VMAP_PRE_ROLL_URL)
         self.verify_adv(4, 'mid-roll', 30, 15, VMAP_MID_ROLL_URL)

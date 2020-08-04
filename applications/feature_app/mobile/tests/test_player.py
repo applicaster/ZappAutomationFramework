@@ -33,9 +33,9 @@ class PlayerTests(BaseTest):
             PRINT('     Step 2.5: Dismiss the pre hook screen with success')
             pre_hook.enter_with_success()
 
-        PRINT('     Step 2.3: Wait %s seconds until the streaming will start' % START_PLAYING_VOD_TIMEOUT)
+        PRINT('     Step 2.6: Wait %s seconds until the streaming will start' % START_PLAYING_VOD_TIMEOUT)
         self.driver.wait(START_PLAYING_VOD_TIMEOUT)
-        PRINT('     Step 2.4: Finished waiting the %s seconds' % START_PLAYING_VOD_TIMEOUT)
+        PRINT('     Step 2.7: Finished waiting the %s seconds' % START_PLAYING_VOD_TIMEOUT)
 
     @pytest.mark.qb_ios_mobile
     @pytest.mark.qb_android_mobile_nightly
