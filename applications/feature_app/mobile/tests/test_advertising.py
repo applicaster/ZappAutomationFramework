@@ -17,7 +17,7 @@ class AdvertisingTests(BaseTest):
         interstitial_screen = self.building_blocks.screens[INTERSTITIAL_SCREEN]
         PRINT('Step %s: Verify %s banner with id %s' % (step, banner_type, unit_id))
         Logger.get_instance().log_assert(
-            interstitial_screen.search_for_item_by_id(unit_id, retries=5),
+            interstitial_screen.search_for_item_by_id(unit_id, retries=7),
             '%s banner "%s" not is found on the screen' % (banner_type, unit_id)
         )
         PRINT('     Step %s.1: %s banner with id %s found successfully on the screen' % (step, banner_type, unit_id))
