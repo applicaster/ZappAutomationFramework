@@ -9,7 +9,7 @@
 
 #### Prerequisites ####
 - Command line tools: git, pip, brew, node and npm
-- [Download and install](https://www.python.org/downloads/) python 3.8.3
+- [Download and install](https://www.python.org/downloads/) python 3.8.4
 <br><br>
 
 #### Install Appium CLI tool ####
