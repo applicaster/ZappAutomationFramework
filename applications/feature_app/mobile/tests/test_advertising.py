@@ -2,7 +2,8 @@
 import pytest
 
 from src.automation_manager.automation_manager import automation_driver
-from src.base_test import BaseTest, PRINT, Logger
+from src.base_test import BaseTest, PRINT, Logger, Configuration
+from src.global_defines import PlatformType
 
 """
 Global Defines
@@ -10,6 +11,8 @@ Global Defines
 ADVERTISING_SCREEN = 'AdvertisingScreen'
 INTERSTITIAL_ONCE_SCREEN = 'InterstitialOnceScreen'
 INTERSTITIAL_SCREEN = 'InterstitialScreen'
+ADVERTISING_SCREEN_ANDROID_SCREEN_LOAD_TIMEOUT = 10
+PLATFORM = Configuration.get_instance().platform_type()
 
 
 class AdvertisingTests(BaseTest):
@@ -22,6 +25,7 @@ class AdvertisingTests(BaseTest):
         )
         PRINT('     Step %s.1: %s banner with id %s found successfully on the screen' % (step, banner_type, unit_id))
 
+    @pytest.mark.boaz
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
@@ -40,6 +44,10 @@ class AdvertisingTests(BaseTest):
 
         PRINT('Step 4: Verify that we reached the actual screen behind the interstitial')
         interstitial_screen.verify_in_screen()
+
+        if PLATFORM == PlatformType.ANDROID:
+            self.driver.wait(ADVERTISING_SCREEN_ANDROID_SCREEN_LOAD_TIMEOUT)
+
         item_name = 'vod_0'
         PRINT('     Step 4.1: Verify that item "%s" from the data of the screen is displaying' % item_name)
         Logger.get_instance().log_assert(
