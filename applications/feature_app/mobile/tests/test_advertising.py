@@ -25,7 +25,6 @@ class AdvertisingTests(BaseTest):
         )
         PRINT('     Step %s.1: %s banner with id %s found successfully on the screen' % (step, banner_type, unit_id))
 
-    @pytest.mark.boaz
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
@@ -44,14 +43,15 @@ class AdvertisingTests(BaseTest):
 
         PRINT('Step 4: Verify that we reached the actual screen behind the interstitial')
         interstitial_screen.verify_in_screen()
-
         if PLATFORM == PlatformType.ANDROID:
+            PRINT('     Step 4.1: Start waiting for advertising screen to load')
             self.driver.wait(ADVERTISING_SCREEN_ANDROID_SCREEN_LOAD_TIMEOUT)
+            PRINT('     Step 4.2: Finished waiting for advertising screen to load')
 
         item_name = 'vod_0'
         PRINT('     Step 4.1: Verify that item "%s" from the data of the screen is displaying' % item_name)
         Logger.get_instance().log_assert(
-            interstitial_screen.search_for_item_by_text(item_name, retries=4), '"%s" item not found in the screen' % item_name
+            interstitial_screen.search_for_item_by_text(item_name, retries=5), '"%s" item not found in the screen' % item_name
         )
 
         # self.verify_banner(5, '/19489716/smartbanner_test', 'smart')
