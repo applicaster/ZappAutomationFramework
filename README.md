@@ -42,6 +42,7 @@
 ##### Comment: 
 when running the tests against a local Quick Brick yarn server, the following env should be defined:<br>
 `DISABLE_REACT_YELLOW_BOX=true`<br>
+`ZAPP_UI_TESTS_ENV=true`<br>
 **The env should be setup before building the quick brick project locally.** 
 <br><br>
 
