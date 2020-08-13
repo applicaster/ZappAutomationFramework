@@ -36,8 +36,8 @@
 #### Running test from CLI ####
 1. Define system PYTHONPATH local repo:<br>
 `export PYTHONPATH=<full path to project>/ZappAutomationFramework/`<br>
-2. Start Appium server from another terminal window: `appium`
-3. `pytest applications/feature_app/mobile/tests/ -m "<my_test_marker>" -v -s --log-level=CRITICAL`
+2. Start Appium server from **another** terminal window run: `appium`
+3. From the root directory run: `pytest applications/feature_app/mobile/tests/ -m "<my_test_marker>" -v -s --log-level=CRITICAL`
 
 ##### Comment: 
 when running the tests against a local Quick Brick yarn server, the following env should be defined:<br>
