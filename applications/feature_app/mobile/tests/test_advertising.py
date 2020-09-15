@@ -71,7 +71,7 @@ class AdvertisingTests(BaseTest):
                 item_name, retries=3), '"%s" item not found in the screen' % item_name
         )
 
-    @pytest.mark.qb_android_mobile_nightly
+    # @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_interstitial_and_banners(self):
