@@ -30,6 +30,7 @@ class AdvertisingTests(BaseTest):
 
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.qb_ios_mobile_nightly
+    @pytest.mark.ad_test
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_interstitial_once(self):
         interstitial_once_screen = self.building_blocks.screens[INTERSTITIAL_ONCE_SCREEN]
@@ -56,9 +57,10 @@ class AdvertisingTests(BaseTest):
         PRINT('Step 5: Navigate back, in order to open the "%s" screen once again' %
               INTERSTITIAL_ONCE_SCREEN)
         self.building_blocks.navigation_bar.press_back_button()
+
         PRINT('     Step 5.1: Navigate again the "%s" screen' %
               INTERSTITIAL_ONCE_SCREEN)
-        interstitial_once_screen.navigate()
+        interstitial_once_screen.navigate(interstitial_once_screen, True)
         PRINT('     Step 5.2: Wait 3 seconds to see if the interstitial did show')
         advertising_screen.verify_interstitial_is_not_displaying()
         PRINT('     Step 5.3: Verify we reached the "%s" screen and that id did load correctly' %
@@ -73,6 +75,7 @@ class AdvertisingTests(BaseTest):
 
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.qb_ios_mobile_nightly
+    @pytest.mark.ad_test
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_interstitial_and_banners(self):
         interstitial_screen = self.building_blocks.screens[INTERSTITIAL_SCREEN]
