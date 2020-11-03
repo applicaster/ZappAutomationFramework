@@ -16,13 +16,15 @@ class GridComponentTests(BaseTest):
     def search_and_press(self, item_name, screen, step_index, step_description, load_timeout):
         step_index = str(step_index)
         PRINT('Step %s: %s' % (step_index, step_description))
-        PRINT('     Step %s.1: Start searching for "%s" item' % (step_index, item_name))
+        PRINT('     Step %s.1: Start searching for "%s" item' %
+              (step_index, item_name))
         element = screen.search_for_item_by_text(item_name)
         PRINT('     Step %s.2: Click on "%s" item' % (step_index, item_name))
         element.click()
 
         if load_timeout > 0:
-            PRINT('     Step %s.3: Wait %s seconds until that the screen will load' % (step_index, load_timeout))
+            PRINT('     Step %s.3: Wait %s seconds until that the screen will load' % (
+                step_index, load_timeout))
             self.driver.wait(load_timeout)
             PRINT('     Step %s.4: Finished waiting for the screen to load' % step_index)
 
@@ -45,7 +47,7 @@ class GridComponentTests(BaseTest):
             3
         )
 
-        item_name = 'child_item_0' if PLATFORM == PlatformType.ANDROID else 'child_000'
+        item_name = 'child_000'
         self.search_and_press(
             item_name,
             grid_screen,
@@ -65,7 +67,8 @@ class GridComponentTests(BaseTest):
         self.driver.wait(10)
 
         PRINT('Step 5: Verify that the streaming is playing correctly')
-        self.building_blocks.screens['player_screen'].verify_stream_is_playing()
+        self.building_blocks.screens['player_screen'].verify_stream_is_playing(
+        )
         PRINT('     Step 5.1: Streaming is playing correctly')
 
     def shortDescription(self, test_name) -> str:
