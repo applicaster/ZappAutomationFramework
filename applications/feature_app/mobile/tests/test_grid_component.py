@@ -47,7 +47,7 @@ class GridComponentTests(BaseTest):
             3
         )
 
-        item_name = 'child_000'
+        item_name = "child_item_0" if PLATFORM == PlatformType.ANDROID else 'child_000'
         self.search_and_press(
             item_name,
             grid_screen,

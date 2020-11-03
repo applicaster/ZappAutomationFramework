@@ -11,13 +11,15 @@ class WebViewTests(BaseTest):
     @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
+    @pytest.mark.ad_test
     def test_verify_external_web_view_link(self):
         list_screen = self.building_blocks.screens['ListScreen']
 
         PRINT('Step 1: Navigate to "ListScreen" screen')
         list_screen.navigate()
 
-        name = 'html_web_view' if Configuration.get_instance().platform_type() == PlatformType.ANDROID else 'Id7'
+        name = 'html_web_view' if Configuration.get_instance(
+        ).platform_type() == PlatformType.ANDROID else 'Id7'
         PRINT('Step 2: Press on external web view link "%s" item' % name)
         PRINT('     Step 2.1: Start searching for "%s" item' % name)
         element = list_screen.search_for_item_by_text(name)
@@ -29,12 +31,24 @@ class WebViewTests(BaseTest):
         self.driver.wait(timeout)
         PRINT('     Step 2.4: Finished waiting for the web page to load')
 
-        PRINT('Step 3.0: Verify that the html page is showing correctly')
-        text = 'title_1'
-        PRINT('     Step 3.1: Verify that "%s" text is showing on the screen' % text)
-        element = self.driver.find_element_by_xpath(text, retries=5)
-        Logger.get_instance().log_assert(element, 'Test failed to open correctly the external link web view')
-        PRINT('     Step 3.2: External link web view opened correctly')
+        PRINT('Step 3.0: Verify that the browser is opened')
+        PRINT('     Step 3.1: Verify that browser is opened')
+        # element = self.driver.find_element_by_xpath(text, retries=5)
+        activity = self.driver.driver_.current_activity
+        Logger.get_instance().log_assert(
+            activity == "org.chromium.chrome.browser.ChromeTabbedActivity", "Test Failed to open the browser correctly")
+
+        PRINT('     Step 3.2: Go back to the app')
+        self.driver.wait(timeout)
+        self.driver.driver_.press_keycode(4)
+
+        PRINT('     Step 3.3: Verify that we are back in the app')
+        self.driver.wait(timeout)
+        activity = self.driver.driver_.current_activity
+
+        PRINT('activity %s' % activity)
+        Logger.get_instance().log_assert(
+            activity == "com.applicaster.ui.activities.MainActivity", "Test Failed to return to the app")
 
         PRINT('Step 4.0: Test back functionality from web view screen')
         PRINT('     Step 4.1: Press on the navigation bar back button')
