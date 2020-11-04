@@ -8,10 +8,9 @@ from src.utils.logger import Logger
 
 
 class WebViewTests(BaseTest):
-    @pytest.mark.qb_ios_mobile_nightly
-    @pytest.mark.qb_android_mobile_nightly
+    # @pytest.mark.qb_ios_mobile_nightly
+    # @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
-    @pytest.mark.ad_test
     def test_verify_external_web_view_link(self):
         list_screen = self.building_blocks.screens['ListScreen']
 
