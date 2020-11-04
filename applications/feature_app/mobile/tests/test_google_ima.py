@@ -46,12 +46,15 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
         PRINT('Step 1: Navigate to "GridScreen" screen')
         grid_screen.navigate()
 
-        PRINT('Step 2: Press on item "%s" element on screen' % VAST_VOD_ITEM_NAME)
-        element = self.driver.find_element_by_text(VAST_VOD_ITEM_NAME, retries=3)
+        PRINT('Step 2: Press on item "%s" element on screen' %
+              VAST_VOD_ITEM_NAME)
+        element = self.driver.find_element_by_text(
+            VAST_VOD_ITEM_NAME, retries=3)
         element.click()
 
         if Configuration.get_instance().platform_type() == PlatformType.IOS:
-            PRINT('Step 3: Pass the presented pre hook screen with success, in order to watch the video')
+            PRINT(
+                'Step 3: Pass the presented pre hook screen with success, in order to watch the video')
             PRINT('     Step 3.1: Verify that the demo pre hook screen is presented')
             pre_hook.verify_in_screen(retries=3)
 
@@ -63,21 +66,25 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
             'https://pubads.g.doubleclick.net/pcs/click?xai=AKAOjssEaTazxUzioRp_opiQvL6ll0nxp7L6BFR21Rbl5u7N3ekgqQEx12OLsjZPcCgrfAJcTgFj6GQIOO2wd0Iet7LNxsPiiVL-rTBKpdYKu9mT8JmZCLiGGfz1L9DCSO9SsQcsVgJ9CEuGJ7TpO2a0XREwrvxPmWC8x5Jo-cDAwJvkcMeb_9lmBAKk7IhXr8VUyo3zwqUTgtI3s2WXGo73N92DAiqBfEHJhUyr_83p0veAhPE7v4AY1itOhZ0Lgc__u2-_61VZESybCCTpk_uViDMB4pzkTg&sai=AMfl-YQnEMttDV5oCIaH_X_MEeQACtNInh2lo6uiaGK7cuCHY3yu-S4hwe2Db5y4hdMvVDgY0AtdSyhTLvoTcEhNYP5bi3VXkZmkA3_kttEhybvSrwk8JgS48xkmHsAsnIOlVM3on4eddexfSsD-gj88ZnijleNgB5OaRoyb&sig=Cg0ArKJSzGfhhZLS4nJ6&adurl=https://developers.google.com/interactive-media-ads/docs/vastinspector_dual'
         if PLATFORM == PlatformType.IOS:
             pre_roll_unit_id = \
-            'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dredirectlinear&correlator='
+                'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/single_ad_samples&ciu_szs=300x250&impl=s&gdfp_req=1&env=vp&output=vast&unviewed_position_start=1&cust_params=deployment%3Ddevsite%26sample_ct%3Dredirectlinear&correlator='
 
         element = self.driver.find_element_by_text(pre_roll_unit_id, 20)
-        Logger.get_instance().log_assert(element, 'Test failed displaying video pre roll adv with id: "%s"' % pre_roll_unit_id)
-        PRINT('Test verified successfully pre-roll video adv with id "%s"' % pre_roll_unit_id)
+        Logger.get_instance().log_assert(element,
+                                         'Test failed displaying video pre roll adv with id: "%s"' % pre_roll_unit_id)
+        PRINT('Test verified successfully pre-roll video adv with id "%s"' %
+              pre_roll_unit_id)
 
         PRINT('Step 5: Verify that the pre-roll completes playing and that the video starts instead')
         timeout = 15
         PRINT('     Step 5.1: Wait %s seconds until the pre-roll will complete playing the adv' % timeout)
         self.driver.wait(15)
         element = self.driver.find_element_by_text(pre_roll_unit_id)
-        Logger.get_instance().log_assert(element is None, 'pre-roll dismissed from screen successfully')
+        Logger.get_instance().log_assert(
+            element is None, 'pre-roll dismissed from screen successfully')
         PRINT('     Step 5.2: Pre-roll dismissed from screen successfully')
         PRINT('     Step 5.3: Verify that the expected video is playing the streaming correctly')
-        self.building_blocks.screens['player_screen'].verify_stream_is_playing()
+        self.building_blocks.screens['player_screen'].verify_stream_is_playing(
+        )
 
     def wait_until_adv_is_gone(self, unit_id, timeout=20):
         for i in range(timeout):
@@ -89,17 +96,22 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
 
     def verify_adv(self, step, section, display_timeout, dismiss_timeout, expected_unit_id):
         step = str(step)
-        PRINT('Step %s: Verify playing of VMAP %s with id %s' % (step, section, expected_unit_id))
-        element = self.driver.find_element_by_accessibility_id(VMAP_ADV_URL, display_timeout)
+        PRINT('Step %s: Verify playing of VMAP %s with id %s' %
+              (step, section, expected_unit_id))
+        element = self.driver.find_element_by_accessibility_id(
+            VMAP_ADV_URL, display_timeout)
 
-        Logger.get_instance().log_assert(element, 'Test failed displaying VMAP %s with id %s' % (section, expected_unit_id))
+        Logger.get_instance().log_assert(
+            element, 'Test failed displaying VMAP %s with id %s' % (section, expected_unit_id))
         PRINT('     Step %s.2: Wait for the %s to complete' % (step, section))
         is_gone = self.wait_until_adv_is_gone(VMAP_ADV_URL, dismiss_timeout)
-        Logger.get_instance().log_assert(is_gone, '%s did not dismiss after %s' % (section, dismiss_timeout))
-        PRINT('     Step %s.3: %s adv displayed and dismissed successfully' % (step, section))
+        Logger.get_instance().log_assert(is_gone, '%s did not dismiss after %s' %
+                                         (section, dismiss_timeout))
+        PRINT('     Step %s.3: %s adv displayed and dismissed successfully' %
+              (step, section))
 
     @pytest.mark.qb_ios_mobile_nightly
-    @pytest.mark.qb_android_mobile_nightly
+    # @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_playing_vmap_adv_from_ui_builder_fallback(self):
         grid_screen = self.building_blocks.screens['GridScreen']
@@ -108,7 +120,8 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
         PRINT('Step 1: Navigate to "GridScreen" screen')
         grid_screen.navigate()
 
-        PRINT('Step 2: Press on item "%s" element on screen' % VMAP_VOD_ITEM_NAME)
+        PRINT('Step 2: Press on item "%s" element on screen' %
+              VMAP_VOD_ITEM_NAME)
         element = self.driver.find_element_by_text(VMAP_VOD_ITEM_NAME)
         element.click()
 
