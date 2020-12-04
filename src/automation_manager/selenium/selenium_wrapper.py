@@ -13,16 +13,18 @@ from src.automation_manager.automation_driver import AutomationDriver
 """
 Global Defines
 """
-WINDOW_DEFAULT_WIDTH_SIZE = 1024
-WINDOW_DEFAULT_HEIGHT_SIZE = 768
+WINDOW_DEFAULT_WIDTH_SIZE = 1920
+WINDOW_DEFAULT_HEIGHT_SIZE = 1080
 
 
 class SeleniumWebDriver(AutomationDriver):
     """
     Public Implementation
     """
+
     def find_element_by_accessibility_id(self, accessibility_id, retries=1):
-        Logger.get_instance().info(self, 'find_element_by_accessibility_id', 'search for "%s"' % accessibility_id)
+        Logger.get_instance().info(self, 'find_element_by_accessibility_id',
+                                   'search for "%s"' % accessibility_id)
         element = None
         for i in range(retries):
             try:
@@ -48,7 +50,8 @@ class SeleniumWebDriver(AutomationDriver):
         Logger.get_instance().info(self, 'find_focused_element', '')
         element = None
         try:
-            element = self.driver_.find_element_by_css_selector('div[focused-teststate="focused"]')
+            element = self.driver_.find_element_by_css_selector(
+                'div[focused-teststate="focused"]')
 
         except Exception:
             Logger.get_instance().error(
@@ -60,10 +63,12 @@ class SeleniumWebDriver(AutomationDriver):
         return element
 
     def find_element_by_css_selector(self, css_selector):
-        Logger.get_instance().info(self, 'find_element_by_css_selector', 'search for "%s"' % css_selector)
+        Logger.get_instance().info(self, 'find_element_by_css_selector',
+                                   'search for "%s"' % css_selector)
         element = None
         try:
-            element = self.driver_.find_element_by_css_selector('div[data-testid="%s"]' % css_selector)
+            element = self.driver_.find_element_by_css_selector(
+                'div[data-testid="%s"]' % css_selector)
 
         except Exception:
             Logger.get_instance().warning(
@@ -80,7 +85,8 @@ class SeleniumWebDriver(AutomationDriver):
         element = None
         for i in range(retries):
             try:
-                element = self.driver_.find_element_by_xpath("//*[contains(text(), '%s')]" % text)
+                element = self.driver_.find_element_by_xpath(
+                    "//*[contains(text(), '%s')]" % text)
             except Exception:
                 Logger.get_instance().warning(
                     self,
@@ -91,7 +97,8 @@ class SeleniumWebDriver(AutomationDriver):
         return element
 
     def activate_app(self, bundle_id=None, app_package=None):
-        Logger.get_instance().info(self, 'activate_app', 'Selenium driver will load url with address %s' % self.url_)
+        Logger.get_instance().info(self, 'activate_app',
+                                   'Selenium driver will load url with address %s' % self.url_)
         self.__setup_selenium_web_driver__()
         self.driver_.get(self.url_)
 
@@ -138,6 +145,7 @@ class SeleniumWebDriver(AutomationDriver):
     """
     Private Implementation
     """
+
     def __setup_window_size__(self):
         width = Configuration.get_instance().get('selenium', 'screen_width')
         width = WINDOW_DEFAULT_WIDTH_SIZE if width is None else width

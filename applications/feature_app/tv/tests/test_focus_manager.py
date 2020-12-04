@@ -13,8 +13,10 @@ def move_focus_and_verify(driver, step_num, step_description, keys_steps, access
     driver.send_keys(keys_steps, 1.5)
 
     is_focused = driver.is_element_focused(accessibility_id)
-    Logger.get_instance().log_assert(is_focused is True, '%s is not focused' % accessibility_id)
-    PRINT('     Step %s.2: item "%s" is focused on the screen correctly' % (step_num, accessibility_id))
+    Logger.get_instance().log_assert(is_focused is True,
+                                     '%s is not focused' % accessibility_id)
+    PRINT('     Step %s.2: item "%s" is focused on the screen correctly' %
+          (step_num, accessibility_id))
 
 
 class FocusManagerTests(BaseTest):
@@ -38,8 +40,8 @@ class FocusManagerTests(BaseTest):
             self.driver,
             3,
             'move focus manager to the bottom item (vod_m3u8_item_6) of the second grid component (video_feed_xml_mp4_and_m3u8)',
-            [RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.DOWN,
-             RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.RIGHT],
+            [RemoteControlKeys.DOWN, RemoteControlKeys.DOWN,
+                RemoteControlKeys.DOWN, RemoteControlKeys.RIGHT],
             accessibility_id
         )
 
@@ -69,7 +71,6 @@ class FocusManagerTests(BaseTest):
 
         PRINT('Step 2: navigate to "Horizontal List" screen from top menu bar')
         self.building_blocks.screens['Horizontal List Screen'].navigate()
-        self.driver.send_keys(RemoteControlKeys.DOWN, 2)
 
         accessibility_id = 'focusable-9935e5f9-c0f7-48a7-8f22-2a13c28c4acf-a3983053d1ebad89d3d442357a466789-0'
         move_focus_and_verify(
@@ -127,7 +128,6 @@ class FocusManagerTests(BaseTest):
 
         PRINT('Step 2: navigate to "Hero Screen" screen from top menu bar')
         self.building_blocks.screens['Hero Screen'].navigate()
-        self.driver.send_keys(RemoteControlKeys.DOWN, 2)
 
         accessibility_id = 'focusable-bb5dd00a-cd10-483c-8c84-3976d95c97eb-a3983053d1ebad89d3d442357a466789-0'
         move_focus_and_verify(
@@ -165,12 +165,12 @@ class FocusManagerTests(BaseTest):
 
         PRINT('Step 2: navigate to "Screen Picker Screen" screen from top menu bar')
         self.building_blocks.screens['Screen Picker'].navigate()
-        self.driver.send_keys(RemoteControlKeys.DOWN, 2)
 
         PRINT('Step 3: verify that the first item in the left menu is focused when screen picker screen opens and after 1 press down')
         accessibility_id = 'focusable-437d59bd-985a-4f74-8534-ac8d7981166d.ScreenSelector-58032-0'
         is_focused = self.driver.is_element_focused(accessibility_id)
-        Logger.get_instance().log_assert(is_focused is True, '%s is not focused' % accessibility_id)
+        Logger.get_instance().log_assert(is_focused is True,
+                                         '%s is not focused' % accessibility_id)
 
         accessibility_id = 'focusable-0657822b-4a2f-4524-81da-0f10db13a5e0-001-0'
         move_focus_and_verify(
@@ -182,7 +182,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-        accessibility_id = 'focusable-0657822b-4a2f-4524-81da-0f10db13a5e0-003-2'
+        accessibility_id = 'focusable-6a4efb70-dd35-4d25-9e4f-016f9614d1c7-a3983053d1ebad89d3d442357a466789-0'
         move_focus_and_verify(
             self.driver,
             5,
@@ -197,7 +197,8 @@ class FocusManagerTests(BaseTest):
             self.driver,
             6,
             'move focus manger to the second tab in the screen picker (screen_2) and verify that screen_2 is focused',
-            [RemoteControlKeys.LEFT, RemoteControlKeys.LEFT, RemoteControlKeys.DOWN, RemoteControlKeys.ENTER],
+            [RemoteControlKeys.LEFT,
+                RemoteControlKeys.DOWN, RemoteControlKeys.ENTER],
             accessibility_id
         )
 
@@ -210,7 +211,8 @@ class FocusManagerTests(BaseTest):
             1,
             'navigate from top menu bar to "Horizontal List Screen" and verify focus is on "vod_mp4_item_1" item '
             'in "vod_mp4_item_1" Horizontal List component',
-            [RemoteControlKeys.UP, RemoteControlKeys.RIGHT, RemoteControlKeys.ENTER, RemoteControlKeys.DOWN],
+            [RemoteControlKeys.UP, RemoteControlKeys.RIGHT,
+                RemoteControlKeys.ENTER],
             accessibility_id
         )
 
@@ -220,6 +222,7 @@ class FocusManagerTests(BaseTest):
             2,
             'navigate from top menu bar to "Hero Screen" and verify focus is on "vod_mp4_item_1" item '
             'in "vod_mp4_item_1" Hero component',
-            [RemoteControlKeys.UP, RemoteControlKeys.RIGHT, RemoteControlKeys.ENTER, RemoteControlKeys.DOWN],
+            [RemoteControlKeys.UP, RemoteControlKeys.RIGHT,
+                RemoteControlKeys.ENTER, RemoteControlKeys.DOWN],
             accessibility_id
         )
