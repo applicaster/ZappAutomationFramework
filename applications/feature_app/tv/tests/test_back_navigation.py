@@ -13,12 +13,14 @@ from src.base_test import BaseTest
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationsBetweenScreenTest(BaseTest):
     def navigate_to_next_screen(self):
-        self.driver.send_keys([RemoteControlKeys.UP, RemoteControlKeys.RIGHT, RemoteControlKeys.ENTER, 4], 2)
+        self.driver.send_keys(
+            [RemoteControlKeys.UP, RemoteControlKeys.RIGHT, RemoteControlKeys.ENTER, 4], 2)
 
     def test_back_navigation_between_screens(self):
         PRINT('Step 1: Navigate to "Horizontal List Screen"')
         self.navigate_to_next_screen()
-        self.building_blocks.screens['Horizontal List Screen'].verify_in_screen()
+        self.building_blocks.screens['Horizontal List Screen'].verify_in_screen(
+        )
 
         PRINT('Step 2: Navigate to "Hero Screen"')
         self.navigate_to_next_screen()
@@ -41,7 +43,8 @@ class BackNavigationFromScreenPickerTest(BaseTest):
         self.building_blocks.screens['Screen Picker'].navigate()
 
         PRINT('Step 2: Navigate to the second tab in the "Screen 2" in screen picker tabs')
-        self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.ENTER], 2)
+        self.driver.send_keys(
+            [RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.ENTER], 2)
 
         PRINT('Step 3: Press the Back button')
         back_actions = [RemoteControlKeys.BACK]
@@ -66,14 +69,16 @@ class BackNavigationFromPlayerTest(BaseTest):
         self.building_blocks.screens['Horizontal List Screen'].navigate()
 
         PRINT('Step 2: Play vod item "vod_mp4_item_1" and navigate by that to the player screen')
-        self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.ENTER])
+        self.driver.send_keys(
+            [RemoteControlKeys.ENTER])
         self.driver.wait(7)
 
         PRINT('Step 3: Press Back button from player screen')
         self.driver.send_keys(RemoteControlKeys.BACK)
 
         PRINT('Step 4: Verify that the application is now in "Horizontal List Screen" after navigating back')
-        self.building_blocks.screens['Horizontal List Screen'].verify_in_screen(retries=20)
+        self.building_blocks.screens['Horizontal List Screen'].verify_in_screen(
+            retries=20)
 
     def shortDescription(self, test_name):
         return 'C17452 - Verify navigating back from player screen'
@@ -90,15 +95,13 @@ class BackNavigationFromConnectedScreenTest(BaseTest):
         remote_control_actions = []
         if platform_type in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             timeout = 2
-            # 7 times on down button
-            for i in range(7):
-                remote_control_actions.append(RemoteControlKeys.DOWN)
 
         elif platform_type == PlatformType.WEB:
             timeout = 0.7
-            # 13 times on down button
-            for i in range(13):
-                remote_control_actions.append(RemoteControlKeys.DOWN)
+
+        # 7 times on down button
+        for i in range(7):
+            remote_control_actions.append(RemoteControlKeys.DOWN)
 
         PRINT('Step 1: Navigate to "Collection Of Collections" component, press on the remote down button')
         self.driver.send_keys(remote_control_actions, timeout)
@@ -113,8 +116,10 @@ class BackNavigationFromConnectedScreenTest(BaseTest):
         for item in items:
             index += 1
             element = self.driver.find_element_by_text(item, retries=5)
-            Logger.get_instance().log_assert(element, 'Test failed to find "%s" on screen' % item)
-            PRINT('     Step 5.%s: Item "%s" found on screen' % (str(index), item))
+            Logger.get_instance().log_assert(
+                element, 'Test failed to find "%s" on screen' % item)
+            PRINT('     Step 5.%s: Item "%s" found on screen' %
+                  (str(index), item))
 
         PRINT('Step 4: Press Back button in order to get out of the child connect screen')
         self.driver.send_keys(RemoteControlKeys.BACK)
@@ -123,8 +128,10 @@ class BackNavigationFromConnectedScreenTest(BaseTest):
         PRINT('Step 5: Verify navigation back navigated the user to Home screen')
         self.building_blocks.screens['Home'].verify_in_screen(retries=10)
         text_on_home_screen = 'applicaster_cell_types'
-        element = self.driver.find_element_by_text(text_on_home_screen, retries=10)
-        Logger.get_instance().log_assert(element, 'Test failed to find "%s" in Home screen' % text_on_home_screen)
+        element = self.driver.find_element_by_text(
+            text_on_home_screen, retries=10)
+        Logger.get_instance().log_assert(
+            element, 'Test failed to find "%s" in Home screen' % text_on_home_screen)
 
     def shortDescription(self, test_name):
         return 'C17453 - Verify navigation back from a connected screen to home screen'

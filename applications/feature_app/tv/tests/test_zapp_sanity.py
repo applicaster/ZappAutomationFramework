@@ -16,7 +16,8 @@ from src.base_test import BaseTest
 class SimpleLaunchToHomeScreenTest(BaseTest):
     def verify_text_on_screen(self, text):
         element = self.driver.find_element_by_text(text, 5)
-        Logger.get_instance().log_assert(element, 'Test failed to find "%s" text on screen' % text)
+        Logger.get_instance().log_assert(
+            element, 'Test failed to find "%s" text on screen' % text)
         PRINT('"%s" title found on screen correctly' % text)
 
     def test_launch_to_home_screen(self):
@@ -34,8 +35,10 @@ def verify_component(driver, step_num, step_title, items):
     for item in items:
         counter += 1
         element = driver.find_element_by_text(item, retries=7)
-        Logger.get_instance().log_assert(element, 'Test failed to find "%s" on screen' % item)
-        PRINT('     Step %s.%s: Item %s found on screen' % (str(step_num), str(counter), item))
+        Logger.get_instance().log_assert(
+            element, 'Test failed to find "%s" on screen' % item)
+        PRINT('     Step %s.%s: Item %s found on screen' %
+              (str(step_num), str(counter), item))
 
 
 @pytest.mark.android_tv_nightly
@@ -53,7 +56,8 @@ class GridScreenTest(BaseTest):
             self.driver,
             2,
             'Step 2: Verify json feed data in Grid component',
-            ['applicaster_cell_types', 'video_feed', 'current_program_feed', 'channel_feed']
+            ['applicaster_cell_types', 'video_feed',
+                'current_program_feed', 'channel_feed']
         )
 
         if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
@@ -75,7 +79,8 @@ class GridScreenTest(BaseTest):
         )
 
         if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
-            self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 2)
+            self.driver.send_keys(
+                [RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 2)
         verify_component(
             self.driver,
             4,
@@ -108,7 +113,8 @@ class HorizontalListScreenTest(BaseTest):
             self.driver,
             3,
             'Step 1: Verify xml feed data in Horizontal List component',
-            ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2', 'vod_mp4_item_3', 'vod_mp4_item_4']
+            ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1',
+                'vod_mp4_item_2', 'vod_mp4_item_3', 'vod_mp4_item_4']
         )
 
         if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
@@ -117,7 +123,8 @@ class HorizontalListScreenTest(BaseTest):
             self.driver,
             4,
             'Step 2: Verify json feed data in Horizontal List component',
-            ['applicaster_cell_types', 'video_feed', 'current_program_feed', 'channel_feed']
+            ['applicaster_cell_types', 'video_feed',
+                'current_program_feed', 'channel_feed']
         )
 
         if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
@@ -151,7 +158,8 @@ class HorizontalListScreenTest(BaseTest):
         )
 
         if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
-            self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 3)
+            self.driver.send_keys(
+                [RemoteControlKeys.DOWN, RemoteControlKeys.DOWN], 3)
         verify_component(
             self.driver,
             8,
@@ -241,17 +249,21 @@ class ScreenPickerScreenTest(BaseTest):
             self.driver,
             2,
             'Step 2: verify that the screen picker tabs texts are showing on screen',
-            ['screen_1', 'screen_2', 'screen_3', 'screen_4', 'applicaster_cell_types', 'video_feed', 'current_program_feed']
+            ['screen_1', 'screen_2', 'screen_3', 'screen_4',
+                'applicaster_cell_types', 'video_feed', 'current_program_feed']
         )
 
         PRINT('Step 3: move to the screen picker tab named "screen_2"')
-        self.driver.send_keys([RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.ENTER])
+        self.driver.send_keys(
+            [RemoteControlKeys.DOWN, RemoteControlKeys.DOWN, RemoteControlKeys.ENTER])
         self.driver.wait(2)
 
-        elements_to_verify = ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2', 'vod_mp4_item_3', 'vod_mp4_item_4']
+        elements_to_verify = ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1',
+                              'vod_mp4_item_2', 'vod_mp4_item_3', 'vod_mp4_item_4']
         if platform in (PlatformType.ANDROID_TV, PlatformType.TV_OS):
             self.driver.wait(3)
-            elements_to_verify = ['video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2']
+            elements_to_verify = [
+                'video_feed_xml_mp4_and_m3u8', 'vod_mp4_item_1', 'vod_mp4_item_2']
 
         verify_component(
             self.driver,
