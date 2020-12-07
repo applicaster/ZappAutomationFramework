@@ -62,6 +62,7 @@ class BackNavigationFromScreenPickerTest(BaseTest):
 @pytest.mark.tv_os_nightly
 @pytest.mark.android_tv
 @pytest.mark.samsung_tv
+@pytest.mark.do_test
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationFromPlayerTest(BaseTest):
     def test_back_navigation_from_player(self):
@@ -70,7 +71,7 @@ class BackNavigationFromPlayerTest(BaseTest):
 
         PRINT('Step 2: Play vod item "vod_mp4_item_1" and navigate by that to the player screen')
         self.driver.send_keys(
-            [RemoteControlKeys.DOWN, RemoteControlKeys.ENTER])
+            [RemoteControlKeys.ENTER])
         self.driver.wait(7)
 
         PRINT('Step 3: Press Back button from player screen')
