@@ -37,7 +37,7 @@ PLATFORM = Configuration.get_instance().platform_type()
 
 
 class GoogleInteractiveMediaAdsTests(BaseTest):
-    @pytest.mark.qb_ios_mobile_nightly
+    # @pytest.mark.qb_ios_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
     def test_verify_playing_vast_adv_from_json_feed(self):
         grid_screen = self.building_blocks.screens['GridScreen']
@@ -110,9 +110,10 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
         PRINT('     Step %s.3: %s adv displayed and dismissed successfully' %
               (step, section))
 
-    @pytest.mark.qb_ios_mobile_nightly
+    # @pytest.mark.qb_ios_mobile_nightly
     # @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
+    @pytest.mark.do_test
     def test_verify_playing_vmap_adv_from_ui_builder_fallback(self):
         grid_screen = self.building_blocks.screens['GridScreen']
         pre_hook = self.building_blocks.screens['demo_pre_hook']

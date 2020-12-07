@@ -70,7 +70,7 @@ class BackNavigationFromPlayerTest(BaseTest):
 
         PRINT('Step 2: Play vod item "vod_mp4_item_1" and navigate by that to the player screen')
         self.driver.send_keys(
-            [RemoteControlKeys.ENTER])
+            [RemoteControlKeys.DOWN, RemoteControlKeys.ENTER])
         self.driver.wait(7)
 
         PRINT('Step 3: Press Back button from player screen')
