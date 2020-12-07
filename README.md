@@ -23,10 +23,10 @@ Make sure you have these tools installed:
 
 #### Install Appium CLI tool
 
-you will need appium to run the automated tests. You can install it using npm as described below, or you can install the [Appium client app for Mac OS](https://github.com/appium/appium-desktop/releases/tag/v1.18.3)
+you will need appium to run the automated tests. You can install it using npm as described below, or you can install the [Appium client app for Mac OS](https://github.com/appium/appium-desktop/releases/tag/v1.18.3). You will also need the chromium web driver for the samsung tests, and make sure you have a chrome browser available
 
 ```bash
-npm install -g appium@1.17.1
+npm install -g appium@1.17.1 chromedriver
 npm install wd
 ```
 
