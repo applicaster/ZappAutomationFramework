@@ -62,7 +62,6 @@ class BackNavigationFromScreenPickerTest(BaseTest):
 @pytest.mark.tv_os_nightly
 @pytest.mark.android_tv
 @pytest.mark.samsung_tv
-@pytest.mark.do_test
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationFromPlayerTest(BaseTest):
     def test_back_navigation_from_player(self):
@@ -70,6 +69,10 @@ class BackNavigationFromPlayerTest(BaseTest):
         self.building_blocks.screens['Horizontal List Screen'].navigate()
 
         PRINT('Step 2: Play vod item "vod_mp4_item_1" and navigate by that to the player screen')
+        platform_type = Configuration.get_instance().platform_type()
+        if platform_type == PlatformType.TV_OS:
+            self.driver.send_keys([RemoteControlKeys.DOWN])
+
         self.driver.send_keys(
             [RemoteControlKeys.ENTER])
         self.driver.wait(7)
