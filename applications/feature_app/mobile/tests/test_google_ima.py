@@ -113,7 +113,6 @@ class GoogleInteractiveMediaAdsTests(BaseTest):
     # @pytest.mark.qb_ios_mobile_nightly
     # @pytest.mark.qb_android_mobile_nightly
     @pytest.mark.usefixtures('automation_driver')
-    @pytest.mark.do_test
     def test_verify_playing_vmap_adv_from_ui_builder_fallback(self):
         grid_screen = self.building_blocks.screens['GridScreen']
         pre_hook = self.building_blocks.screens['demo_pre_hook']
