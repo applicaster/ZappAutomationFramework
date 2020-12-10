@@ -168,7 +168,7 @@ class HorizontalListScreenTest(BaseTest):
         )
 
 
-@pytest.mark.tv_os
+# @pytest.mark.tv_os commented out temporarily as it yields many false negative tests
 @pytest.mark.android_tv_nightly
 @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
