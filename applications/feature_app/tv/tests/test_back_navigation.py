@@ -14,15 +14,17 @@ from src.base_test import BaseTest
 class BackNavigationsBetweenScreenTest(BaseTest):
     def navigate_to_next_screen(self):
         self.driver.send_keys(
-            [RemoteControlKeys.UP, RemoteControlKeys.RIGHT, RemoteControlKeys.ENTER, 4], 2)
+            [RemoteControlKeys.UP, RemoteControlKeys.RIGHT, RemoteControlKeys.ENTER], 2)
 
     def test_back_navigation_between_screens(self):
+        self.driver.send_keys([RemoteControlKeys.UP])
         PRINT('Step 1: Navigate to "Horizontal List Screen"')
         self.navigate_to_next_screen()
         self.building_blocks.screens['Horizontal List Screen'].verify_in_screen(
         )
 
         PRINT('Step 2: Navigate to "Hero Screen"')
+        self.driver.send_keys(RemoteControlKeys.UP)
         self.navigate_to_next_screen()
         self.building_blocks.screens['Hero Screen'].verify_in_screen()
 
@@ -40,6 +42,7 @@ class BackNavigationsBetweenScreenTest(BaseTest):
 class BackNavigationFromScreenPickerTest(BaseTest):
     def test_back_navigation_from_screen_picker(self):
         PRINT('Step 1: Navigate to "Screen Picker"')
+        self.driver.send_keys([RemoteControlKeys.UP], 2)
         self.building_blocks.screens['Screen Picker'].navigate()
 
         PRINT('Step 2: Navigate to the second tab in the "Screen 2" in screen picker tabs')
@@ -66,11 +69,12 @@ class BackNavigationFromScreenPickerTest(BaseTest):
 class BackNavigationFromPlayerTest(BaseTest):
     def test_back_navigation_from_player(self):
         PRINT('Step 1: Navigate to "Horizontal List Screen"')
+        self.driver.send_keys([RemoteControlKeys.UP])
         self.building_blocks.screens['Horizontal List Screen'].navigate()
 
         PRINT('Step 2: Play vod item "vod_mp4_item_1" and navigate by that to the player screen')
         platform_type = Configuration.get_instance().platform_type()
-        if platform_type == PlatformType.TV_OS:
+        if platform_type == PlatformType.TV_OS or platform_type == PlatformType.WEB:
             self.driver.send_keys([RemoteControlKeys.DOWN])
 
         self.driver.send_keys(
@@ -89,7 +93,7 @@ class BackNavigationFromPlayerTest(BaseTest):
 
 
 @pytest.mark.tv_os_nightly
-@pytest.mark.samsung_tv
+# @pytest.mark.samsung_tv
 @pytest.mark.android_tv
 @pytest.mark.usefixtures('automation_driver')
 class BackNavigationFromConnectedScreenTest(BaseTest):
@@ -101,7 +105,7 @@ class BackNavigationFromConnectedScreenTest(BaseTest):
             timeout = 2
 
         elif platform_type == PlatformType.WEB:
-            timeout = 0.7
+            timeout = 2
 
         # 7 times on down button
         for i in range(7):
