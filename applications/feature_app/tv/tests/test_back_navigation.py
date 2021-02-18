@@ -23,11 +23,6 @@ class BackNavigationsBetweenScreenTest(BaseTest):
         self.building_blocks.screens['Horizontal List Screen'].verify_in_screen(
         )
 
-        PRINT('Step 2: Navigate to "Hero Screen"')
-        self.driver.send_keys(RemoteControlKeys.UP)
-        self.navigate_to_next_screen()
-        self.building_blocks.screens['Hero Screen'].verify_in_screen()
-
         PRINT('Step 3: Navigate back "Home" with the Back button')
         self.driver.send_keys(RemoteControlKeys.BACK)
         self.building_blocks.screens['Home'].verify_in_screen()
@@ -75,7 +70,8 @@ class BackNavigationFromPlayerTest(BaseTest):
         PRINT('Step 2: Play vod item "vod_mp4_item_1" and navigate by that to the player screen')
         platform_type = Configuration.get_instance().platform_type()
         if platform_type == PlatformType.TV_OS or platform_type == PlatformType.WEB:
-            self.driver.send_keys([RemoteControlKeys.DOWN])
+            self.driver.send_keys(
+                [RemoteControlKeys.UP, RemoteControlKeys.DOWN])
 
         self.driver.send_keys(
             [RemoteControlKeys.ENTER])

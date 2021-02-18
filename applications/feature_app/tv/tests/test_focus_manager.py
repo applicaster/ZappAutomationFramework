@@ -74,7 +74,7 @@ class FocusManagerTests(BaseTest):
         PRINT('Step 2: navigate to "Horizontal List" screen from top menu bar')
         self.driver.send_keys(RemoteControlKeys.UP)
         self.building_blocks.screens['Horizontal List Screen'].navigate()
-        self.driver.send_keys(RemoteControlKeys.DOWN)
+        self.driver.send_keys([RemoteControlKeys.UP, RemoteControlKeys.DOWN])
 
         accessibility_id = 'focusable-a39c93be-3df4-4de0-876d-702833f71664-aed90ff1-9691-4b61-ac2f-d4b917f7d8e9-8-1-a39c93be-3df4-4de0-876d-702833f71664-aed90ff1-9691-4b61-ac2f-d4b917f7d8e9-8-1-a3983053d1ebad89d3d442357a466789-0'
         move_focus_and_verify(
@@ -220,7 +220,7 @@ class FocusManagerTests(BaseTest):
             'navigate from top menu bar to "Horizontal List Screen" and verify focus is on "vod_mp4_item_1" item '
             'in "vod_mp4_item_1" Horizontal List component',
             [RemoteControlKeys.UP, RemoteControlKeys.RIGHT,
-                RemoteControlKeys.ENTER, RemoteControlKeys.DOWN],
+                RemoteControlKeys.ENTER, RemoteControlKeys.UP, RemoteControlKeys.DOWN],
             accessibility_id
         )
 
@@ -233,6 +233,6 @@ class FocusManagerTests(BaseTest):
             'navigate from top menu bar to "Home Screen" and verify focus is on "video_feed" item '
             'in "applicaster cell types json" grid component',
             [RemoteControlKeys.UP, RemoteControlKeys.LEFT,
-                RemoteControlKeys.ENTER, RemoteControlKeys.DOWN],
+                RemoteControlKeys.ENTER, RemoteControlKeys.UP, RemoteControlKeys.DOWN],
             accessibility_id
         )
