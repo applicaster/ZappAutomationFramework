@@ -28,7 +28,7 @@ class FocusManagerTests(BaseTest):
         self.driver.send_keys(
             [RemoteControlKeys.UP, RemoteControlKeys.DOWN], 1)
 
-        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-001-'
+        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-001-0'
         move_focus_and_verify(
             self.driver,
             2,
@@ -37,7 +37,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-        accessibility_id = 'focusable-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-3-1-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-3-1-108785-'
+        accessibility_id = 'focusable-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-3-1-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-3-1-108785-9'
         move_focus_and_verify(
             self.driver,
             3,
@@ -47,7 +47,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-        accessibility_id = 'focusable-501c665a-c663-4631-8ff5-7bbde3cfe209-0716203a-530e-4bfa-925d-441655ca277e-10-1-501c665a-c663-4631-8ff5-7bbde3cfe209-0716203a-530e-4bfa-925d-441655ca277e-10-1-7125723-'
+        accessibility_id = 'focusable-501c665a-c663-4631-8ff5-7bbde3cfe209-0716203a-530e-4bfa-925d-441655ca277e-10-1-501c665a-c663-4631-8ff5-7bbde3cfe209-0716203a-530e-4bfa-925d-441655ca277e-10-1-7125723-0'
         move_focus_and_verify(
             self.driver,
             4,
@@ -56,7 +56,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-        accessibility_id = 'focusable-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-3-1-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-3-1-108785-'
+        accessibility_id = 'focusable-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-3-1-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-3-1-108785-9'
         move_focus_and_verify(
             self.driver,
             5,
@@ -178,7 +178,7 @@ class FocusManagerTests(BaseTest):
         Logger.get_instance().log_assert(is_focused is True,
                                          '%s is not focused' % accessibility_id)
 
-        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-001-'
+        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-001-0'
         move_focus_and_verify(
             self.driver,
             4,
@@ -188,7 +188,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-003-'
+        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-003-2'
         move_focus_and_verify(
             self.driver,
             5,
@@ -226,7 +226,7 @@ class FocusManagerTests(BaseTest):
 
         self.driver.send_keys(RemoteControlKeys.UP)
 
-        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-001-'
+        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-001-0'
         move_focus_and_verify(
             self.driver,
             2,
