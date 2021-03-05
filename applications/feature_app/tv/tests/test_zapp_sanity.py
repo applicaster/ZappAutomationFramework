@@ -98,6 +98,7 @@ class GridScreenTest(BaseTest):
 @pytest.mark.android_tv_nightly
 @pytest.mark.tv_os_nightly
 @pytest.mark.samsung_tv
+# @pytest.mark.do_test
 @pytest.mark.usefixtures('automation_driver')
 class HorizontalListScreenTest(BaseTest):
     def test_horizontal_list_screen(self):
@@ -105,6 +106,8 @@ class HorizontalListScreenTest(BaseTest):
 
         PRINT('Step 1: Verify that the application launched into home screen')
         self.building_blocks.screens['Home'].verify_in_screen()
+
+        self.driver.send_keys(RemoteControlKeys.UP)
 
         PRINT('Step 2: navigate to "Horizontal List Screen" screen from top menu bar')
         self.building_blocks.screens['Horizontal List Screen'].navigate()
@@ -170,7 +173,7 @@ class HorizontalListScreenTest(BaseTest):
 
 @pytest.mark.tv_os
 @pytest.mark.android_tv_nightly
-@pytest.mark.samsung_tv
+# @pytest.mark.samsung_tv
 @pytest.mark.usefixtures('automation_driver')
 class HeroScreenTest(BaseTest):
     def test_hero_screen(self):
@@ -243,6 +246,7 @@ class ScreenPickerScreenTest(BaseTest):
     def test_screen_picker(self):
         platform = Configuration.get_instance().platform_type()
         PRINT('Step 1: navigate to "Screen Picker" screen from top menu bar')
+        self.driver.send_keys(RemoteControlKeys.UP)
         self.building_blocks.screens['Screen Picker'].navigate()
 
         verify_component(
