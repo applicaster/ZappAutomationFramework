@@ -241,6 +241,7 @@ class HeroScreenTest(BaseTest):
 @pytest.mark.android_tv_nightly
 @pytest.mark.tv_os_nightly
 @pytest.mark.samsung_tv
+@pytest.mark.do_test
 @pytest.mark.usefixtures('automation_driver')
 class ScreenPickerScreenTest(BaseTest):
     def test_screen_picker(self):
@@ -253,7 +254,7 @@ class ScreenPickerScreenTest(BaseTest):
             self.driver,
             2,
             'Step 2: verify that the screen picker tabs texts are showing on screen',
-            ['screen_1', 'screen_2', 'screen_3', 'screen_4',
+            ['screen_1', 'screen_4',
                 'applicaster_cell_types', 'video_feed', 'current_program_feed']
         )
 
