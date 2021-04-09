@@ -198,11 +198,11 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-        accessibility_id = 'focusable-PickerSelector.ScreenPickerContainer.b859d004-d3a2-42e5-8312-260d51d2fa12-PickerItem.94222.1'
+        accessibility_id = 'focusable-PickerSelector.ScreenPickerContainer.b859d004-d3a2-42e5-8312-260d51d2fa12-PickerItem.94224.1'
         move_focus_and_verify(
             self.driver,
             6,
-            'move focus manger to the second tab in the screen picker (screen_2) and verify that screen_2 is focused',
+            'move focus manger to the second tab in the screen picker (screen_4) and verify that screen_2 is focused',
             [RemoteControlKeys.LEFT, RemoteControlKeys.LEFT, RemoteControlKeys.LEFT,
                 RemoteControlKeys.DOWN, RemoteControlKeys.ENTER],
             accessibility_id
