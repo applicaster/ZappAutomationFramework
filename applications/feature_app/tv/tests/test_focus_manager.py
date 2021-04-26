@@ -178,7 +178,7 @@ class FocusManagerTests(BaseTest):
         Logger.get_instance().log_assert(is_focused is True,
                                          '%s is not focused' % accessibility_id)
 
-        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-001-0'
+        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-1-001-0'
         move_focus_and_verify(
             self.driver,
             4,
@@ -188,7 +188,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-003-2'
+        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-1-003-2'
         move_focus_and_verify(
             self.driver,
             5,
