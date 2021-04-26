@@ -213,7 +213,7 @@ class FocusManagerTests(BaseTest):
     def test_move_focus_manager_in_top_menu_bar(self):
         self.driver.send_keys(RemoteControlKeys.UP)
 
-        accessibility_id = 'focusable-a39c93be-3df4-4de0-876d-702833f71664-aed90ff1-9691-4b61-ac2f-d4b917f7d8e9-1-a39c93be-3df4-4de0-876d-702833f71664-aed90ff1-9691-4b61-ac2f-d4b917f7d8e9-8-1-a3983053d1ebad89d3d442357a466789-0'
+        accessibility_id = 'focusable-a39c93be-3df4-4de0-876d-702833f71664-aed90ff1-9691-4b61-ac2f-d4b917f7d8e9-1-a39c93be-3df4-4de0-876d-702833f71664-aed90ff1-9691-4b61-ac2f-d4b917f7d8e9-1-a3983053d1ebad89d3d442357a466789-0'
         move_focus_and_verify(
             self.driver,
             1,
@@ -226,7 +226,7 @@ class FocusManagerTests(BaseTest):
 
         self.driver.send_keys(RemoteControlKeys.UP)
 
-        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-9-1-001-0'
+        accessibility_id = 'focusable-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-1-bb032301-9eed-4508-8731-61f55041e106-4dc7b914-b36f-42ed-af35-bab04200ada6-1-001-0'
         move_focus_and_verify(
             self.driver,
             2,
