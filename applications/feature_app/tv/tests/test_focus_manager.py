@@ -37,7 +37,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-        accessibility_id = 'focusable-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-1-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-1-108785-9s'
+        accessibility_id = 'focusable-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-1-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-1-108785-9'
         move_focus_and_verify(
             self.driver,
             3,
@@ -47,7 +47,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-        accessibility_id = 'focusable-501c665a-c663-4631-8ff5-7bbde3cfe209-0716203a-530e-4bfa-925d-441655ca277e-1-501c665a-c663-4631-8ff5-7bbde3cfe209-0716203a-530e-4bfa-925d-441655ca277e-10-1-7125723-0'
+        accessibility_id = 'focusable-501c665a-c663-4631-8ff5-7bbde3cfe209-0716203a-530e-4bfa-925d-441655ca277e-1-501c665a-c663-4631-8ff5-7bbde3cfe209-0716203a-530e-4bfa-925d-441655ca277e-1-7125723-0'
         move_focus_and_verify(
             self.driver,
             4,
@@ -56,7 +56,7 @@ class FocusManagerTests(BaseTest):
             accessibility_id
         )
 
-        accessibility_id = 'focusable-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-1-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-3-1-108785-9'
+        accessibility_id = 'focusable-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-1-ba9d4f36-1d4c-4cbe-9b6c-9ab457100af5-b2b7c964-fbe6-41b0-aba7-0499653a2ef8-1-108785-9'
         move_focus_and_verify(
             self.driver,
             5,
