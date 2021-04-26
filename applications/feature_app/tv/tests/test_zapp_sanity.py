@@ -241,7 +241,6 @@ class HeroScreenTest(BaseTest):
 @pytest.mark.android_tv_nightly
 @pytest.mark.tv_os_nightly
 @pytest.mark.samsung_tv
-@pytest.mark.do_test
 @pytest.mark.usefixtures('automation_driver')
 class ScreenPickerScreenTest(BaseTest):
     def test_screen_picker(self):
