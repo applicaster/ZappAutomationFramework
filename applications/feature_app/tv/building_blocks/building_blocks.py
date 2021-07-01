@@ -26,17 +26,17 @@ class BuildingBlocks(BuildingBlocksInterface):
 
         self.test.driver.wait(45)
 
-        if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
-            PRINT(
-                'Workaround: navigate 2 times Down, 3 times up and again 1 time down'
-                ' that is for solving https://applicaster.atlassian.net/browse/ZPP-2279', text_color='magenta')
-            self.test.driver.send_keys([
-                RemoteControlKeys.DOWN, RemoteControlKeys.DOWN,
-                RemoteControlKeys.UP, RemoteControlKeys.UP, RemoteControlKeys.UP,
-                RemoteControlKeys.DOWN
-            ], 2.5)
+        # if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
+        PRINT(
+            'Workaround for initial focus issue: navigate 2 times Down, 3 times up and again 1 time down'
+            ' that is for solving https://applicaster.atlassian.net/browse/ZPP-2279', text_color='magenta')
+        self.test.driver.send_keys([
+            RemoteControlKeys.DOWN, RemoteControlKeys.DOWN,
+            RemoteControlKeys.UP, RemoteControlKeys.UP, RemoteControlKeys.UP,
+            RemoteControlKeys.DOWN
+        ], 2.5)
 
-        return True
+        # return True
 
     def __setup_building_blocks__(self):
         self.screens['Home'] = HomeScreen(
