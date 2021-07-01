@@ -11,18 +11,20 @@ from src.utils.logger import Logger
 
 class BuildingBlocks(BuildingBlocksInterface):
     def boot_step(self):
-        boot_timeout = 136
+        boot_timeout = 300
         PRINT('Start waiting for home screen to load')
         element = None
         for i in range(boot_timeout):
-            element = self.test.driver.find_element_by_text('applicaster_cell_types')
+            element = self.test.driver.find_element_by_text(
+                'applicaster_cell_types')
             if element is not None:
                 break
-            self.test.driver.wait(1)
+            self.test.driver.wait(10)
         PRINT('Finish waiting for home screen to load')
-        Logger.get_instance().log_assert(element is not None, 'Application failed launching to home screen correctly')
+        Logger.get_instance().log_assert(element is not None,
+                                         'Application failed launching to home screen correctly')
 
-        self.test.driver.wait(15)
+        self.test.driver.wait(45)
 
         if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
             PRINT(
@@ -43,7 +45,8 @@ class BuildingBlocks(BuildingBlocksInterface):
         )
 
         screens = (
-            ('Horizontal List Screen', [RemoteControlKeys.UP, RemoteControlKeys.RIGHT, RemoteControlKeys.ENTER]),
+            ('Horizontal List Screen', [
+             RemoteControlKeys.UP, RemoteControlKeys.RIGHT, RemoteControlKeys.ENTER]),
             ('Hero Screen',
              [RemoteControlKeys.UP, RemoteControlKeys.RIGHT, RemoteControlKeys.RIGHT, RemoteControlKeys.ENTER]),
             ('Mixed Screen',
@@ -54,6 +57,7 @@ class BuildingBlocks(BuildingBlocksInterface):
               RemoteControlKeys.RIGHT, RemoteControlKeys.ENTER]),
         )
         for screen in screens:
-            self.screens[screen[0]] = TvScreen(self.test, screen[0], navigation_steps=screen[1])
+            self.screens[screen[0]] = TvScreen(
+                self.test, screen[0], navigation_steps=screen[1])
 
         self.screens['player_screen'] = FeatureAppPlayer(self.test)
