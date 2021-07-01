@@ -14,6 +14,7 @@ class BuildingBlocks(BuildingBlocksInterface):
         boot_timeout = 60
         PRINT('Start waiting for home screen to load')
         element = None
+
         for i in range(boot_timeout):
             element = self.test.driver.find_element_by_text(
                 'applicaster_cell_types')
