@@ -11,6 +11,9 @@ from src.utils.logger import Logger
 
 class BuildingBlocks(BuildingBlocksInterface):
     def boot_step(self):
+
+        self.test.driver.wait(45)
+
         boot_timeout = 60
         PRINT('Start waiting for home screen to load')
         element = None
@@ -24,8 +27,6 @@ class BuildingBlocks(BuildingBlocksInterface):
         PRINT('Finish waiting for home screen to load')
         Logger.get_instance().log_assert(element is not None,
                                          'Application failed launching to home screen correctly')
-
-        self.test.driver.wait(45)
 
         # if Configuration.get_instance().platform_type() == PlatformType.TV_OS:
         PRINT(
